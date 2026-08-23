@@ -9,7 +9,7 @@
     android:background="#F5F5F5"
     tools:context=".demo.layouts.TableLayoutDemoActivity">
 
-    <include layout="@layout/layout_toolbar"/>
+    <include layout="@layout/item_toolbar"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -23,13 +23,7 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <TextView
-                android:id="@+id/tvExplanation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="TableLayout tổ chức View theo hàng (TableRow) và cột. Dùng stretchColumns để cột tự động giãn ra chiếm khoảng trống, và layout_span để gộp cột."
-                android:textColor="#333333"
-                android:textSize="@dimen/text_size_desc"/>
+            <include layout="@layout/item_explanation"/>
 
             <TableLayout
                 android:layout_width="match_parent"

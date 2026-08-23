@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context=".ComponentListActivity">
 
-    <include layout="@layout/layout_toolbar"/>
+    <include layout="@layout/item_toolbar"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvComponentTopics"

@@ -9,7 +9,7 @@
     android:orientation="vertical"
     tools:context=".demo.layouts.ConstraintLayoutDemoActivity">
 
-    <include layout="@layout/layout_toolbar"/>
+    <include layout="@layout/item_toolbar"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -22,21 +22,19 @@
             android:layout_height="wrap_content"
             android:padding="16dp">
 
-            <TextView
-                android:id="@+id/tvExplanation"
+            <include
+                android:id="@+id/includedExplanation"
+                layout="@layout/item_explanation"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textColor="#333333"
-                android:textSize="@dimen/text_size_desc"
-                tools:text="@string/constraint_layout_explanation"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
-                app:layout_constraintTop_toBottomOf="@+id/tvExplanation"
+                app:layout_constraintTop_toBottomOf="@id/includedExplanation"
                 android:layout_marginTop="16dp"
                 android:background="#FFE6D1">
 

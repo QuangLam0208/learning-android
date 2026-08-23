@@ -10,7 +10,7 @@
     android:background="#F5F5F5"
     tools:context=".demo.layouts.RelativeLayoutDemoActivity">
 
-    <include layout="@layout/layout_toolbar"/>
+    <include layout="@layout/item_toolbar"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -23,19 +23,17 @@
             android:layout_height="match_parent"
             android:padding="16dp">
 
-            <TextView
-                android:id="@+id/tvExplanation"
+            <include
+                android:id="@+id/includedExplanation"
+                layout="@layout/item_explanation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="@string/relative_layout_explanation"
-                android:textColor="#333333"
-                android:textSize="@dimen/text_size_desc"
                 android:layout_alignParentTop="true"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
-                android:layout_below="@id/tvExplanation"
+                android:layout_below="@id/includedExplanation"
                 android:layout_marginTop="16dp"
                 android:background="#FFE6D1">
 
@@ -79,7 +77,7 @@
                     android:background="#2196F3"/>
 
                 <TextView
-                    android:id="@+id/tvAbove"
+                    android:id="@+id/tvBottomLeft"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="4dp"
