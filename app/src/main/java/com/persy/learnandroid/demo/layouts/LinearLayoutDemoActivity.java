@@ -1,6 +1,8 @@
 package com.persy.learnandroid.demo.layouts;
 
 import android.os.Bundle;
+import android.text.Html;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +25,14 @@ public class LinearLayoutDemoActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        TextView tvExplanation = findViewById(R.id.tvExplanation);
+        tvExplanation.setText(
+                Html.fromHtml(
+                        getString(R.string.linear_layout_explanation),
+                        Html.FROM_HTML_MODE_LEGACY
+                )
+        );
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

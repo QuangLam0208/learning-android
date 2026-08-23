@@ -13,13 +13,13 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.persy.learnandroid.R;
 
-public class ConstraintLayoutDemoActivity extends AppCompatActivity {
+public class RelativeLayoutDemoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_constraint_layout_demo);
+        setContentView(R.layout.activity_relative_layout_demo);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -29,7 +29,7 @@ public class ConstraintLayoutDemoActivity extends AppCompatActivity {
         TextView tvExplanation = findViewById(R.id.tvExplanation);
         tvExplanation.setText(
                 Html.fromHtml(
-                        getString(R.string.constraint_layout_explanation),
+                        getString(R.string.relative_layout_explanation),
                         Html.FROM_HTML_MODE_LEGACY
                 )
         );
@@ -41,7 +41,6 @@ public class ConstraintLayoutDemoActivity extends AppCompatActivity {
             getSupportActionBar().setTitle(topicTitle);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-
         toolbar.setNavigationOnClickListener(v -> finish());
     }
 }

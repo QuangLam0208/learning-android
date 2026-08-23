@@ -17,6 +17,7 @@ import com.persy.learnandroid.adapter.TopicAdapter;
 import com.persy.learnandroid.data.TopicRepository;
 import com.persy.learnandroid.demo.layouts.ConstraintLayoutDemoActivity;
 import com.persy.learnandroid.demo.layouts.LinearLayoutDemoActivity;
+import com.persy.learnandroid.demo.layouts.RelativeLayoutDemoActivity;
 import com.persy.learnandroid.model.ETopicCategory;
 import com.persy.learnandroid.model.Topic;
 
@@ -46,7 +47,7 @@ public class ComponentListActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle(cate.name());
+            getSupportActionBar().setTitle(cate.getValue());
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
@@ -82,6 +83,9 @@ public class ComponentListActivity extends AppCompatActivity {
                 return LinearLayoutDemoActivity.class;
             case "KEY_CONSTRAINT_LAYOUT":
                 return ConstraintLayoutDemoActivity.class;
+            case "KEY_RELATIVE_LAYOUT":
+                return RelativeLayoutDemoActivity.class;
+
             // === CONTROLS ===
             case "KEY_BUTTON":
                 // return ButtonDemoActivity.class;

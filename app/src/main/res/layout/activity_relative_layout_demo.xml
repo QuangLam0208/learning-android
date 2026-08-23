@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F5F5"
+    tools:context=".demo.layouts.RelativeLayoutDemoActivity">
+
+    <include layout="@layout/layout_toolbar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvExplanation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="@string/relative_layout_explanation"
+                android:textColor="#333333"
+                android:textSize="@dimen/text_size_desc"
+                android:layout_alignParentTop="true"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_below="@id/tvExplanation"
+                android:layout_marginTop="16dp"
+                android:background="#FFE6D1">
+
+                <TextView
+                    android:id="@+id/tvCenter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:layout_margin="30dp"
+                    android:text="center\nInParent"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_size_desc"
+                    android:textColor="@color/white"
+                    android:layout_centerInParent="true"
+                    android:background="#FF9800"/>
+
+                <TextView
+                    android:id="@+id/tvAbove"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="above\ncenterHorizontal"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_size_desc"
+                    android:textColor="@color/white"
+                    android:layout_above="@id/tvCenter"
+                    android:layout_centerHorizontal="true"
+                    android:background="#4CAF50"/>
+
+                <TextView
+                    android:id="@+id/tvRight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="toEndOf\ncenterVertical"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_size_desc"
+                    android:textColor="@color/white"
+                    android:layout_toEndOf="@id/tvCenter"
+                    android:layout_centerVertical="true"
+                    android:background="#2196F3"/>
+
+                <TextView
+                    android:id="@+id/tvAbove"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="bottom\nalignParentLeft"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_size_desc"
+                    android:textColor="@color/white"
+                    android:layout_below="@id/tvCenter"
+                    android:layout_alignParentLeft="true"
+                    android:background="#9C8544"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</LinearLayout>

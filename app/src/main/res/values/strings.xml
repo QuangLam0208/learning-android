@@ -1,26 +1,35 @@
 <resources>
     <string name="app_name">Android Knowledge Base</string>
 
-    <!-- General -->
     <string name="desc_arrow">Go to detail</string>
 
-    <!-- Categories -->
-    <string name="title_layouts">Layouts</string>
-    <string name="desc_layouts">LinearLayout, ConstraintLayout, RelativeLayout, FrameLayout…</string>
+    <string name="constraint_layout_explanation">
+        <![CDATA[
+            <b>ConstraintLayout</b> định vị các View dựa trên các điểm neo (ràng buộc). Mỗi View cần ít nhất 2 ràng buộc: một theo trục X và một theo trục Y.<br><br>
 
-    <string name="title_controls">Controls</string>
-    <string name="desc_controls">Button, TextView, EditText, CheckBox, RadioButton, Spinner…</string>
+            <b>Ràng buộc theo cạnh:</b> <i>app:layout_constraintTop_toTopOf</i> (Cạnh trên của View này khớp với cạnh trên của View kia/Parent).<br><br>
 
-    <string name="title_intent">Intent &amp; Bundle</string>
-    <string name="desc_intent">Truyền nhận dữ liệu giữa các Activity, chuyển màn hình…</string>
+            <i>Dưới đây minh họa việc căn giữa, neo vào View khác và dùng Bias.</i>
+        ]]>
+    </string>
 
-    <string name="title_recyclerview">RecyclerView</string>
-    <string name="desc_recyclerview">Xử lý danh sách nâng cao với Adapter và ViewHolder…</string>
+    <string name="linear_layout_explanation">
+        <![CDATA[
+            <b>LinearLayout</b> sắp xếp các view con theo một chiều duy nhất (ngang hoặc dọc) thông qua thuộc tính <i>android:orientation</i>.<br><br>
 
-    <!-- Topics (Ví dụ cho một vài topic con) -->
-    <string name="topic_linear_layout">LinearLayout</string>
-    <string name="topic_desc_linear_layout">Sắp xếp view theo hàng ngang hoặc dọc</string>
+            Thuộc tính <i>layout_weight</i> giúp chia tỷ lệ không gian trống một cách linh hoạt.
+        ]]>
+    </string>
 
-    <string name="topic_constraint_layout">ConstraintLayout</string>
-    <string name="topic_desc_constraint_layout">Sắp xếp view linh hoạt bằng constraint</string>
+    <string name="relative_layout_explanation">
+        <![CDATA[
+            <b>RelativeLayout</b> cho phép sắp xếp các View dựa trên vị trí tương đối giữa chúng hoặc so với Parent. Nó rất linh hoạt nhưng có thể gây chậm hiệu suất nếu lồng ghép quá nhiều lớp.
+            <br><br>
+            - <b>Căn lề cha:</b> <i>layout_alignParentTop, layout_alignParentBottom, layout_alignParentStart, layout_alignParentEnd.</i>
+            <br><br>
+            - <b>Căn giữa cha:</b> <i>layout_centerInParent, layout_centerHorizontal, layout_centerVertical.</i>
+            <br><br>
+            - <b>Vị trí so với View khác:</b> <i>layout_below</i> (nằm dưới), <i>layout_above</i> (nằm trên), <i>layout_toEndOf</i> (nằm bên phải - cho ngôn ngữ LTR).
+        ]]>
+    </string>
 </resources>
