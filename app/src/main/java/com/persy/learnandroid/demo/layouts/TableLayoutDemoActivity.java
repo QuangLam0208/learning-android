@@ -1,9 +1,12 @@
 package com.persy.learnandroid.demo.layouts;
 
 import android.os.Bundle;
+import android.text.Html;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -22,5 +25,24 @@ public class TableLayoutDemoActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        TextView tvExplanation = findViewById(R.id.tvExplanation);
+        tvExplanation.setText(
+                Html.fromHtml(
+                        getString(R.string.table_layout_explanation),
+                        Html.FROM_HTML_MODE_LEGACY
+                )
+        );
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        if (getSupportActionBar() != null) {
+            String topicTitle = getIntent().getStringExtra("EXTRA_TOPIC_TITLE");
+            getSupportActionBar().setTitle(topicTitle);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
+        toolbar.setNavigationOnClickListener(v -> finish());
     }
 }

@@ -47,4 +47,21 @@
 
         ]]>
     </string>
+
+    <string name="table_layout_explanation">
+        <![CDATA[
+            <b>TableLayout</b> dùng để sắp xếp các View theo <b>dạng bảng gồm các hàng và cột</b>. Mỗi hàng thường được biểu diễn bằng một <i>TableRow</i>, trong đó các View con của <i>TableRow</i> đóng vai trò như các ô trong hàng.
+            <br><br>
+            - Mỗi <i>TableRow</i> đại diện cho <b>một hàng</b>.
+            <br><br>
+            - Các View bên trong <i>TableRow</i> đại diện cho <b>các ô</b>.
+            <br><br>
+            - Có thể cho một View <b>chiếm nhiều cột</b> bằng <i>layout_span</i>.
+            <br><br>
+            - Có thể làm cho một cột <b>co giãn hoặc chiếm phần không gian còn lại</b>.
+            <br><br>
+            - Phù hợp với giao diện có cấu trúc dạng bảng đơn giản.
+            <br><br>
+        ]]>
+    </string>
 </resources>
