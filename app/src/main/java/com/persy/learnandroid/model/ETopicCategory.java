@@ -1,6 +1,6 @@
 package com.persy.learnandroid.model;
 
-public enum TopicCategory {
+public enum ETopicCategory {
     LAYOUTS,
     CONTROLS,
     INTENT_BUNDLE,

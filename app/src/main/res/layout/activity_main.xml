@@ -8,19 +8,7 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:title="Android Learning Demo"
-            app:titleTextColor="@android:color/white"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-    </com.google.android.material.appbar.AppBarLayout>
+    <include layout="@layout/layout_toolbar"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMainTopics"
@@ -28,7 +16,8 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:clipToPadding="false"
-        android:paddingVertical="@dimen/padding_small"
-        android:scrollbars="vertical" />
+        android:padding="@dimen/padding_small"
+        android:scrollbars="vertical"
+        tools:listitem="@layout/item_topic"/>
 
 </LinearLayout>

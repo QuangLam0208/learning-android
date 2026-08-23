@@ -1,7 +1,7 @@
 package com.persy.learnandroid.data;
 
 import com.persy.learnandroid.model.Topic;
-import com.persy.learnandroid.model.TopicCategory;
+import com.persy.learnandroid.model.ETopicCategory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +16,10 @@ public class TopicRepository {
         List<Topic> topics = new ArrayList<>();
 
         // Dùng Enum name làm ID luôn để dễ map sang bước 2
-        topics.add(new Topic(TopicCategory.LAYOUTS.name(), "Layouts", "LinearLayout, ConstraintLayout, RelativeLayout...", null, true));
-        topics.add(new Topic(TopicCategory.CONTROLS.name(), "Controls", "Button, TextView, EditText, CheckBox...", null, true));
-        topics.add(new Topic(TopicCategory.INTENT_BUNDLE.name(), "Intent & Bundle", "Truyền nhận dữ liệu giữa các Activity", null, true));
-        topics.add(new Topic(TopicCategory.RECYCLERVIEW.name(), "RecyclerView", "Xử lý danh sách nâng cao với Adapter", null, true));
+        topics.add(new Topic(ETopicCategory.LAYOUTS.name(), "Layouts", "LinearLayout, ConstraintLayout, RelativeLayout...", null, true));
+        topics.add(new Topic(ETopicCategory.CONTROLS.name(), "Controls", "Button, TextView, EditText, CheckBox...", null, true));
+        topics.add(new Topic(ETopicCategory.INTENT_BUNDLE.name(), "Intent & Bundle", "Truyền nhận dữ liệu giữa các Activity", null, true));
+        topics.add(new Topic(ETopicCategory.RECYCLERVIEW.name(), "RecyclerView", "Xử lý danh sách nâng cao với Adapter", null, true));
 
         return topics;
     }
@@ -28,7 +28,7 @@ public class TopicRepository {
      * Lấy danh sách bài học con tương ứng với từng Category
      * Các item này có hasChildren = false và chứa targetActivityKey để mở Activity tương ứng
      */
-    public static List<Topic> getTopicsForCategory(TopicCategory category) {
+    public static List<Topic> getTopicsForCategory(ETopicCategory category) {
         List<Topic> topics = new ArrayList<>();
 
         switch (category) {

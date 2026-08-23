@@ -1,12 +1,25 @@
 package com.persy.learnandroid;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.persy.learnandroid.adapter.TopicAdapter;
+import com.persy.learnandroid.data.TopicRepository;
+import com.persy.learnandroid.demo.layouts.LinearLayoutDemoActivity;
+import com.persy.learnandroid.model.ETopicCategory;
+import com.persy.learnandroid.model.Topic;
+
+import java.util.List;
 
 public class ComponentListActivity extends AppCompatActivity {
 
@@ -20,5 +33,67 @@ public class ComponentListActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        String topicCateKey = getIntent().getStringExtra("EXTRA_CATEGORY");
+        if (topicCateKey == null) {
+            finish();
+            return;
+        }
+
+        ETopicCategory cate = ETopicCategory.valueOf(topicCateKey);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(cate.name());
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
+        toolbar.setNavigationOnClickListener(v -> finish());
+
+        RecyclerView rvComponentTopics = findViewById(R.id.rvComponentTopics);
+        rvComponentTopics.setLayoutManager(new LinearLayoutManager(this));
+
+        List<Topic> subTopics = TopicRepository.getTopicsForCategory(cate);
+
+        TopicAdapter adapter = new TopicAdapter(subTopics, topic -> {
+            Class<?> targetActivityClass = getActivityClass(topic.getTargetActivityKey());
+
+            if (targetActivityClass != null) {
+                Intent intent = new Intent(ComponentListActivity.this, targetActivityClass);
+                intent.putExtra("EXTRA_TOPIC_TITLE", topic.getTitle());
+                startActivity(intent);
+            } else {
+                Toast.makeText(ComponentListActivity.this,
+                        "Tính năng " + topic.getTitle() + " đang được phát triển!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        rvComponentTopics.setAdapter(adapter);
+    }
+
+    private Class<?> getActivityClass(String key) {
+        if (key == null) return null;
+
+        switch (key) {
+            case "KEY_LINEAR_LAYOUT":
+                return LinearLayoutDemoActivity.class;
+            case "KEY_CONSTRAINT_LAYOUT":
+                // return ConstraintLayoutDemoActivity.class;
+                break;
+
+            // === CONTROLS ===
+            case "KEY_BUTTON":
+                // return ButtonDemoActivity.class;
+                break;
+            case "KEY_EDIT_TEXT":
+                // return EditTextDemoActivity.class;
+                break;
+            default:
+                return null;
+        }
+
+        return null;
     }
 }
