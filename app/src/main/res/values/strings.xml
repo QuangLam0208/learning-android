@@ -41,7 +41,7 @@
             <br><br>
             - <b>Căn vị trí View con</b>: <i>android:layout_gravity</i>
             <br><br>
-            <i>top, bottom, start, end, top|start, bottom|end,...</i>
+            <i>top, bottom, start, end, top|start, bottom|end,…</i>
             <br><br>
             <i>center, center_horizontal, center_vertical</i>
 
@@ -64,4 +64,25 @@
             <br><br>
         ]]>
     </string>
+
+    <string name="grid_layout_explanation">
+    <![CDATA[
+        <b>GridLayout</b> dùng để sắp xếp các View theo <b>dạng lưới gồm nhiều hàng và cột</b>. Khác với <i>TableLayout</i>, GridLayout cho phép xác định trực tiếp số lượng hàng, số lượng cột và vị trí mà View chiếm trong lưới.
+        <br><br>
+        - Sắp xếp các View theo <b>hàng và cột</b>.
+        <br><br>
+        - Có thể xác định số lượng cột bằng <i>columnCount</i>.
+        <br><br>
+        - Có thể xác định số lượng hàng bằng <i>rowCount</i>.
+        <br><br>
+        - Một View có thể <b>chiếm nhiều hàng hoặc nhiều cột</b>.
+        <br><br>
+        - Có thể xác định <b>vị trí hàng và cột</b> của View trong Grid.
+        <br><br>
+        - Có thể sử dụng <i>layout_gravity</i> để <b>căn chỉnh View</b> trong ô.
+        <br><br>
+        - Phù hợp với các giao diện có <b>bố cục dạng lưới cố định hoặc đơn giản</b>.
+        <br><br>
+    ]]>
+</string>
 </resources>

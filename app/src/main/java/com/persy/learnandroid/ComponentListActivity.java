@@ -17,6 +17,7 @@ import com.persy.learnandroid.adapter.TopicAdapter;
 import com.persy.learnandroid.data.TopicRepository;
 import com.persy.learnandroid.demo.layouts.ConstraintLayoutDemoActivity;
 import com.persy.learnandroid.demo.layouts.FrameLayoutDemoActivity;
+import com.persy.learnandroid.demo.layouts.GridLayoutDemoActivity;
 import com.persy.learnandroid.demo.layouts.LinearLayoutDemoActivity;
 import com.persy.learnandroid.demo.layouts.RelativeLayoutDemoActivity;
 import com.persy.learnandroid.demo.layouts.TableLayoutDemoActivity;
@@ -91,6 +92,8 @@ public class ComponentListActivity extends AppCompatActivity {
                 return FrameLayoutDemoActivity.class;
             case "KEY_TABLE_LAYOUT":
                 return TableLayoutDemoActivity.class;
+            case "KEY_GRID_LAYOUT":
+                return GridLayoutDemoActivity.class;
 
             // === CONTROLS ===
             case "KEY_BUTTON":
