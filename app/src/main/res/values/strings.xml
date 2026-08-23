@@ -1,3 +1,26 @@
 <resources>
-    <string name="app_name">LearnAndroid</string>
+    <string name="app_name">Android Knowledge Base</string>
+
+    <!-- General -->
+    <string name="desc_arrow">Go to detail</string>
+
+    <!-- Categories -->
+    <string name="title_layouts">Layouts</string>
+    <string name="desc_layouts">LinearLayout, ConstraintLayout, RelativeLayout, FrameLayout…</string>
+
+    <string name="title_controls">Controls</string>
+    <string name="desc_controls">Button, TextView, EditText, CheckBox, RadioButton, Spinner…</string>
+
+    <string name="title_intent">Intent &amp; Bundle</string>
+    <string name="desc_intent">Truyền nhận dữ liệu giữa các Activity, chuyển màn hình…</string>
+
+    <string name="title_recyclerview">RecyclerView</string>
+    <string name="desc_recyclerview">Xử lý danh sách nâng cao với Adapter và ViewHolder…</string>
+
+    <!-- Topics (Ví dụ cho một vài topic con) -->
+    <string name="topic_linear_layout">LinearLayout</string>
+    <string name="topic_desc_linear_layout">Sắp xếp view theo hàng ngang hoặc dọc</string>
+
+    <string name="topic_constraint_layout">ConstraintLayout</string>
+    <string name="topic_desc_constraint_layout">Sắp xếp view linh hoạt bằng constraint</string>
 </resources>
