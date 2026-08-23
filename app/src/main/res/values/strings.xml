@@ -32,4 +32,19 @@
             - <b>Vị trí so với View khác:</b> <i>layout_below</i> (nằm dưới), <i>layout_above</i> (nằm trên), <i>layout_toEndOf</i> (nằm bên phải - cho ngôn ngữ LTR).
         ]]>
     </string>
+
+    <string name="frame_layout_explanation">
+        <![CDATA[
+            <b>FrameLayout</b> là một trong các bố cục (layout) cơ bản và đơn giản trong Android. Nó dùng để hiển thị các View con theo kiểu <b>xếp chồng lên nhau</b>, trong đó View được thêm sau thường nằm ở lớp phía trên.
+            <br><br>
+            - Sử dụng <i>layout_gravity</i> để thay đổi vị trí của View con.
+            <br><br>
+            - <b>Căn vị trí View con</b>: <i>android:layout_gravity</i>
+            <br><br>
+            <i>top, bottom, start, end, top|start, bottom|end,...</i>
+            <br><br>
+            <i>center, center_horizontal, center_vertical</i>
+
+        ]]>
+    </string>
 </resources>
