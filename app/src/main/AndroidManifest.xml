@@ -49,6 +49,10 @@
             android:name=".demo.layouts.GridLayoutDemoActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".demo.controls.ButtonDemoActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

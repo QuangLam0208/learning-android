@@ -7,11 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TopicRepository {
-
-    /**
-     * Lấy danh sách 4 danh mục chính (Layouts, Controls, Intent, RecyclerView)
-     * Các item này có hasChildren = true và targetActivityKey = null (vì click vào sẽ mở list con)
-     */
     public static List<Topic> getMainTopics() {
         List<Topic> topics = new ArrayList<>();
 
@@ -23,11 +18,6 @@ public class TopicRepository {
 
         return topics;
     }
-
-    /**
-     * Lấy danh sách bài học con tương ứng với từng Category
-     * Các item này có hasChildren = false và chứa targetActivityKey để mở Activity tương ứng
-     */
     public static List<Topic> getTopicsForCategory(ETopicCategory category) {
         List<Topic> topics = new ArrayList<>();
 
@@ -42,15 +32,12 @@ public class TopicRepository {
                 break;
 
             case CONTROLS:
-                topics.add(new Topic("C1", "Button", "Nút bấm cơ bản", "KEY_BUTTON", false));
+                topics.add(new Topic("C1", "Button", "Các loại Button", "KEY_BUTTON", false));
                 topics.add(new Topic("C2", "EditText", "Trường nhập dữ liệu văn bản", "KEY_EDIT_TEXT", false));
                 topics.add(new Topic("C3", "TextView", "Hiển thị đoạn text", "KEY_TEXT_VIEW", false));
-                topics.add(new Topic("C4", "CheckBox", "Hộp kiểm chọn nhiều lựa chọn", "KEY_CHECK_BOX", false));
-                topics.add(new Topic("C5", "RadioButton", "Nút chọn một lựa chọn duy nhất", "KEY_RADIO_BUTTON", false));
-                topics.add(new Topic("C6", "Switch", "Nút bật/tắt (On/Off)", "KEY_SWITCH", false));
-                topics.add(new Topic("C7", "Spinner", "Danh sách xổ xuống (Dropdown)", "KEY_SPINNER", false));
-                topics.add(new Topic("C8", "SeekBar", "Thanh trượt chọn giá trị", "KEY_SEEK_BAR", false));
-                topics.add(new Topic("C9", "ProgressBar", "Thanh trạng thái tải dữ liệu", "KEY_PROGRESS_BAR", false));
+                topics.add(new Topic("C4", "Spinner", "Danh sách xổ xuống (Dropdown)", "KEY_SPINNER", false));
+                topics.add(new Topic("C5", "SeekBar", "Thanh trượt chọn giá trị", "KEY_SEEK_BAR", false));
+                topics.add(new Topic("C6", "ProgressBar", "Thanh trạng thái tải dữ liệu", "KEY_PROGRESS_BAR", false));
                 break;
 
             case INTENT_BUNDLE:
