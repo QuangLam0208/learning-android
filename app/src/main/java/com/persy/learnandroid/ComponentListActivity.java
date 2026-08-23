@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.persy.learnandroid.adapter.TopicAdapter;
 import com.persy.learnandroid.data.TopicRepository;
+import com.persy.learnandroid.demo.layouts.ConstraintLayoutDemoActivity;
 import com.persy.learnandroid.demo.layouts.LinearLayoutDemoActivity;
 import com.persy.learnandroid.model.ETopicCategory;
 import com.persy.learnandroid.model.Topic;
@@ -80,9 +81,7 @@ public class ComponentListActivity extends AppCompatActivity {
             case "KEY_LINEAR_LAYOUT":
                 return LinearLayoutDemoActivity.class;
             case "KEY_CONSTRAINT_LAYOUT":
-                // return ConstraintLayoutDemoActivity.class;
-                break;
-
+                return ConstraintLayoutDemoActivity.class;
             // === CONTROLS ===
             case "KEY_BUTTON":
                 // return ButtonDemoActivity.class;

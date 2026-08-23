@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="LinearLayout sắp xếp các view con theo một chiều duy nhất. Thuộc tính layout_weight giúp chia tỷ lệ không gian trống một cách linh hoạt."
+            android:text="LinearLayout sắp xếp các view con theo một chiều duy nhất (ngang hoặc dọc) thông qua thuộc tính android:orientation. Thuộc tính layout_weight giúp chia tỷ lệ không gian trống một cách linh hoạt."
             android:textColor="#333333"
             android:textSize="@dimen/text_size_desc"
             android:layout_marginBottom="24dp"/>

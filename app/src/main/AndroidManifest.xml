@@ -29,6 +29,10 @@
             android:name=".demo.layouts.LinearLayoutDemoActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".demo.layouts.ConstraintLayoutDemoActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
