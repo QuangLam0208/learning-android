@@ -181,4 +181,60 @@
             <br><br>
         ]]>
     </string>
+
+    <string name="spinner_explanation">
+        <![CDATA[
+            <b>Spinner</b> là View cho phép người dùng <b>chọn một giá trị từ danh sách các lựa chọn</b>. Khi nhấn vào Spinner, một danh sách các item sẽ được hiển thị để người dùng lựa chọn.
+
+            <br><br>
+
+            <b>ArrayAdapter</b> là Adapter dùng để <b>kết nối dữ liệu dạng mảng hoặc danh sách với Spinner</b>. Adapter chịu trách nhiệm chuyển từng phần tử dữ liệu thành View để hiển thị trong danh sách.
+
+            <br><br>
+
+            <b>Cách sử dụng cơ bản:</b>
+
+            <br><br>
+
+            - Tạo một <b>mảng hoặc List</b> chứa các dữ liệu cần hiển thị.
+
+            <br><br>
+
+            - Tạo một <b>ArrayAdapter</b> và truyền dữ liệu vào Adapter.
+
+            <br><br>
+
+            - Gán Adapter cho Spinner bằng <i>setAdapter()</i>.
+
+            <br><br>
+
+            - Có thể sử dụng <i>setOnItemSelectedListener()</i> để <b>xử lý sự kiện khi người dùng chọn một item</b>.
+
+            <br><br>
+
+            <b>Ví dụ:</b>
+
+            <br><br>
+
+            <i>String[] items = {"Java", "Kotlin", "Android"};</i>
+
+            <br><br>
+
+            <i>ArrayAdapter&lt;String&gt; adapter = new ArrayAdapter&lt;&gt;(this, android.R.layout.simple_spinner_item, items);</i>
+
+            <br><br>
+
+            <i>adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);</i>
+
+            <br><br>
+
+            <i>spinner.setAdapter(adapter);</i>
+
+            <br><br>
+
+            Trong đó, <i>ArrayAdapter</i> đóng vai trò <b>cầu nối giữa dữ liệu và Spinner</b>, giúp Spinner biết cần hiển thị những item nào.
+
+            <br><br>
+        ]]>
+    </string>
 </resources>

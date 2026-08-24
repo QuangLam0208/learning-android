@@ -17,6 +17,7 @@ import com.persy.learnandroid.adapter.TopicAdapter;
 import com.persy.learnandroid.data.TopicRepository;
 import com.persy.learnandroid.demo.controls.ButtonDemoActivity;
 import com.persy.learnandroid.demo.controls.EditTextDemoActivity;
+import com.persy.learnandroid.demo.controls.SpinnerDemoActivity;
 import com.persy.learnandroid.demo.controls.TextViewDemoActivity;
 import com.persy.learnandroid.demo.layouts.ConstraintLayoutDemoActivity;
 import com.persy.learnandroid.demo.layouts.FrameLayoutDemoActivity;
@@ -104,6 +105,8 @@ public class ComponentListActivity extends AppCompatActivity {
                 return EditTextDemoActivity.class;
             case "KEY_TEXT_VIEW":
                 return TextViewDemoActivity.class;
+            case "KEY_SPINNER":
+                return SpinnerDemoActivity.class;
             default:
                 return null;
         }

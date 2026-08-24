@@ -61,6 +61,10 @@
             android:name=".demo.controls.TextViewDemoActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".demo.controls.SpinnerDemoActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

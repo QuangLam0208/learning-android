@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f5f5f5"
+    tools:context=".demo.controls.SpinnerDemoActivity">
+
+    <include layout="@layout/item_toolbar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/padding_standard"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_explanation"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chọn ngôn ngữ lập trình"
+                style="@style/TextViewDemoStyle"
+                android:layout_marginTop="@dimen/padding_standard"/>
+            <Spinner
+                android:id="@+id/spinnerLanguage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_small"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Giá trị đã chọn:"
+                android:textColor="#555555"
+                android:textSize="@dimen/text_size_desc"/>
+            <TextView
+                android:id="@+id/tvSelectedLanguage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_small"
+                style="@style/TextViewDemoStyle"
+                android:text="Chưa chọn"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
