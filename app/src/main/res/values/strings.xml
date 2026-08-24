@@ -237,4 +237,80 @@
             <br><br>
         ]]>
     </string>
+
+    <string name="seekbar_explanation">
+        <![CDATA[
+            <b>SeekBar</b> là một View cho phép người dùng <b>chọn một giá trị số nguyên trong một khoảng xác định</b> bằng cách kéo thanh trượt. SeekBar thường được sử dụng cho các chức năng như <b>điều chỉnh âm lượng, độ sáng</b> hoặc lựa chọn một mức giá trị.
+
+            <br><br>
+
+            SeekBar có cơ chế hoạt động tương tự <b>ProgressBar</b>, nhưng khác ở chỗ <b>người dùng có thể trực tiếp thay đổi giá trị tiến trình</b> bằng cách kéo thanh trượt.
+
+            <br><br>
+
+            <b>Các thuộc tính và phương thức thường dùng</b>
+
+            <br><br>
+
+            - <b>max:</b> Xác định <b>giá trị lớn nhất</b> mà SeekBar có thể đạt được.
+
+            <br><br>
+
+            - <b>getMax():</b> Lấy giá trị <b>max hiện tại</b> của SeekBar.
+
+            <br><br>
+
+            - <b>setMax(int):</b> Thiết lập <b>giá trị lớn nhất</b> cho SeekBar.
+
+            <br><br>
+
+            - <b>progress:</b> Xác định <b>giá trị tiến trình hiện tại</b> của SeekBar.
+
+            <br><br>
+
+            - <b>getProgress():</b> Lấy <b>giá trị progress hiện tại</b>.
+
+            <br><br>
+
+            - <b>setProgress(int):</b> Thiết lập <b>giá trị progress</b> cho SeekBar.
+
+            <br><br>
+
+            - <b>progressDrawable:</b> Cho phép tùy chỉnh <b>giao diện của phần thanh tiến trình</b>, có thể sử dụng Drawable để tạo màu sắc, gradient, hình dạng hoặc hiệu ứng riêng.
+
+            <br><br>
+
+            <b>Lắng nghe sự thay đổi của SeekBar</b>
+
+            <br><br>
+
+            Có thể sử dụng <i>OnSeekBarChangeListener</i> để theo dõi các thao tác của người dùng trên SeekBar. Listener này cung cấp ba phương thức:
+
+            <br><br>
+
+            - <b>onProgressChanged():</b> Được gọi mỗi khi <b>giá trị progress thay đổi</b>. Tham số <i>progress</i> chứa giá trị hiện tại và <i>fromUser</i> cho biết thay đổi có được thực hiện bởi người dùng hay không.
+
+            <br><br>
+
+            - <b>onStartTrackingTouch():</b> Được gọi khi người dùng <b>bắt đầu chạm và kéo thanh trượt</b>.
+
+            <br><br>
+
+            - <b>onStopTrackingTouch():</b> Được gọi khi người dùng <b>thả thanh trượt và kết thúc thao tác kéo</b>.
+
+            <br><br>
+
+            <b>SeekBar dọc và tùy chỉnh giao diện</b>
+
+            <br><br>
+
+            SeekBar có thể được thiết lập theo <b>chiều dọc</b> và kết hợp với <i>progressDrawable</i> để tạo giao diện tùy chỉnh như <b>bo góc, thay đổi màu sắc hoặc sử dụng gradient</b>.
+
+            <br><br>
+
+            Trong demo, có thể hiển thị <b>giá trị progress hiện tại phía trên SeekBar</b> và cập nhật giá trị này mỗi khi người dùng kéo thanh trượt.
+
+            <br><br>
+        ]]>
+    </string>
 </resources>
