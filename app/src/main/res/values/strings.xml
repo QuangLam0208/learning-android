@@ -85,4 +85,100 @@
         <br><br>
     ]]>
 </string>
+
+    <string name="edit_text_explanation">
+        <![CDATA[
+            <b>EditText</b> là View cho phép người dùng <b>nhập và chỉnh sửa văn bản</b>. Có thể sử dụng thuộc tính <i>android:inputType</i> để xác định loại dữ liệu và kiểu bàn phím phù hợp.
+
+            <br><br>
+
+            <b>Các loại theo android:inputType</b>
+
+            <br><br>
+
+            - <b>Văn bản thường (text):</b> Cho phép nhập văn bản thông thường, câu chữ và tiếng Việt.
+
+            <br><br>
+
+            - <b>Mật khẩu (textPassword):</b> Ẩn các ký tự khi người dùng nhập, thường được hiển thị dưới dạng dấu chấm hoặc dấu hoa thị.
+
+            <br><br>
+
+            - <b>Địa chỉ Email (textEmailAddress):</b> Hiển thị bàn phím được tối ưu cho việc nhập email, thường có sẵn các phím <i>@</i> và <i>.</i>.
+
+            <br><br>
+
+            - <b>Số điện thoại (phone):</b> Hiển thị bàn phím dạng số và các ký tự đặc biệt thường dùng cho số điện thoại như <i>+</i>, <i>*</i>, <i>#</i>.
+
+            <br><br>
+
+            - <b>Số nguyên (number):</b> Cho phép nhập dữ liệu dạng số và hiển thị bàn phím số.
+
+            <br><br>
+
+            - <b>Số thực (numberDecimal):</b> Cho phép nhập số có phần thập phân và hiển thị bàn phím số phù hợp.
+
+            <br><br>
+
+            - <b>Đa dòng (textMultiLine):</b> Cho phép người dùng nhập văn bản dài trên <b>nhiều dòng</b>, phù hợp với nội dung như mô tả, ghi chú hoặc bình luận.
+
+            <br><br>
+
+            <b>Biến thể nâng cao</b>
+
+            <br><br>
+
+            - <b>TextInputEditText:</b> Là phiên bản EditText thuộc thư viện <b>Material Components</b>, thường được đặt bên trong <i>TextInputLayout</i> để tạo hiệu ứng <b>floating label</b>, hiển thị <b>helper text</b> và <b>thông báo lỗi</b> đẹp mắt hơn.
+
+            <br><br>
+        ]]>
+    </string>
+
+    <string name="text_view_explanation">
+        <![CDATA[
+            <b>TextView</b> là View dùng để <b>hiển thị văn bản</b> trên giao diện Android. Ngoài việc hiển thị nội dung, TextView còn hỗ trợ nhiều thuộc tính để tùy chỉnh <b>giao diện, hình nền và cách xử lý liên kết</b>.
+
+            <br><br>
+
+            <b>1. Style</b>
+
+            <br><br>
+
+            Có thể sử dụng thuộc tính <i>style</i> để áp dụng <b>một tập hợp các thuộc tính giao diện</b> cho TextView, giúp code XML ngắn gọn và dễ tái sử dụng hơn.
+
+            <br><br>
+
+            Style có thể chứa các thuộc tính như <i>textSize</i>, <i>textColor</i>, <i>textStyle</i>, <i>fontFamily</i>, <i>padding</i> và nhiều thuộc tính khác.
+
+            <br><br>
+
+            <b>2. Drawable</b>
+
+            <br><br>
+
+            TextView có thể sử dụng <b>Drawable</b> để tạo hình nền hoặc trang trí cho View thông qua các thuộc tính như <i>android:background</i>, <i>android:drawableStart</i>, <i>android:drawableEnd</i>, <i>android:drawableTop</i> và <i>android:drawableBottom</i>.
+
+            <br><br>
+
+            Drawable có thể được sử dụng để tạo <b>background, border, icon</b> hoặc các hiệu ứng giao diện khác cho TextView.
+
+            <br><br>
+
+            <b>3. AutoLink</b>
+
+            <br><br>
+
+            Thuộc tính <i>android:autoLink</i> cho phép Android <b>tự động nhận diện và biến một số nội dung trong TextView thành liên kết</b> có thể tương tác.
+
+            <br><br>
+
+            Có thể sử dụng AutoLink để nhận diện các loại nội dung như <i>web</i> (URL), <i>email</i> (địa chỉ email), <i>phone</i> (số điện thoại) hoặc <i>all</i> (tất cả các loại được hỗ trợ).
+
+            <br><br>
+
+            Khi người dùng nhấn vào liên kết, Android có thể sử dụng ứng dụng phù hợp để <b>mở website, gửi email hoặc thực hiện cuộc gọi</b> tùy vào loại liên kết.
+
+            <br><br>
+        ]]>
+    </string>
 </resources>
