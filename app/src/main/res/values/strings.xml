@@ -373,4 +373,200 @@
             <br><br>
         ]]>
     </string>
+
+    <string name="put_extra_explanation">
+        <![CDATA[
+            <b>Intent</b> là một đối tượng dùng để mô tả một hành động cần thực hiện, chẳng hạn như <b>khởi chạy Activity</b>, Service hoặc gửi Broadcast.
+
+            <br><br>
+
+            Để truyền dữ liệu từ Activity hiện tại sang Activity khác, có thể sử dụng các cặp <b>key-value</b> thông qua phương thức <i>putExtra()</i> của Intent.
+
+            <br><br>
+
+            Cú pháp cơ bản:
+
+            <br><br>
+
+            <i>intent.putExtra("key", value);</i>
+
+            <br><br>
+
+            Trong đó <b>key</b> là tên dùng để xác định dữ liệu, còn <b>value</b> là giá trị cần truyền sang Activity đích.
+
+            <br><br>
+
+            <b>putExtra()</b> hỗ trợ nhiều kiểu dữ liệu được Android cung cấp, chẳng hạn như <i>String</i>, <i>int</i>, <i>float</i>, <i>double</i>, <i>boolean</i> và một số kiểu dữ liệu đặc biệt như <i>Parcelable</i> hoặc <i>Serializable</i>.
+
+            <br><br>
+
+            Ở Activity nhận, dữ liệu có thể được lấy ra bằng các phương thức tương ứng như <i>getStringExtra()</i>, <i>getIntExtra()</i>, <i>getBooleanExtra()</i>,...
+
+            <br><br>
+
+            Ví dụ:
+
+            <br><br>
+
+            <i>intent.putExtra("name", "Quang Lâm");</i>
+
+            <br><br>
+
+            Activity nhận:
+
+            <br><br>
+
+            <i>String name = getIntent().getStringExtra("name");</i>
+
+            <br><br>
+
+            <b>Lưu ý:</b> Key khi gửi và khi nhận phải <b>giống nhau</b> để có thể lấy đúng dữ liệu.
+        ]]>
+    </string>
+
+    <string name="bundle_explanation">
+        <![CDATA[
+            <b>Bundle</b> là một container dùng để lưu trữ dữ liệu dưới dạng các cặp <b>key-value</b>. Bundle thường được sử dụng để gom nhiều giá trị lại thành một gói dữ liệu và truyền qua <i>Intent</i> giữa các Activity.
+
+            <br><br>
+
+            Để đưa một Bundle vào Intent, sử dụng phương thức <i>putExtras()</i>:
+
+            <br><br>
+
+            <i>intent.putExtras(bundle);</i>
+
+            <br><br>
+
+            Dữ liệu được thêm vào Bundle thông qua các phương thức như <i>putString()</i>, <i>putInt()</i>, <i>putBoolean()</i>,...
+
+            <br><br>
+
+            Ví dụ:
+
+            <br><br>
+
+            <i>Bundle bundle = new Bundle();</i>
+            <br>
+            <i>bundle.putString("name", "Quang Lâm");</i>
+            <br>
+            <i>bundle.putInt("age", 22);</i>
+            <br>
+            <i>bundle.putString("email", "lam@gmail.com");</i>
+
+            <br><br>
+
+            Sau đó đưa Bundle vào Intent:
+
+            <br><br>
+
+            <i>intent.putExtras(bundle);</i>
+
+            <br><br>
+
+            Ở Activity nhận, có thể lấy Bundle bằng <i>getExtras()</i>:
+
+            <br><br>
+
+            <i>Bundle bundle = getIntent().getExtras();</i>
+
+            <br><br>
+
+            Sau đó lấy từng giá trị bằng các phương thức tương ứng như <i>getString()</i>, <i>getInt()</i>, <i>getBoolean()</i>,...
+
+            <br><br>
+
+            <b>Bundle phù hợp khi cần truyền nhiều giá trị cùng lúc</b>, giúp nhóm các dữ liệu liên quan thành một gói trước khi truyền qua Intent.
+        ]]>
+    </string>
+
+    <string name="object_transfer_explanation">
+        <![CDATA[
+            <b>Object Transfer</b> là kỹ thuật dùng <i>Intent</i> để truyền một đối tượng từ Activity này sang Activity khác.
+
+            <br><br>
+
+            Vì <i>Intent</i> không thể truyền trực tiếp một Object Java thông thường, Object cần triển khai một cơ chế mà Android hỗ trợ như <b>Serializable</b> hoặc <b>Parcelable</b>.
+
+            <br><br>
+
+            Với <b>Serializable</b>, class cần triển khai interface <i>Serializable</i>:
+
+            <br><br>
+
+            <i>public class Student implements Serializable</i>
+
+            <br><br>
+
+            Sau đó có thể truyền Object thông qua <i>putExtra()</i>:
+
+            <br><br>
+
+            <i>intent.putExtra("student", student);</i>
+
+            <br><br>
+
+            Ở Activity nhận, lấy Object bằng <i>getSerializableExtra()</i>:
+
+            <br><br>
+
+            <i>Student student = (Student) getIntent().getSerializableExtra("student");</i>
+
+            <br><br>
+
+            <b>Serializable</b> đơn giản và dễ sử dụng, phù hợp để học cách truyền Object giữa các Activity.
+
+            <br><br>
+
+            Ngoài <i>Serializable</i>, Android còn cung cấp <b>Parcelable</b>. Parcelable được thiết kế tối ưu hơn cho việc truyền dữ liệu giữa các thành phần Android nhưng có cách triển khai phức tạp hơn.
+
+            <br><br>
+
+            <b>Lưu ý:</b> Object được truyền và nhận phải sử dụng cùng một class và các key khi gửi, nhận phải giống nhau.
+        ]]>
+    </string>
+
+    <string name="return_data_explanation">
+        <![CDATA[
+            <b>Return Data</b> là cơ chế cho phép một Activity <b>mở Activity khác và nhận dữ liệu trả về</b> sau khi Activity đó hoàn thành.
+
+            <br><br>
+
+            Luồng hoạt động:
+
+            <br><br>
+
+            <b>Activity A → Activity B → Activity A</b>
+
+            <br><br>
+
+            Activity A sử dụng <b>ActivityResultLauncher</b> để mở Activity B. Sau khi người dùng hoàn thành thao tác, Activity B tạo một <i>Intent</i> chứa dữ liệu kết quả và sử dụng <i>setResult()</i> để trả dữ liệu về.
+
+            <br><br>
+
+            Activity B có thể trả kết quả bằng:
+
+            <br><br>
+
+            <i>Intent intent = new Intent();</i>
+            <br>
+            <i>intent.putExtra("result", value);</i>
+            <br>
+            <i>setResult(RESULT_OK, intent);</i>
+            <br>
+            <i>finish();</i>
+
+            <br><br>
+
+            Activity A nhận kết quả thông qua callback của <b>ActivityResultLauncher</b>.
+
+            <br><br>
+
+            Android trước đây sử dụng <i>startActivityForResult()</i> và <i>onActivityResult()</i>. Tuy nhiên, API này đã được <b>deprecated</b>. Với ứng dụng Android hiện đại, nên sử dụng <b>Activity Result API</b> với <i>ActivityResultLauncher</i>.
+
+            <br><br>
+
+            <b>Return Data</b> thường được sử dụng khi Activity con cần trả lại dữ liệu cho Activity đã mở nó, chẳng hạn như lựa chọn một item, chọn ngày tháng, chọn hình ảnh hoặc nhập một giá trị.
+        ]]>
+    </string>
 </resources>

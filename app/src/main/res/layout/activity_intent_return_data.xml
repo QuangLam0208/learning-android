@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f5f5f5"
+    tools:context=".demo.intent.ReturnDataDemoActivity">
+
+    <include layout="@layout/item_toolbar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_standard">
+
+            <include layout="@layout/item_explanation"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_standard"
+                android:text="Demo Return Data"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_title"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_small"
+                android:text="Mở Activity khác, chọn dữ liệu và nhận kết quả trả về."
+                android:textColor="#666666"
+                android:textSize="@dimen/text_size_desc"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_standard"
+                android:text="Kết quả nhận được"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_desc"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tvResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_small"
+                android:background="#FFFFFF"
+                android:elevation="2dp"
+                android:gravity="center"
+                android:padding="@dimen/padding_standard"
+                android:text="Chưa có dữ liệu"
+                android:textColor="#666666"
+                android:textSize="@dimen/text_size_title"/>
+
+            <Button
+                android:id="@+id/btnOpenSelect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_standard"
+                android:text="Mở màn hình chọn"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

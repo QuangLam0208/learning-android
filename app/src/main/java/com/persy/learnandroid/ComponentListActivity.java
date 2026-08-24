@@ -21,6 +21,10 @@ import com.persy.learnandroid.demo.controls.ProgressBarDemoActivity;
 import com.persy.learnandroid.demo.controls.SeekbarDemoActivity;
 import com.persy.learnandroid.demo.controls.SpinnerDemoActivity;
 import com.persy.learnandroid.demo.controls.TextViewDemoActivity;
+import com.persy.learnandroid.demo.intent.BundleDemoActivity;
+import com.persy.learnandroid.demo.intent.ObjectTransferDemoActivity;
+import com.persy.learnandroid.demo.intent.PutExtraDemoActivity;
+import com.persy.learnandroid.demo.intent.ReturnDataDemoActivity;
 import com.persy.learnandroid.demo.layouts.ConstraintLayoutDemoActivity;
 import com.persy.learnandroid.demo.layouts.FrameLayoutDemoActivity;
 import com.persy.learnandroid.demo.layouts.GridLayoutDemoActivity;
@@ -113,6 +117,16 @@ public class ComponentListActivity extends AppCompatActivity {
                 return SeekbarDemoActivity.class;
             case "KEY_PROGRESS_BAR":
                 return ProgressBarDemoActivity.class;
+
+            case "KEY_SEND_EXTRA":
+                return PutExtraDemoActivity.class;
+            case "KEY_SEND_BUNDLE":
+                return BundleDemoActivity.class;
+            case "KEY_SEND_OBJECT":
+                return ObjectTransferDemoActivity.class;
+            case "KEY_RETURN_DATA":
+                return ReturnDataDemoActivity.class;
+
             default:
                 return null;
         }

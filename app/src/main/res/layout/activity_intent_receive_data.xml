@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f5f5f5"
+    tools:context=".demo.intent.ReceiveDataActivity">
+
+    <include layout="@layout/item_toolbar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_standard">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Receive Data"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_title"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_small"
+                android:text="Dữ liệu được nhận từ Activity trước thông qua Intent."
+                android:textColor="#666666"
+                android:textSize="@dimen/text_size_desc"/>
+
+            <TextView
+                android:id="@+id/tvDataType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_standard"
+                android:text="Data type: PUT_EXTRA"
+                android:textColor="#1976D2"
+                android:textSize="@dimen/text_size_desc"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/tvResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_standard"
+                android:background="#FFFFFF"
+                android:elevation="2dp"
+                android:padding="@dimen/padding_standard"
+                android:text="Dữ liệu nhận được sẽ hiển thị ở đây."
+                android:textColor="@color/black"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

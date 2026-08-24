@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f5f5f5"
+    tools:context=".demo.intent.PutExtraDemoActivity">
+
+    <include layout="@layout/item_toolbar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_standard">
+
+            <include layout="@layout/item_explanation"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_standard"
+                android:text="Demo putExtra()"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_title"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_small"
+                android:text="Nhập các giá trị và truyền sang Activity nhận."
+                android:textColor="#666666"
+                android:textSize="@dimen/text_size_desc"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_standard"
+                android:text="String"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/edtName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập tên"
+                android:inputType="text"
+                android:singleLine="true"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_standard"
+                android:text="int"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/edtAge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập tuổi"
+                android:inputType="number"
+                android:singleLine="true"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_standard"
+                android:text="boolean"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+            <Switch
+                android:id="@+id/switchStudent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Là sinh viên"/>
+            <Button
+                android:id="@+id/btnSend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_standard"
+                android:text="Gửi dữ liệu bằng putExtra()"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -10,11 +10,10 @@ public class TopicRepository {
     public static List<Topic> getMainTopics() {
         List<Topic> topics = new ArrayList<>();
 
-        // Dùng Enum name làm ID luôn để dễ map sang bước 2
         topics.add(new Topic(ETopicCategory.LAYOUTS.name(), "Layouts", "LinearLayout, ConstraintLayout, RelativeLayout...", null, true));
         topics.add(new Topic(ETopicCategory.CONTROLS.name(), "Controls", "Button, TextView, EditText, CheckBox...", null, true));
         topics.add(new Topic(ETopicCategory.INTENT_BUNDLE.name(), "Intent & Bundle", "Truyền nhận dữ liệu giữa các Activity", null, true));
-        topics.add(new Topic(ETopicCategory.RECYCLERVIEW.name(), "RecyclerView", "Xử lý danh sách nâng cao với Adapter", null, true));
+        //topics.add(new Topic(ETopicCategory.RECYCLERVIEW.name(), "RecyclerView", "Xử lý danh sách nâng cao với Adapter", null, true));
 
         return topics;
     }
@@ -41,10 +40,10 @@ public class TopicRepository {
                 break;
 
             case INTENT_BUNDLE:
-                topics.add(new Topic("I1", "Send String", "Truyền một chuỗi cơ bản", "KEY_SEND_STRING", false));
-                topics.add(new Topic("I2", "Send Multiple Values", "Truyền nhiều giá trị bằng Bundle", "KEY_SEND_MULTIPLE", false));
-                topics.add(new Topic("I3", "Send Student Object", "Truyền Object (Serializable/Parcelable)", "KEY_SEND_OBJECT", false));
-                topics.add(new Topic("I4", "Return Data", "Lấy dữ liệu trả về (startActivityForResult/ActivityResultLauncher)", "KEY_RETURN_DATA", false));
+                topics.add(new Topic("I1", "Put Extra", "Truyền dữ liệu kiểu cơ bản: Int, Float, Char, Double, Boolean, String", "KEY_SEND_EXTRA", false));
+                topics.add(new Topic("I2", "Put Extras & Bundle", "Truyền nhiều giá trị bằng Bundle", "KEY_SEND_BUNDLE", false));
+                topics.add(new Topic("I3", "Send Object", "Truyền Object (Serializable/Parcelable)", "KEY_SEND_OBJECT", false));
+                topics.add(new Topic("I4", "Return Data", "Lấy dữ liệu trả về (ActivityResultLauncher)", "KEY_RETURN_DATA", false));
                 break;
 
             case RECYCLERVIEW:
