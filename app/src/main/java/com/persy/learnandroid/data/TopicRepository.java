@@ -24,20 +24,20 @@ public class TopicRepository {
         switch (category) {
             case LAYOUTS:
                 topics.add(new Topic("L1", "LinearLayout", "Sắp xếp view theo hàng ngang hoặc dọc", "KEY_LINEAR_LAYOUT", false));
-                topics.add(new Topic("L2", "ConstraintLayout", "Sắp xếp view linh hoạt bằng constraint", "KEY_CONSTRAINT_LAYOUT", false));
-                topics.add(new Topic("L3", "RelativeLayout", "Sắp xếp view tương đối với nhau", "KEY_RELATIVE_LAYOUT", false));
-                topics.add(new Topic("L4", "FrameLayout", "Xếp chồng các view lên nhau", "KEY_FRAME_LAYOUT", false));
+                topics.add(new Topic("L2", "RelativeLayout", "Sắp xếp view tương đối với nhau", "KEY_RELATIVE_LAYOUT", false));
+                topics.add(new Topic("L3", "FrameLayout", "Xếp chồng các view lên nhau", "KEY_FRAME_LAYOUT", false));
+                topics.add(new Topic("L4", "ConstraintLayout", "Sắp xếp view linh hoạt bằng constraint", "KEY_CONSTRAINT_LAYOUT", false));
                 topics.add(new Topic("L5", "TableLayout", "Giao diện dạng bảng (row/col)", "KEY_TABLE_LAYOUT", false));
                 topics.add(new Topic("L6", "GridLayout", "Giao diện dạng lưới", "KEY_GRID_LAYOUT", false));
                 break;
 
             case CONTROLS:
-                topics.add(new Topic("C1", "Button", "Các loại Button", "KEY_BUTTON", false));
+                topics.add(new Topic("C1", "TextView", "Hiển thị đoạn text", "KEY_TEXT_VIEW", false));
                 topics.add(new Topic("C2", "EditText", "Trường nhập dữ liệu văn bản", "KEY_EDIT_TEXT", false));
-                topics.add(new Topic("C3", "TextView", "Hiển thị đoạn text", "KEY_TEXT_VIEW", false));
+                topics.add(new Topic("C3", "Button", "Các loại Button", "KEY_BUTTON", false));
                 topics.add(new Topic("C4", "Spinner", "Danh sách xổ xuống (Dropdown)", "KEY_SPINNER", false));
-                topics.add(new Topic("C5", "SeekBar", "Thanh trượt chọn giá trị", "KEY_SEEK_BAR", false));
-                topics.add(new Topic("C6", "ProgressBar", "Thanh trạng thái tải dữ liệu", "KEY_PROGRESS_BAR", false));
+                topics.add(new Topic("C5", "ProgressBar", "Thanh trạng thái tải dữ liệu", "KEY_PROGRESS_BAR", false));
+                topics.add(new Topic("C6", "SeekBar", "Thanh trượt chọn giá trị", "KEY_SEEK_BAR", false));
                 break;
 
             case INTENT_BUNDLE:

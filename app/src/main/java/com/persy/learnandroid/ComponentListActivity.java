@@ -17,6 +17,7 @@ import com.persy.learnandroid.adapter.TopicAdapter;
 import com.persy.learnandroid.data.TopicRepository;
 import com.persy.learnandroid.demo.controls.ButtonDemoActivity;
 import com.persy.learnandroid.demo.controls.EditTextDemoActivity;
+import com.persy.learnandroid.demo.controls.ProgressBarDemoActivity;
 import com.persy.learnandroid.demo.controls.SeekbarDemoActivity;
 import com.persy.learnandroid.demo.controls.SpinnerDemoActivity;
 import com.persy.learnandroid.demo.controls.TextViewDemoActivity;
@@ -110,6 +111,8 @@ public class ComponentListActivity extends AppCompatActivity {
                 return SpinnerDemoActivity.class;
             case "KEY_SEEK_BAR":
                 return SeekbarDemoActivity.class;
+            case "KEY_PROGRESS_BAR":
+                return ProgressBarDemoActivity.class;
             default:
                 return null;
         }

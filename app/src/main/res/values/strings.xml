@@ -313,4 +313,64 @@
             <br><br>
         ]]>
     </string>
+
+    <string name="progressbar_explanation">
+        <![CDATA[
+            <b>ProgressBar</b> là View được sử dụng để <b>hiển thị trạng thái hoặc mức độ hoàn thành của một công việc</b>, chẳng hạn như tải xuống tệp, xử lý dữ liệu hoặc thực hiện một tác vụ trong ứng dụng.
+
+            <br><br>
+
+            Theo mặc định, ProgressBar có thể được hiển thị dưới dạng <b>vòng xoay</b>. Có thể sử dụng <i>style</i> với giá trị <i>?android:attr/progressBarStyleHorizontal</i> để hiển thị ProgressBar dưới dạng <b>thanh ngang</b>.
+
+            <br><br>
+
+            <b>Hai chế độ của ProgressBar</b>
+
+            <br><br>
+
+            - <b>Determinate:</b> Sử dụng khi <b>biết được mức độ tiến trình</b> của công việc. Giá trị progress sẽ thay đổi từ <i>0</i> đến <i>max</i>.
+
+            <br><br>
+
+            - <b>Indeterminate:</b> Sử dụng khi <b>không biết chính xác thời gian hoặc khối lượng công việc cần thực hiện</b>. ProgressBar sẽ hiển thị một hoạt ảnh lặp lại để cho biết tác vụ vẫn đang được xử lý.
+
+            <br><br>
+
+            <b>Các thuộc tính và phương thức thường dùng</b>
+
+            <br><br>
+
+            - <b>max:</b> Xác định <b>giá trị lớn nhất</b> của ProgressBar.
+
+            <br><br>
+
+            - <b>getMax():</b> Lấy <b>giá trị max hiện tại</b>.
+
+            <br><br>
+
+            - <b>setMax(int):</b> Thiết lập <b>giá trị lớn nhất</b> cho ProgressBar.
+
+            <br><br>
+
+            - <b>progress:</b> Xác định <b>mức tiến trình hiện tại</b>.
+
+            <br><br>
+
+            - <b>getProgress():</b> Lấy <b>giá trị progress hiện tại</b>.
+
+            <br><br>
+
+            - <b>setProgress(int):</b> Thiết lập hoặc cập nhật <b>giá trị progress</b> cho ProgressBar.
+
+            <br><br>
+
+            - <b>progressDrawable:</b> Cho phép <b>tùy chỉnh giao diện của thanh tiến trình</b> bằng Drawable, chẳng hạn như thay đổi màu sắc, gradient, hình dạng hoặc bo góc.
+
+            <br><br>
+
+            <b>Ví dụ:</b> Nếu ProgressBar có <i>max = 100</i> và <i>progress = 60</i>, thanh tiến trình sẽ biểu thị công việc đã hoàn thành khoảng <b>60%</b>.
+
+            <br><br>
+        ]]>
+    </string>
 </resources>
