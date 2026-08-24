@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F5F5"
+    tools:context=".demo.controls.TextViewDemoActivity">
+
+    <include layout="@layout/item_toolbar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_standard"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_explanation"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_standard"
+                android:text="1. Style"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_title"
+                android:textStyle="bold"/>
+            <TextView
+                style="@style/TextViewDemoStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_standard"
+                android:text="TextView sử dụng Style" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_standard"
+                android:text="2. Drawable"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_title"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:drawableStart="@drawable/ic_add_24dp"
+                android:drawableEnd="@drawable/ic_add_24dp"
+                android:drawablePadding="@dimen/padding_standard"
+                android:gravity="center_horizontal"
+                android:text="Drawable Start và Drawable End"
+                android:textColor="#212121"
+                android:textSize="@dimen/text_size_desc" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_standard"
+                android:background="@drawable/bg_textview_demo"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="TextView sử dụng Background Drawable"
+                android:textColor="#212121"
+                android:textSize="@dimen/text_size_desc" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_standard"
+                android:text="3. AutoLink"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_title"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_standard"
+                android:autoLink="web"
+                android:lineSpacingExtra="4dp"
+                android:text="URL:\nhttps://www.google.com"
+                android:textColor="#212121"
+                android:textColorLink="#1976D2"
+                android:textSize="@dimen/text_size_desc"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_standard"
+                android:autoLink="email"
+                android:lineSpacingExtra="4dp"
+                android:text="Email:\nlamlq28@gmail.com"
+                android:textColor="#212121"
+                android:textColorLink="#1976D2"
+                android:textSize="@dimen/text_size_desc"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_standard"
+                android:autoLink="phone"
+                android:lineSpacingExtra="4dp"
+                android:text="Phone:\n0974976839"
+                android:textColor="#212121"
+                android:textColorLink="#1976D2"
+                android:textSize="@dimen/text_size_desc"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
