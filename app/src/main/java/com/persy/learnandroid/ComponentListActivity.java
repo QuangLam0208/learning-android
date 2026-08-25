@@ -31,6 +31,9 @@ import com.persy.learnandroid.demo.layouts.GridLayoutDemoActivity;
 import com.persy.learnandroid.demo.layouts.LinearLayoutDemoActivity;
 import com.persy.learnandroid.demo.layouts.RelativeLayoutDemoActivity;
 import com.persy.learnandroid.demo.layouts.TableLayoutDemoActivity;
+import com.persy.learnandroid.demo.roomdb.OverviewDemoActivity;
+import com.persy.learnandroid.demo.roomdb.RoomDaoDemoActivity;
+import com.persy.learnandroid.demo.roomdb.RoomEntityDemoActivity;
 import com.persy.learnandroid.model.ETopicCategory;
 import com.persy.learnandroid.model.Topic;
 
@@ -125,6 +128,15 @@ public class ComponentListActivity extends AppCompatActivity {
                 return ObjectTransferDemoActivity.class;
             case "KEY_RETURN_DATA":
                 return ReturnDataDemoActivity.class;
+
+            case "KEY_ROOM_OVERVIEW":
+                return OverviewDemoActivity.class;
+            case "KEY_ROOM_ENTITY":
+                return RoomEntityDemoActivity.class;
+            case "KEY_ROOM_DAO":
+                return RoomDaoDemoActivity.class;
+
+
 
             default:
                 return null;

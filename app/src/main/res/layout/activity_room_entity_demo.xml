@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#D5F0FB"
+    tools:context=".demo.roomdb.RoomEntityDemoActivity">
+
+    <include layout="@layout/item_toolbar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_standard">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Room Entity"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Entity dùng để biểu diễn một table trong Room Database. Mỗi object của Entity tương ứng với một row trong table."
+                android:textColor="#666666"
+                android:textSize="@dimen/text_size_desc"
+                android:lineSpacingExtra="3dp"/>
+
+            <include
+                android:id="@+id/layout_entity_card"
+                layout="@layout/item_room_card_entity_code" />
+
+            <!-- TABLE CARD -->
+            <include
+                android:id="@+id/layout_table_card"
+                layout="@layout/item_room_card_database_table" />
+
+            <!-- ANNOTATIONS -->
+            <include
+                android:id="@+id/layout_annotations"
+                layout="@layout/item_room_section_annotations" />
+
+            <!-- COMPOSITE KEY & INDEX -->
+            <include
+                android:id="@+id/layout_composite_and_index"
+                layout="@layout/item_room_section_composite_and_index" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

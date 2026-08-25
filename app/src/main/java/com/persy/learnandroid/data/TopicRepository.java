@@ -13,6 +13,7 @@ public class TopicRepository {
         topics.add(new Topic(ETopicCategory.LAYOUTS.name(), "Layouts", "LinearLayout, ConstraintLayout, RelativeLayout...", null, true));
         topics.add(new Topic(ETopicCategory.CONTROLS.name(), "Controls", "Button, TextView, EditText, CheckBox...", null, true));
         topics.add(new Topic(ETopicCategory.INTENT_BUNDLE.name(), "Intent & Bundle", "Truyền nhận dữ liệu giữa các Activity", null, true));
+        topics.add(new Topic(ETopicCategory.ROOM_DATABASE.name(), "SQLite & Room Database", "CRUD với Room Database", null, true));
         //topics.add(new Topic(ETopicCategory.RECYCLERVIEW.name(), "RecyclerView", "Xử lý danh sách nâng cao với Adapter", null, true));
 
         return topics;
@@ -46,14 +47,21 @@ public class TopicRepository {
                 topics.add(new Topic("I4", "Return Data", "Lấy dữ liệu trả về (ActivityResultLauncher)", "KEY_RETURN_DATA", false));
                 break;
 
-            case RECYCLERVIEW:
-                topics.add(new Topic("R1", "LinearLayoutManager", "Danh sách dọc/ngang cơ bản", "KEY_LINEAR_MANAGER", false));
-                topics.add(new Topic("R2", "GridLayoutManager", "Danh sách dạng lưới", "KEY_GRID_MANAGER", false));
-                topics.add(new Topic("R3", "CardView", "Trang trí item với bóng đổ và bo góc", "KEY_CARD_VIEW", false));
-                topics.add(new Topic("R4", "ViewHolder", "Kỹ thuật tối ưu bộ nhớ", "KEY_VIEW_HOLDER", false));
-                topics.add(new Topic("R5", "Adapter", "Cầu nối giữa data và RecyclerView", "KEY_ADAPTER", false));
-                topics.add(new Topic("R6", "Item Click", "Bắt sự kiện click vào item trong list", "KEY_ITEM_CLICK", false));
+            case ROOM_DATABASE:
+                topics.add(new Topic("R1", "Overview", "SQLite Database và Room", "KEY_ROOM_OVERVIEW", false));
+                topics.add(new Topic("R2", "Room Entity", "Các lớp dữ liệu đại diện cho các bảng trong database", "KEY_ROOM_ENTITY", false));
+                topics.add(new Topic("R3", "Room DAO", "Cung cấp các hàm để ứng dụng thực hiện các thao tác truy vấn, cập nhật, thêm và xóa dữ liệu trong database.", "KEY_ROOM_DAO", false));
+                topics.add(new Topic("R4", "Demo", "User & Book", "KEY_ROOM_DEMO", false));
                 break;
+
+//            case RECYCLERVIEW:
+//                topics.add(new Topic("R1", "LinearLayoutManager", "Danh sách dọc/ngang cơ bản", "KEY_LINEAR_MANAGER", false));
+//                topics.add(new Topic("R2", "GridLayoutManager", "Danh sách dạng lưới", "KEY_GRID_MANAGER", false));
+//                topics.add(new Topic("R3", "CardView", "Trang trí item với bóng đổ và bo góc", "KEY_CARD_VIEW", false));
+//                topics.add(new Topic("R4", "ViewHolder", "Kỹ thuật tối ưu bộ nhớ", "KEY_VIEW_HOLDER", false));
+//                topics.add(new Topic("R5", "Adapter", "Cầu nối giữa data và RecyclerView", "KEY_ADAPTER", false));
+//                topics.add(new Topic("R6", "Item Click", "Bắt sự kiện click vào item trong list", "KEY_ITEM_CLICK", false));
+//                break;
         }
 
         return topics;

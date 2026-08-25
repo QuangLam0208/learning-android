@@ -12,7 +12,6 @@
             <i>Dưới đây minh họa việc căn giữa, neo vào View khác và dùng Bias.</i>
         ]]>
     </string>
-
     <string name="linear_layout_explanation">
         <![CDATA[
             <b>LinearLayout</b> sắp xếp các view con theo một chiều duy nhất (ngang hoặc dọc) thông qua thuộc tính <i>android:orientation</i>.<br><br>
@@ -20,7 +19,6 @@
             Thuộc tính <i>layout_weight</i> giúp chia tỷ lệ không gian trống một cách linh hoạt.
         ]]>
     </string>
-
     <string name="relative_layout_explanation">
         <![CDATA[
             <b>RelativeLayout</b> cho phép sắp xếp các View dựa trên vị trí tương đối giữa chúng hoặc so với Parent. Nó rất linh hoạt nhưng có thể gây chậm hiệu suất nếu lồng ghép quá nhiều lớp.
@@ -32,7 +30,6 @@
             - <b>Vị trí so với View khác:</b> <i>layout_below</i> (nằm dưới), <i>layout_above</i> (nằm trên), <i>layout_toEndOf</i> (nằm bên phải - cho ngôn ngữ LTR).
         ]]>
     </string>
-
     <string name="frame_layout_explanation">
         <![CDATA[
             <b>FrameLayout</b> là một trong các bố cục (layout) cơ bản và đơn giản trong Android. Nó dùng để hiển thị các View con theo kiểu <b>xếp chồng lên nhau</b>, trong đó View được thêm sau thường nằm ở lớp phía trên.
@@ -47,7 +44,6 @@
 
         ]]>
     </string>
-
     <string name="table_layout_explanation">
         <![CDATA[
             <b>TableLayout</b> dùng để sắp xếp các View theo <b>dạng bảng gồm các hàng và cột</b>. Mỗi hàng thường được biểu diễn bằng một <i>TableRow</i>, trong đó các View con của <i>TableRow</i> đóng vai trò như các ô trong hàng.
@@ -64,27 +60,26 @@
             <br><br>
         ]]>
     </string>
-
     <string name="grid_layout_explanation">
-    <![CDATA[
-        <b>GridLayout</b> dùng để sắp xếp các View theo <b>dạng lưới gồm nhiều hàng và cột</b>. Khác với <i>TableLayout</i>, GridLayout cho phép xác định trực tiếp số lượng hàng, số lượng cột và vị trí mà View chiếm trong lưới.
-        <br><br>
-        - Sắp xếp các View theo <b>hàng và cột</b>.
-        <br><br>
-        - Có thể xác định số lượng cột bằng <i>columnCount</i>.
-        <br><br>
-        - Có thể xác định số lượng hàng bằng <i>rowCount</i>.
-        <br><br>
-        - Một View có thể <b>chiếm nhiều hàng hoặc nhiều cột</b>.
-        <br><br>
-        - Có thể xác định <b>vị trí hàng và cột</b> của View trong Grid.
-        <br><br>
-        - Có thể sử dụng <i>layout_gravity</i> để <b>căn chỉnh View</b> trong ô.
-        <br><br>
-        - Phù hợp với các giao diện có <b>bố cục dạng lưới cố định hoặc đơn giản</b>.
-        <br><br>
-    ]]>
-</string>
+        <![CDATA[
+            <b>GridLayout</b> dùng để sắp xếp các View theo <b>dạng lưới gồm nhiều hàng và cột</b>. Khác với <i>TableLayout</i>, GridLayout cho phép xác định trực tiếp số lượng hàng, số lượng cột và vị trí mà View chiếm trong lưới.
+            <br><br>
+            - Sắp xếp các View theo <b>hàng và cột</b>.
+            <br><br>
+            - Có thể xác định số lượng cột bằng <i>columnCount</i>.
+            <br><br>
+            - Có thể xác định số lượng hàng bằng <i>rowCount</i>.
+            <br><br>
+            - Một View có thể <b>chiếm nhiều hàng hoặc nhiều cột</b>.
+            <br><br>
+            - Có thể xác định <b>vị trí hàng và cột</b> của View trong Grid.
+            <br><br>
+            - Có thể sử dụng <i>layout_gravity</i> để <b>căn chỉnh View</b> trong ô.
+            <br><br>
+            - Phù hợp với các giao diện có <b>bố cục dạng lưới cố định hoặc đơn giản</b>.
+            <br><br>
+        ]]>
+    </string>
 
     <string name="edit_text_explanation">
         <![CDATA[
@@ -133,7 +128,6 @@
             <br><br>
         ]]>
     </string>
-
     <string name="text_view_explanation">
         <![CDATA[
             <b>TextView</b> là View dùng để <b>hiển thị văn bản</b> trên giao diện Android. Ngoài việc hiển thị nội dung, TextView còn hỗ trợ nhiều thuộc tính để tùy chỉnh <b>giao diện, hình nền và cách xử lý liên kết</b>.
@@ -181,7 +175,6 @@
             <br><br>
         ]]>
     </string>
-
     <string name="spinner_explanation">
         <![CDATA[
             <b>Spinner</b> là View cho phép người dùng <b>chọn một giá trị từ danh sách các lựa chọn</b>. Khi nhấn vào Spinner, một danh sách các item sẽ được hiển thị để người dùng lựa chọn.
@@ -237,7 +230,6 @@
             <br><br>
         ]]>
     </string>
-
     <string name="seekbar_explanation">
         <![CDATA[
             <b>SeekBar</b> là một View cho phép người dùng <b>chọn một giá trị số nguyên trong một khoảng xác định</b> bằng cách kéo thanh trượt. SeekBar thường được sử dụng cho các chức năng như <b>điều chỉnh âm lượng, độ sáng</b> hoặc lựa chọn một mức giá trị.
@@ -313,7 +305,6 @@
             <br><br>
         ]]>
     </string>
-
     <string name="progressbar_explanation">
         <![CDATA[
             <b>ProgressBar</b> là View được sử dụng để <b>hiển thị trạng thái hoặc mức độ hoàn thành của một công việc</b>, chẳng hạn như tải xuống tệp, xử lý dữ liệu hoặc thực hiện một tác vụ trong ứng dụng.
@@ -400,7 +391,7 @@
 
             <br><br>
 
-            Ở Activity nhận, dữ liệu có thể được lấy ra bằng các phương thức tương ứng như <i>getStringExtra()</i>, <i>getIntExtra()</i>, <i>getBooleanExtra()</i>,...
+            Ở Activity nhận, dữ liệu có thể được lấy ra bằng các phương thức tương ứng như <i>getStringExtra()</i>, <i>getIntExtra()</i>, <i>getBooleanExtra()</i>,…
 
             <br><br>
 
@@ -423,7 +414,6 @@
             <b>Lưu ý:</b> Key khi gửi và khi nhận phải <b>giống nhau</b> để có thể lấy đúng dữ liệu.
         ]]>
     </string>
-
     <string name="bundle_explanation">
         <![CDATA[
             <b>Bundle</b> là một container dùng để lưu trữ dữ liệu dưới dạng các cặp <b>key-value</b>. Bundle thường được sử dụng để gom nhiều giá trị lại thành một gói dữ liệu và truyền qua <i>Intent</i> giữa các Activity.
@@ -438,7 +428,7 @@
 
             <br><br>
 
-            Dữ liệu được thêm vào Bundle thông qua các phương thức như <i>putString()</i>, <i>putInt()</i>, <i>putBoolean()</i>,...
+            Dữ liệu được thêm vào Bundle thông qua các phương thức như <i>putString()</i>, <i>putInt()</i>, <i>putBoolean()</i>,…
 
             <br><br>
 
@@ -472,14 +462,13 @@
 
             <br><br>
 
-            Sau đó lấy từng giá trị bằng các phương thức tương ứng như <i>getString()</i>, <i>getInt()</i>, <i>getBoolean()</i>,...
+            Sau đó lấy từng giá trị bằng các phương thức tương ứng như <i>getString()</i>, <i>getInt()</i>, <i>getBoolean()</i>,…
 
             <br><br>
 
             <b>Bundle phù hợp khi cần truyền nhiều giá trị cùng lúc</b>, giúp nhóm các dữ liệu liên quan thành một gói trước khi truyền qua Intent.
         ]]>
     </string>
-
     <string name="object_transfer_explanation">
         <![CDATA[
             <b>Object Transfer</b> là kỹ thuật dùng <i>Intent</i> để truyền một đối tượng từ Activity này sang Activity khác.
@@ -525,7 +514,6 @@
             <b>Lưu ý:</b> Object được truyền và nhận phải sử dụng cùng một class và các key khi gửi, nhận phải giống nhau.
         ]]>
     </string>
-
     <string name="return_data_explanation">
         <![CDATA[
             <b>Return Data</b> là cơ chế cho phép một Activity <b>mở Activity khác và nhận dữ liệu trả về</b> sau khi Activity đó hoàn thành.
@@ -567,6 +555,18 @@
             <br><br>
 
             <b>Return Data</b> thường được sử dụng khi Activity con cần trả lại dữ liệu cho Activity đã mở nó, chẳng hạn như lựa chọn một item, chọn ngày tháng, chọn hình ảnh hoặc nhập một giá trị.
+        ]]>
+    </string>
+
+    <string name="room_explanation">
+        <![CDATA[
+            <b>SQLite Database</b><br><br>
+
+            SQLite là một cơ sở dữ liệu SQL mã nguồn mở, được tích hợp sẵn trên Android và lưu trữ dữ liệu trực tiếp trên thiết bị. SQLite có ưu điểm là <b>nhẹ, nhanh, tin cậy</b>, không cần máy chủ hoặc cấu hình phức tạp.<br><br>
+
+            SQLite phù hợp để lưu trữ dữ liệu có cấu trúc trên thiết bị, đặc biệt khi ứng dụng cần truy cập dữ liệu ngay cả khi không có kết nối mạng.<br><br>
+
+            Tuy nhiên, làm việc trực tiếp với SQLite có thể yêu cầu nhiều mã xử lý thủ công. Vì vậy, Android cung cấp <b>Room Persistence Library</b> — một lớp trừu tượng trên SQLite, giúp việc truy cập và quản lý database trở nên đơn giản hơn trong khi vẫn sử dụng được sức mạnh của SQLite.
         ]]>
     </string>
 </resources>

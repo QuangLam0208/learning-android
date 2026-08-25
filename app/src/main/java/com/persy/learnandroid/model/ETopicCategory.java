@@ -5,7 +5,8 @@ public enum ETopicCategory {
     LAYOUTS("Layouts"),
     CONTROLS("Controls"),
     INTENT_BUNDLE("Intent & Bundle"),
-    RECYCLERVIEW("RecyclerView");
+    RECYCLERVIEW("RecyclerView"),
+    ROOM_DATABASE("SQLite & RoomDatabase");
 
     private final String value;
 
