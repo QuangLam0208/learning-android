@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.text.Html;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -16,7 +15,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.persy.learnandroid.R;
-import com.persy.learnandroid.demo.model.Student;
+import com.persy.learnandroid.model.Student;
 
 public class ObjectTransferDemoActivity extends AppCompatActivity {
 

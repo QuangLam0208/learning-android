@@ -62,7 +62,6 @@ public class ComponentListActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(cate.getValue());
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
         toolbar.setNavigationOnClickListener(v -> finish());

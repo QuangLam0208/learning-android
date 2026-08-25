@@ -1,4 +1,4 @@
-package com.persy.learnandroid.demo.model;
+package com.persy.learnandroid.model;
 
 import java.io.Serializable;
 

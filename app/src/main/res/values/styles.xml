@@ -18,4 +18,15 @@
         <item name="android:padding">@dimen/padding_standard</item>
         <item name="android:background">#E3F2FD</item>
     </style>
+
+<!--    Practice-->
+    <style name="CommonEditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/rounded_edittext_background</item>
+        <item name="android:textColorHint">#C4C4C4</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textFontWeight">500</item>
+        <item name="android:textSize">16sp</item>
+    </style>
 </resources>
