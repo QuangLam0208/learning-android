@@ -51,7 +51,7 @@ public class TopicRepository {
                 topics.add(new Topic("R1", "Overview", "SQLite Database và Room", "KEY_ROOM_OVERVIEW", false));
                 topics.add(new Topic("R2", "Room Entity", "Các lớp dữ liệu đại diện cho các bảng trong database", "KEY_ROOM_ENTITY", false));
                 topics.add(new Topic("R3", "Room DAO", "Cung cấp các hàm để ứng dụng thực hiện các thao tác truy vấn, cập nhật, thêm và xóa dữ liệu trong database.", "KEY_ROOM_DAO", false));
-                topics.add(new Topic("R4", "Demo", "User & Book", "KEY_ROOM_DEMO", false));
+                topics.add(new Topic("R4", "Demo", "TodoApp", "KEY_ROOM_DEMO", false));
                 break;
 
 //            case RECYCLERVIEW:
