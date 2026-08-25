@@ -19,6 +19,11 @@
         <item name="android:background">#E3F2FD</item>
     </style>
 
+    <style name="ToolbarTitleStyle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
 <!--    Practice-->
     <style name="CommonEditText">
         <item name="android:layout_width">match_parent</item>
