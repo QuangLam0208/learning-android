@@ -84,7 +84,7 @@ public class ReceiveDataActivity extends AppCompatActivity {
     }
 
     private void receiveStudent() {
-        Student student = (Student) getIntent().getSerializableExtra("student");
+        Student student = getIntent().getParcelableExtra("student", Student.class);
         if (student == null) {
             tvResult.setText("Không nhận được Student Object.");
             return;

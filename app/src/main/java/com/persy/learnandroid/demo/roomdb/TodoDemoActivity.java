@@ -38,7 +38,7 @@ public class TodoDemoActivity extends AppCompatActivity {
     private RecyclerView rvTodoList;
     private TextView tvEmpty;
 
-    private TodoDAO todoDAO;
+    private TodoRepository todoRepository;
     private TodoAdapter todoAdapter;
     private List<Todo> todoList = new ArrayList<>();
 
@@ -54,13 +54,13 @@ public class TodoDemoActivity extends AppCompatActivity {
             return insets;
         });
 
-        todoDAO = TodoDatabase.getInstance(this).todoDAO();
+        todoRepository = new TodoRepository(TodoDatabase.getInstance(this).todoDAO());
 
         viewMapping();
         setupToolBar();
         setupRecyclerView();
         setupAddButton();
-        loadTodoList();
+        observeTodoList();
     }
 
     private void viewMapping() {
@@ -107,20 +107,21 @@ public class TodoDemoActivity extends AppCompatActivity {
                Toast.makeText(this, "Vui lòng nhập nội dung", Toast.LENGTH_SHORT).show();
                return;
            }
-           todoDAO.insert(new Todo(title, new Date()));
+           todoRepository.insert(new Todo(title, new Date()));
            edtTodoTitle.setText("");
-           loadTodoList();
         });
     }
 
-    private void loadTodoList() {
-        List<Todo> data = todoDAO.getAllTodo();
-        todoList.clear();
-        todoList.addAll(data);
-        todoAdapter.updateData(todoList);
+    private void observeTodoList() {
+        todoRepository.getAllTodoLive().observe(this, updatedTodos -> {
+            todoList.clear();
+            todoList.addAll(updatedTodos);
+            todoAdapter.updateData(todoList);
 
-        tvEmpty.setVisibility(todoList.isEmpty() ? android.view.View.VISIBLE : android.view.View.GONE);
-        rvTodoList.setVisibility(todoList.isEmpty() ? android.view.View.GONE : android.view.View.VISIBLE);
+            boolean isEmpty = todoList.isEmpty();
+            tvEmpty.setVisibility(isEmpty ? View.VISIBLE : View.GONE);
+            rvTodoList.setVisibility(isEmpty ? View.GONE : View.VISIBLE);
+        });
     }
 
     private void showEditDialog(Todo todo) {
@@ -139,8 +140,7 @@ public class TodoDemoActivity extends AppCompatActivity {
                         return;
                     }
                     todo.setTitle(newTitle);
-                    todoDAO.update(todo);
-                    loadTodoList();
+                    todoRepository.update(todo);
                 })
                 .setNegativeButton("Hủy", null)
                 .show();
@@ -151,8 +151,7 @@ public class TodoDemoActivity extends AppCompatActivity {
                 .setTitle("Xóa việc cần làm")
                 .setMessage("Bạn có chắc muốn xóa \"" + todo.getTitle() + "\"?")
                 .setPositiveButton("Xóa", (dialog, which) -> {
-                    todoDAO.delete(todo);
-                    loadTodoList();
+                    todoRepository.delete(todo);
                 })
                 .setNegativeButton("Hủy", null)
                 .show();

@@ -18,7 +18,7 @@ public class TodoRepository {
         this.todoDAO = todoDAO;
     }
 
-    public LiveData<List<Todo>> getAllTodo() {
+    public LiveData<List<Todo>> getAllTodoLive() {
         return todoDAO.getAllTodoLive();
     }
 
