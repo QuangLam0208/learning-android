@@ -1,5 +1,6 @@
 package com.persy.learnandroid.database;
 
+import androidx.lifecycle.LiveData;
 import androidx.room3.Dao;
 import androidx.room3.Delete;
 import androidx.room3.Insert;
@@ -30,6 +31,9 @@ public interface TodoDAO {
 
     @Query("SELECT * FROM todo ORDER BY createAt DESC")
     List<Todo> getAllTodo();
+
+    @Query("SELECT * FROM todo ORDER BY createAt DESC")
+    LiveData<List<Todo>> getAllTodoLive();
 
     @Query("SELECT * FROM todo WHERE id = :id LIMIT 1")
     Todo getTodoById(int id);
