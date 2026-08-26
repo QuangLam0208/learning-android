@@ -54,13 +54,11 @@ public class ReturnDataDemoActivity extends AppCompatActivity {
         selectDataLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
-                    if (result.getResultCode() == RESULT_OK) {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
                         Intent data = result.getData();
-                        if (data != null) {
-                            String selectedValue = data.getStringExtra("selected_value");
-                            if (selectedValue != null) {
-                                tvResult.setText(selectedValue);
-                            }
+                        String selectedValue = data.getStringExtra("selected_value");
+                        if (selectedValue != null) {
+                            tvResult.setText(selectedValue);
                         }
                     }
                 }
