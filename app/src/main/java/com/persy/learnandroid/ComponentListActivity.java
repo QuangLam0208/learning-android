@@ -34,7 +34,7 @@ import com.persy.learnandroid.demo.layouts.TableLayoutDemoActivity;
 import com.persy.learnandroid.demo.roomdb.OverviewDemoActivity;
 import com.persy.learnandroid.demo.roomdb.RoomDaoDemoActivity;
 import com.persy.learnandroid.demo.roomdb.RoomEntityDemoActivity;
-import com.persy.learnandroid.demo.roomdb.TodoDemoActivity;
+import com.persy.learnandroid.demo.ui.TodoDemoActivity;
 import com.persy.learnandroid.model.ETopicCategory;
 import com.persy.learnandroid.model.Topic;
 
