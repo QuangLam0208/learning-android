@@ -60,7 +60,7 @@ public class TodoDemoActivity extends AppCompatActivity {
         });
 
         TodoDAO todoDAO = TodoDatabase.getInstance(this).todoDAO();
-        TodoApiService  todoApiService = RetrofitClient.getTodoApiService();
+        TodoApiService  todoApiService = TodoRetrofitClient.getTodoApiService();
         todoRepository = new TodoRepository(todoDAO, todoApiService);
 
         viewMapping();
