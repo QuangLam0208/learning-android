@@ -7,6 +7,7 @@ import androidx.room3.Delete;
 import androidx.room3.Insert;
 import androidx.room3.OnConflictStrategy;
 import androidx.room3.Query;
+import androidx.room3.Transaction;
 import androidx.room3.Update;
 import androidx.room3.livedata.LiveDataDaoReturnTypeConverter;
 
