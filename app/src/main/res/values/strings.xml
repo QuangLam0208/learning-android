@@ -569,4 +569,79 @@
             Tuy nhiên, làm việc trực tiếp với SQLite có thể yêu cầu nhiều mã xử lý thủ công. Vì vậy, Android cung cấp <b>Room Persistence Library</b> — một lớp trừu tượng trên SQLite, giúp việc truy cập và quản lý database trở nên đơn giản hơn trong khi vẫn sử dụng được sức mạnh của SQLite.
         ]]>
     </string>
+
+    <string name="retrofit_overview_explanation">
+        <![CDATA[
+            <b>Retrofit</b> là một REST client có tính <b>an toàn kiểu (type-safe)</b> dành cho Android và Java, giúp đơn giản hóa việc gọi các web service dạng RESTful.<br><br>
+
+            Retrofit 2 mặc định sử dụng <b>OkHttp</b> làm lớp mạng (networking layer). Retrofit tự động serialize response JSON thành một <b>POJO</b> mà ta phải định nghĩa trước cho cấu trúc JSON đó. Để làm việc này, cần một bộ chuyển đổi (Converter) như <b>Gson</b>.<br><br>
+
+            <i>Lưu ý:</i> Retrofit <b>không hỗ trợ tải hình ảnh</b>. Với tác vụ này, thường sẽ dùng thư viện khác như Glide hoặc Picasso.<br><br>
+
+            <b>Kiến trúc tương tác tổng quan:</b><br><br>
+
+            1. <b>POJO / Model</b>: Đại diện cho cấu trúc dữ liệu JSON.<br><br>
+            2. <b>Converter (Gson/Moshi)</b>: Chuyển đổi qua lại giữa JSON string và Java Object.<br><br>
+            3. <b>API Interface</b>: Khai báo các endpoint, phương thức HTTP (GET, POST, PUT, DELETE), query params, headers.<br><br>
+            4. <b>Retrofit Client</b>: Cấu hình Base URL, Converter, OkHttpClient (timeout, logging, interceptor).
+        ]]>
+    </string>
+    <string name="retrofit_pojo_explanation">
+        <![CDATA[
+            <b>POJO (Plain Old Java Object)</b> là một class Java thông thường dùng để <b>đại diện cho cấu trúc dữ liệu JSON</b> mà server trả về. Mỗi field trong class tương ứng với một key trong JSON.<br><br>
+
+            Để chuyển đổi qua lại giữa <b>JSON string</b> và <b>Java Object</b>, Retrofit cần một <b>Converter</b>. Converter phổ biến nhất là <b>Gson</b> (thông qua thư viện <i>converter-gson</i>).<br><br>
+
+            Trong project hiện tại, class <b>Todo</b> chính là một POJO, sử dụng annotation <i>@SerializedName</i> của Gson để ánh xạ tên field Java sang tên key JSON tương ứng, ngay cả khi tên không trùng khớp hoàn toàn.<br><br>
+
+            <b>Converter hoạt động ở đâu?</b><br><br>
+
+            Converter được đăng ký khi khởi tạo Retrofit instance thông qua <i>addConverterFactory()</i>. Sau đó, mọi request/response đi qua Retrofit sẽ <b>tự động</b> được Gson serialize/deserialize mà không cần gọi thủ công.
+        ]]>
+    </string>
+    <string name="retrofit_api_interface_explanation">
+        <![CDATA[
+            <b>API Interface</b> là nơi khai báo các <b>endpoint</b> mà ứng dụng sẽ gọi tới server. Mỗi phương thức trong interface tương ứng với một request HTTP, được đánh dấu bằng annotation như <i>@GET</i>, <i>@POST</i>, <i>@PUT</i>, <i>@DELETE</i>.<br><br>
+
+            <b>Các thành phần thường gặp:</b><br><br>
+
+            - <b>@Path</b>: Thay thế một phần trong URL, ví dụ <i>{id}</i>.<br><br>
+            - <b>@Query</b>: Thêm tham số vào query string của URL.<br><br>
+            - <b>@Body</b>: Gửi một Object làm phần thân (body) của request, thường dùng cho POST/PUT.<br><br>
+            - <b>@Header</b>: Thêm một header tùy chỉnh vào request, ví dụ dùng cho xác thực.<br><br>
+
+            Mỗi phương thức trả về một <i>Call&lt;T&gt;</i>, trong đó T là kiểu dữ liệu POJO tương ứng. Sau khi có Call, ta gọi <i>enqueue()</i> để thực hiện request bất đồng bộ.
+        ]]>
+    </string>
+    <string name="retrofit_client_explanation">
+        <![CDATA[
+            <b>Retrofit Client</b> là nơi khởi tạo và cấu hình đối tượng <b>Retrofit</b> duy nhất cho toàn ứng dụng (thường áp dụng Singleton pattern để tránh tạo lại nhiều lần).<br><br>
+
+            <b>Các thành phần cần cấu hình:</b><br><br>
+
+            - <b>Base URL</b>: Địa chỉ gốc của server, mọi endpoint trong API Interface sẽ được nối tiếp vào sau URL này.<br><br>
+            - <b>Converter Factory</b>: Bộ chuyển đổi dữ liệu, ví dụ <i>GsonConverterFactory</i>.<br><br>
+            - <b>OkHttpClient</b>: Cho phép cấu hình <i>connectTimeout</i>, <i>readTimeout</i>, thêm <b>Interceptor</b> để log request/response hoặc chèn header xác thực.<br><br>
+
+            Sau khi cấu hình xong, gọi <i>retrofit.create(ApiService.class)</i> để lấy về một implementation (được Retrofit tự sinh ra) của API Interface, sẵn sàng để gọi các phương thức đã khai báo.
+        ]]>
+    </string>
+    <string name="retrofit_auth_explanation">
+        <![CDATA[
+            Retrofit hỗ trợ các lệnh gọi API cần <b>xác thực (authentication)</b>, thông qua tên người dùng/mật khẩu (HTTP Basic) hoặc API token. Có <b>hai cách</b> phổ biến để xử lý:<br><br>
+
+            <b>1. Xác thực bằng annotation</b><br><br>
+
+            Thêm tham số <i>@Header("Authorization")</i> vào phương thức trong API Interface, Retrofit sẽ tự thêm header <i>Authorization</i> với giá trị được cung cấp.<br><br>
+
+            Để tạo thông tin xác thực Basic, dùng class <i>Credentials</i> với phương thức <i>basic(username, password)</i>. Nếu dùng API token, chỉ cần truyền token trực tiếp thay vì Basic credentials.<br><br>
+
+            <i>Nhược điểm:</i> phải thêm tham số Header cho <b>từng</b> phương thức cần xác thực.<br><br>
+
+            <b>2. OkHttp Interceptor</b><br><br>
+
+            Nếu có <b>nhiều</b> API cần xác thực, dùng <b>Interceptor</b> sẽ tiện hơn. Interceptor sửa đổi từng request <b>trước khi</b> nó được thực hiện, tự động chèn header vào <b>mọi</b> request đi qua OkHttpClient — không cần khai báo lặp lại ở từng phương thức.
+        ]]>
+    </string>
+
 </resources>

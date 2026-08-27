@@ -14,6 +14,7 @@ public class TopicRepository {
         topics.add(new Topic(ETopicCategory.CONTROLS.name(), "Controls", "Button, TextView, EditText, CheckBox...", null, true));
         topics.add(new Topic(ETopicCategory.INTENT_BUNDLE.name(), "Intent & Bundle", "Truyền nhận dữ liệu giữa các Activity", null, true));
         topics.add(new Topic(ETopicCategory.ROOM_DATABASE.name(), "SQLite & Room Database", "CRUD với Room Database", null, true));
+        topics.add(new Topic(ETopicCategory.RETROFIT.name(), "Retrofit", "REST Client type-safe cho Android", null, true));
         //topics.add(new Topic(ETopicCategory.RECYCLERVIEW.name(), "RecyclerView", "Xử lý danh sách nâng cao với Adapter", null, true));
 
         return topics;
@@ -52,6 +53,15 @@ public class TopicRepository {
                 topics.add(new Topic("R2", "Room Entity", "Các lớp dữ liệu đại diện cho các bảng trong database", "KEY_ROOM_ENTITY", false));
                 topics.add(new Topic("R3", "Room DAO", "Cung cấp các hàm để ứng dụng thực hiện các thao tác truy vấn, cập nhật, thêm và xóa dữ liệu trong database.", "KEY_ROOM_DAO", false));
                 topics.add(new Topic("R4", "Todo Demo", "Basic Todo App Demo CRUD", "KEY_ROOM_DEMO", false));
+                break;
+
+            case RETROFIT:
+                topics.add(new Topic("RF1", "Overview", "Retrofit là gì, kiến trúc tổng quan", "KEY_RETROFIT_OVERVIEW", false));
+                topics.add(new Topic("RF2", "POJO & Converter", "Model đại diện JSON và Gson converter", "KEY_RETROFIT_POJO", false));
+                topics.add(new Topic("RF3", "API Interface", "Khai báo endpoint bằng annotation", "KEY_RETROFIT_API_INTERFACE", false));
+                topics.add(new Topic("RF4", "Retrofit Client", "Cấu hình Base URL, Converter, OkHttpClient", "KEY_RETROFIT_CLIENT", false));
+                topics.add(new Topic("RF5", "Authentication", "Xác thực bằng Header hoặc OkHttp Interceptor", "KEY_RETROFIT_AUTH", false));
+                topics.add(new Topic("RF6", "Todo Demo", "Todo sử dụng Retrofit + Room", "KEY_RETROFIT_DEMO", false));
                 break;
 
 //            case RECYCLERVIEW:

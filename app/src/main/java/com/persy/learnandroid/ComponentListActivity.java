@@ -31,6 +31,11 @@ import com.persy.learnandroid.demo.layouts.GridLayoutDemoActivity;
 import com.persy.learnandroid.demo.layouts.LinearLayoutDemoActivity;
 import com.persy.learnandroid.demo.layouts.RelativeLayoutDemoActivity;
 import com.persy.learnandroid.demo.layouts.TableLayoutDemoActivity;
+import com.persy.learnandroid.demo.retrofit.RetrofitApiInterfaceDemoActivity;
+import com.persy.learnandroid.demo.retrofit.RetrofitAuthDemoActivity;
+import com.persy.learnandroid.demo.retrofit.RetrofitClientDemoActivity;
+import com.persy.learnandroid.demo.retrofit.RetrofitOverviewDemoActivity;
+import com.persy.learnandroid.demo.retrofit.RetrofitPojoDemoActivity;
 import com.persy.learnandroid.demo.roomdb.OverviewDemoActivity;
 import com.persy.learnandroid.demo.roomdb.RoomDaoDemoActivity;
 import com.persy.learnandroid.demo.roomdb.RoomEntityDemoActivity;
@@ -137,6 +142,19 @@ public class ComponentListActivity extends AppCompatActivity {
             case "KEY_ROOM_DAO":
                 return RoomDaoDemoActivity.class;
             case "KEY_ROOM_DEMO":
+                return TodoDemoActivity.class;
+
+            case "KEY_RETROFIT_OVERVIEW":
+                return RetrofitOverviewDemoActivity.class;
+            case "KEY_RETROFIT_POJO":
+                return RetrofitPojoDemoActivity.class;
+            case "KEY_RETROFIT_API_INTERFACE":
+                return RetrofitApiInterfaceDemoActivity.class;
+            case "KEY_RETROFIT_CLIENT":
+                return RetrofitClientDemoActivity.class;
+            case "KEY_RETROFIT_AUTH":
+                return RetrofitAuthDemoActivity.class;
+            case "KEY_RETROFIT_DEMO":
                 return TodoDemoActivity.class;
 
             default:
