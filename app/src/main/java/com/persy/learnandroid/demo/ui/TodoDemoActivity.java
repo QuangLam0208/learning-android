@@ -22,7 +22,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.persy.learnandroid.R;
 import com.persy.learnandroid.adapter.TodoAdapter;
-import com.persy.learnandroid.api.RetrofitClient;
+import com.persy.learnandroid.api.TodoRetrofitClient;
 import com.persy.learnandroid.api.TodoApiService;
 import com.persy.learnandroid.database.TodoDAO;
 import com.persy.learnandroid.database.TodoDatabase;
