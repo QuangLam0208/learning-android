@@ -61,7 +61,7 @@ public class TopicRepository {
                 topics.add(new Topic("RF3", "API Interface", "Khai báo endpoint bằng annotation", "KEY_RETROFIT_API_INTERFACE", false));
                 topics.add(new Topic("RF4", "Retrofit Client", "Cấu hình Base URL, Converter, OkHttpClient", "KEY_RETROFIT_CLIENT", false));
                 topics.add(new Topic("RF5", "Authentication", "Xác thực bằng Header hoặc OkHttp Interceptor", "KEY_RETROFIT_AUTH", false));
-                topics.add(new Topic("RF6", "Todo Demo", "Todo sử dụng Retrofit + Room", "KEY_RETROFIT_DEMO", false));
+                topics.add(new Topic("RF7", "Login Demo", "Basic Auth login, lưu JWT, gọi API kèm Bearer Token", "KEY_RETROFIT_LOGIN", false));
                 break;
 
 //            case RECYCLERVIEW:

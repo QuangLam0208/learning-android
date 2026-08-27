@@ -36,6 +36,7 @@ import com.persy.learnandroid.demo.retrofit.RetrofitAuthDemoActivity;
 import com.persy.learnandroid.demo.retrofit.RetrofitClientDemoActivity;
 import com.persy.learnandroid.demo.retrofit.RetrofitOverviewDemoActivity;
 import com.persy.learnandroid.demo.retrofit.RetrofitPojoDemoActivity;
+import com.persy.learnandroid.demo.retrofit.login.LoginActivity;
 import com.persy.learnandroid.demo.roomdb.OverviewDemoActivity;
 import com.persy.learnandroid.demo.roomdb.RoomDaoDemoActivity;
 import com.persy.learnandroid.demo.roomdb.RoomEntityDemoActivity;
@@ -154,8 +155,8 @@ public class ComponentListActivity extends AppCompatActivity {
                 return RetrofitClientDemoActivity.class;
             case "KEY_RETROFIT_AUTH":
                 return RetrofitAuthDemoActivity.class;
-            case "KEY_RETROFIT_DEMO":
-                return TodoDemoActivity.class;
+            case "KEY_RETROFIT_LOGIN":
+                return LoginActivity.class;
 
             default:
                 return null;
