@@ -39,6 +39,18 @@ dependencies {
     ksp("androidx.room3:room3-compiler:$room_version")
     implementation("androidx.room3:room3-livedata:$room_version")
 
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    // Retrofit with Scalar Converter
+    implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
+    // Converter Gson để parse JSON sang Java Object
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    // OkHttp Logging Interceptor để debug log request/response
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+
+    // Pull-to-Refresh
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
     implementation(libs.activity.ktx)
     implementation(libs.appcompat)
     implementation(libs.constraintlayout)
