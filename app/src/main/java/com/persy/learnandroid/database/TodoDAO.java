@@ -38,6 +38,9 @@ public interface TodoDAO {
     @Query("SELECT * FROM todo ORDER BY createAt DESC")
     LiveData<List<Todo>> getAllTodoLive();
 
-    @Query("SELECT * FROM todo WHERE id = :id LIMIT 1")
-    Todo getTodoById(int id);
+    @Transaction
+    default void syncServerData(List<Todo> todos) {
+        deleteAll();
+        insertAll(todos);
+    }
 }
