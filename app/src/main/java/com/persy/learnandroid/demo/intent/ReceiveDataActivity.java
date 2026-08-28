@@ -1,47 +1,46 @@
 package com.persy.learnandroid.demo.intent;
 
 import android.os.Bundle;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.databinding.DataBindingUtil;
 
 import com.persy.learnandroid.R;
+import com.persy.learnandroid.databinding.ActivityIntentReceiveDataBinding;
 import com.persy.learnandroid.model.Student;
 
 public class ReceiveDataActivity extends AppCompatActivity {
-    private Toolbar toolbar;
-    private TextView tvDataType, tvResult;
+
+    private ActivityIntentReceiveDataBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_intent_receive_data);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_intent_receive_data);
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        viewMapping();
+
         setupToolBar();
         receiveData();
     }
 
     private void receiveData() {
         String dataType = getIntent().getStringExtra("DATA_TYPE");
+        binding.setDataType(dataType);
 
         if (dataType == null) {
-            tvDataType.setText("Data type: Unknown");
-            tvResult.setText("Không có dữ liệu.");
+            binding.setResult("Không có dữ liệu.");
             return;
         }
-
-        tvDataType.setText("Data type: " + dataType);
 
         switch (dataType) {
             case "PUT_EXTRA":
@@ -54,7 +53,7 @@ public class ReceiveDataActivity extends AppCompatActivity {
                 receiveStudent();
                 break;
             default:
-                tvResult.setText("Không xác định được loại dữ liệu.");
+                binding.setResult("Không xác định được loại dữ liệu.");
                 break;
         }
     }
@@ -63,51 +62,38 @@ public class ReceiveDataActivity extends AppCompatActivity {
         String name = getIntent().getStringExtra("name");
         int age = getIntent().getIntExtra("age", 0);
         boolean isStudent = getIntent().getBooleanExtra("isStudent", false);
-        String result = "Name: " + name + "\nAge: " + age + "\nIs student: " + isStudent;
-        tvResult.setText(result);
+        binding.setResult("Name: " + name + "\nAge: " + age + "\nIs student: " + isStudent);
     }
+
     private void receiveBundle() {
         Bundle bundle = getIntent().getExtras();
-
         if (bundle == null) {
-            tvResult.setText("Không có Bundle được truyền.");
+            binding.setResult("Không có Bundle được truyền.");
             return;
         }
-
         String name = bundle.getString("name");
         int age = bundle.getInt("age");
         String email = bundle.getString("email");
         boolean isStudent = bundle.getBoolean("isStudent");
-
-        String result = "Name: " + name + "\nAge: " + age + "\nEmail: " + email + "\nIs student: " + isStudent;
-        tvResult.setText(result);
+        binding.setResult("Name: " + name + "\nAge: " + age + "\nEmail: " + email + "\nIs student: " + isStudent);
     }
 
     private void receiveStudent() {
         Student student = getIntent().getParcelableExtra("student", Student.class);
         if (student == null) {
-            tvResult.setText("Không nhận được Student Object.");
+            binding.setResult("Không nhận được Student Object.");
             return;
         }
-        String result =
-                "Student Object" + "\n\nName: " + student.getName() + "\nAge: " + student.getAge() + "\nClass: " + student.getClassName();
-        tvResult.setText(result);
+        binding.setResult("Student Object\n\nName: " + student.getName() + "\nAge: " + student.getAge() + "\nClass: " + student.getClassName());
     }
 
     private void setupToolBar() {
-        setSupportActionBar(toolbar);
+        setSupportActionBar(binding.includeToolbar.toolbar);
         if (getSupportActionBar() != null) {
             String topicTitle = getIntent().getStringExtra("EXTRA_TOPIC_TITLE");
-            getSupportActionBar().setTitle(topicTitle);
+            getSupportActionBar().setTitle(topicTitle != null ? topicTitle : "Receive Data");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        toolbar.setNavigationOnClickListener(view -> finish());
+        binding.includeToolbar.toolbar.setNavigationOnClickListener(view -> finish());
     }
-
-    private void viewMapping() {
-        toolbar = findViewById(R.id.toolbar);
-        tvDataType = findViewById(R.id.tvDataType);
-        tvResult = findViewById(R.id.tvResult);
-    }
-
 }
