@@ -1,102 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white"
-    tools:context=".demo.retrofit.RetrofitOverviewDemoActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <include layout="@layout/item_toolbar"/>
-
-    <ScrollView
+    <LinearLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fillViewport="true">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white"
+        tools:context=".demo.retrofit.RetrofitOverviewDemoActivity">
 
-        <LinearLayout
+        <include
+            android:id="@+id/includeToolbar"
+            layout="@layout/item_toolbar"/>
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/padding_standard">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
 
-            <include layout="@layout/item_explanation"/>
-
-            <!-- Architecture Diagram -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="20dp"
-                android:gravity="center">
+                android:padding="@dimen/padding_standard">
 
                 <TextView
+                    android:id="@+id/tvExplanation"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:background="#F5F5F5"
-                    android:gravity="center"
-                    android:text="POJO / Model"
+                    android:layout_height="wrap_content"
                     android:textColor="#333333"
-                    android:textStyle="bold"/>
+                    android:textSize="@dimen/text_size_desc"
+                    app:renderHtml="@{@string/retrofit_overview_explanation}" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="32dp"
-                    android:gravity="center"
-                    android:text="↓"
-                    android:textSize="22sp"
-                    android:textColor="#777777"/>
-
-                <TextView
+                <!-- Architecture Diagram -->
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:background="#E8F0FE"
-                    android:gravity="center"
-                    android:text="Converter (Gson)"
-                    android:textColor="#1A73E8"
-                    android:textStyle="bold"/>
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="32dp"
-                    android:gravity="center"
-                    android:text="↓"
-                    android:textSize="22sp"
-                    android:textColor="#777777"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="#F5F5F5"
+                        android:gravity="center"
+                        android:text="POJO / Model"
+                        android:textColor="#333333"
+                        android:textStyle="bold"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:background="#F5F5F5"
-                    android:gravity="center"
-                    android:text="API Interface"
-                    android:textColor="#333333"
-                    android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:gravity="center"
+                        android:text="↓"
+                        android:textSize="22sp"
+                        android:textColor="#777777"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="32dp"
-                    android:gravity="center"
-                    android:text="↓"
-                    android:textSize="22sp"
-                    android:textColor="#777777"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="#E8F0FE"
+                        android:gravity="center"
+                        android:text="Converter (Gson)"
+                        android:textColor="#1A73E8"
+                        android:textStyle="bold"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:background="#E8F0FE"
-                    android:gravity="center"
-                    android:text="Retrofit Client"
-                    android:textColor="#1A73E8"
-                    android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:gravity="center"
+                        android:text="↓"
+                        android:textSize="22sp"
+                        android:textColor="#777777"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="#F5F5F5"
+                        android:gravity="center"
+                        android:text="API Interface"
+                        android:textColor="#333333"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:gravity="center"
+                        android:text="↓"
+                        android:textSize="22sp"
+                        android:textColor="#777777"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="#E8F0FE"
+                        android:gravity="center"
+                        android:text="Retrofit Client"
+                        android:textColor="#1A73E8"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
+        </ScrollView>
 
-    </ScrollView>
-
-</LinearLayout>
+    </LinearLayout>
+</layout>
