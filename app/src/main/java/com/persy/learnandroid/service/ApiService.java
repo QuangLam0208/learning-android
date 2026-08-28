@@ -12,7 +12,6 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface ApiService {
-
     @POST("api/token")
     Call<LoginResponse> login(
             @Header("Authorization") String basicAuthCredentials,
@@ -21,5 +20,4 @@ public interface ApiService {
 
     @GET("v1/account/profile")
     Call<ApiResponse<UserProfile>> getProfile();
-
 }

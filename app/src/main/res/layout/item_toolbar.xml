@@ -18,5 +18,4 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     </com.google.android.material.appbar.AppBarLayout>
-
 </layout>

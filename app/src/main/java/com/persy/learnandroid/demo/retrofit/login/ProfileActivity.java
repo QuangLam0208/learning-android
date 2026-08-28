@@ -2,23 +2,30 @@ package com.persy.learnandroid.demo.retrofit.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.databinding.DataBindingUtil;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.persy.learnandroid.R;
+import com.persy.learnandroid.adapter.PermissionAdapter;
 import com.persy.learnandroid.client.ApiRetrofitClient;
 import com.persy.learnandroid.databinding.ActivityProfileDemoBinding;
+import com.persy.learnandroid.databinding.BottomSheetPermissionsBinding;
 import com.persy.learnandroid.model.ApiResponse;
+import com.persy.learnandroid.model.UserGroup;
 import com.persy.learnandroid.model.UserProfile;
 import com.persy.learnandroid.service.ApiService;
 import com.persy.learnandroid.utils.TokenManager;
+
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,7 +35,6 @@ public class ProfileActivity extends AppCompatActivity {
 
     private ActivityProfileDemoBinding binding;
     private TokenManager tokenManager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +88,14 @@ public class ProfileActivity extends AppCompatActivity {
 
                 if (response.isSuccessful() && response.body() != null && response.body().getData() != null) {
                     UserProfile userProfile = response.body().getData();
-                    bindProfileToForm(userProfile);
+
+                    binding.setUser(userProfile);
+
+                    if (userProfile.getGroup() != null) {
+                        binding.rowViewPermissions.setOnClickListener(v ->
+                                showPermissionsBottomSheet(userProfile.getGroup())
+                        );
+                    }
                 } else {
                     Toast.makeText(ProfileActivity.this,
                             "Không lấy được thông tin: " + (response.body() != null ? response.body().getMessage() : response.message()),
@@ -98,19 +111,22 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
+    private void showPermissionsBottomSheet(UserGroup group) {
+        if (group == null) return;
 
-    private void bindProfileToForm(UserProfile profile) {
-        binding.setProfile(profile);
-        binding.setPermissionSummary(buildPermissionSummary(profile));
-        binding.executePendingBindings();
-    }
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
 
-    private String buildPermissionSummary(UserProfile profile) {
-        if (profile == null || profile.getGroup() == null) return "";
-        int permissionCount = profile.getGroup().getPermissions() != null
-                ? profile.getGroup().getPermissions().size() : 0;
-        String desc = profile.getGroup().getDescription() != null ? profile.getGroup().getDescription() : "";
-        return "Nhóm: " + desc + " (" + permissionCount + " quyền)";
+        BottomSheetPermissionsBinding sheetBinding = BottomSheetPermissionsBinding.inflate(LayoutInflater.from(this));
+        bottomSheetDialog.setContentView(sheetBinding.getRoot());
+        sheetBinding.setGroup(group);
+
+        PermissionAdapter adapter = new PermissionAdapter();
+        sheetBinding.rvPermissions.setAdapter(adapter);
+        if (group.getPermissions() != null) adapter.setPermissions(group.getPermissions());
+
+        sheetBinding.btnCloseSheet.setOnClickListener(v -> bottomSheetDialog.dismiss());
+
+        bottomSheetDialog.show();
     }
 
     private void handleSessionExpired() {
