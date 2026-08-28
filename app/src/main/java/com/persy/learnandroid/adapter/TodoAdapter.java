@@ -1,26 +1,19 @@
 package com.persy.learnandroid.adapter;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.persy.learnandroid.R;
+import com.persy.learnandroid.databinding.ItemTodoBinding;
 import com.persy.learnandroid.model.Todo;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Locale;
 
-public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder>{
+public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
     private List<Todo> todoList;
     private final OnTodoActionListener listener;
-    private final SimpleDateFormat dateFormat =
-            new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
 
     public TodoAdapter(List<Todo> todoList, OnTodoActionListener listener) {
         this.todoList = todoList;
@@ -35,26 +28,20 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder>{
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_todo, parent, false);
-        return new ViewHolder(view);
+        ItemTodoBinding binding = ItemTodoBinding.inflate(
+                LayoutInflater.from(parent.getContext()),
+                parent,
+                false
+        );
+        return new ViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Todo todo = todoList.get(position);
-        holder.tvTitle.setText(todo.getTitle());
-        holder.tvDate.setText(
-                todo.getCreateAt() != null ? dateFormat.format(todo.getCreateAt()) : ""
-        );
-
-        holder.btnEdit.setOnClickListener(view -> {
-            if (listener != null) listener.onEditClick(todo);
-        });
-
-        holder.btnDelete.setOnClickListener(view -> {
-            if (listener != null) listener.onDeleteClick(todo);
-        });
+        holder.binding.setTodo(todo);
+        holder.binding.setListener(listener);
+        holder.binding.executePendingBindings();
     }
 
     @Override
@@ -68,14 +55,11 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder>{
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTitle, tvDate;
-        ImageButton btnEdit, btnDelete;
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            tvTitle = itemView.findViewById(R.id.tvTodoTitle);
-            tvDate = itemView.findViewById(R.id.tvTodoDate);
-            btnEdit = itemView.findViewById(R.id.btnEditTodo);
-            btnDelete = itemView.findViewById(R.id.btnDeleteTodo);
+        final ItemTodoBinding binding;
+
+        public ViewHolder(@NonNull ItemTodoBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
     }
 }
