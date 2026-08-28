@@ -10,13 +10,8 @@ import java.util.Date;
 @Entity(tableName = "todo")
 public class Todo {
     @PrimaryKey(autoGenerate = true)
-    @SerializedName("id")
     private int id;
-
-    @SerializedName("title")
     private String title;
-
-    @SerializedName("createAt")
     private Date createAt;
 
     public Todo(String title, Date createAt) {

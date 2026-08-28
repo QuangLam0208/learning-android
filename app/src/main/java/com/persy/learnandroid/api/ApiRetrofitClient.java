@@ -1,4 +1,4 @@
-package com.persy.learnandroid.client;
+package com.persy.learnandroid.api;
 
 import android.content.Context;
 

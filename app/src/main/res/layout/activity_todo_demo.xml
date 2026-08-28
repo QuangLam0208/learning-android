@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#F5F5F5"
-    tools:context=".demo.ui.TodoDemoActivity">
+    tools:context=".demo.roomdb.TodoDemoActivity">
 
     <include layout="@layout/item_toolbar"/>
 
@@ -43,37 +43,29 @@
 
     </LinearLayout>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefreshLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+   <FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-        <FrameLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvTodoList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:padding="@dimen/padding_small"
+            android:scrollbars="vertical"
+            tools:listitem="@layout/item_todo"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvTodoList"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clipToPadding="false"
-                android:padding="@dimen/padding_small"
-                android:scrollbars="vertical"
-                tools:listitem="@layout/item_todo"/>
+        <TextView
+            android:id="@+id/tvEmpty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Chưa có việc cần làm nào"
+            android:textColor="#999999"
+            android:textSize="@dimen/text_size_desc"
+            android:visibility="gone"/>
 
-            <TextView
-                android:id="@+id/tvEmpty"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Chưa có việc cần làm nào"
-                android:textColor="#999999"
-                android:textSize="@dimen/text_size_desc"
-                android:visibility="gone"/>
-
-        </FrameLayout>
-
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </FrameLayout>
 
 </LinearLayout>

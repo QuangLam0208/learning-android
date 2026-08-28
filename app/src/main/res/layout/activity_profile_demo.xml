@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="#F5F5F5"
-        tools:context=".demo.retrofit.login.ProfileActivity">
+        tools:context=".demo.retrofit.ProfileActivity">
 
         <include
             android:id="@+id/includeToolbar"

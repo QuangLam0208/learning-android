@@ -36,11 +36,11 @@ import com.persy.learnandroid.demo.retrofit.RetrofitAuthDemoActivity;
 import com.persy.learnandroid.demo.retrofit.RetrofitClientDemoActivity;
 import com.persy.learnandroid.demo.retrofit.RetrofitOverviewDemoActivity;
 import com.persy.learnandroid.demo.retrofit.RetrofitPojoDemoActivity;
-import com.persy.learnandroid.demo.retrofit.login.LoginActivity;
+import com.persy.learnandroid.demo.retrofit.LoginActivity;
 import com.persy.learnandroid.demo.roomdb.OverviewDemoActivity;
 import com.persy.learnandroid.demo.roomdb.RoomDaoDemoActivity;
 import com.persy.learnandroid.demo.roomdb.RoomEntityDemoActivity;
-import com.persy.learnandroid.demo.ui.TodoDemoActivity;
+import com.persy.learnandroid.demo.roomdb.TodoDemoActivity;
 import com.persy.learnandroid.model.ETopicCategory;
 import com.persy.learnandroid.model.Topic;
 

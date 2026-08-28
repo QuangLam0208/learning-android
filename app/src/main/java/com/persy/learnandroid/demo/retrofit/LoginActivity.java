@@ -1,4 +1,4 @@
-package com.persy.learnandroid.demo.retrofit.login;
+package com.persy.learnandroid.demo.retrofit;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,9 +13,9 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.databinding.DataBindingUtil;
 
 import com.persy.learnandroid.R;
-import com.persy.learnandroid.client.ApiRetrofitClient;
+import com.persy.learnandroid.api.ApiRetrofitClient;
 import com.persy.learnandroid.databinding.ActivityLoginDemoBinding;
-import com.persy.learnandroid.service.ApiService;
+import com.persy.learnandroid.api.ApiService;
 import com.persy.learnandroid.model.LoginRequest;
 import com.persy.learnandroid.model.LoginResponse;
 import com.persy.learnandroid.utils.TokenManager;

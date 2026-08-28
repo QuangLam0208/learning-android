@@ -1,4 +1,4 @@
-package com.persy.learnandroid.demo.retrofit.login;
+package com.persy.learnandroid.demo.retrofit;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,13 +17,13 @@ import androidx.databinding.DataBindingUtil;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.persy.learnandroid.R;
 import com.persy.learnandroid.adapter.PermissionAdapter;
-import com.persy.learnandroid.client.ApiRetrofitClient;
+import com.persy.learnandroid.api.ApiRetrofitClient;
 import com.persy.learnandroid.databinding.ActivityProfileDemoBinding;
 import com.persy.learnandroid.databinding.BottomSheetPermissionsBinding;
+import com.persy.learnandroid.api.ApiService;
 import com.persy.learnandroid.model.ApiResponse;
 import com.persy.learnandroid.model.UserGroup;
 import com.persy.learnandroid.model.UserProfile;
-import com.persy.learnandroid.service.ApiService;
 import com.persy.learnandroid.utils.TokenManager;
 
 

@@ -21,9 +21,6 @@ public interface TodoDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Todo todo);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<Todo> todos);
-
     @Update
     void update(Todo todo);
 
@@ -34,14 +31,5 @@ public interface TodoDAO {
     void deleteAll();
 
     @Query("SELECT * FROM todo ORDER BY createAt DESC")
-    List<Todo> getAllTodo();
-
-    @Query("SELECT * FROM todo ORDER BY createAt DESC")
     LiveData<List<Todo>> getAllTodoLive();
-
-    @Transaction
-    default void syncServerData(List<Todo> todos) {
-        deleteAll();
-        insertAll(todos);
-    }
 }
