@@ -1,14 +1,12 @@
 package com.persy.learnandroid.adapter;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.persy.learnandroid.R;
+import com.persy.learnandroid.databinding.ItemPermissionRowBinding;
 import com.persy.learnandroid.model.Permission;
 
 import java.util.ArrayList;
@@ -29,9 +27,9 @@ public class PermissionAdapter extends RecyclerView.Adapter<PermissionAdapter.Pe
     @NonNull
     @Override
     public PermissionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_permission_row, parent, false);
-        return new PermissionViewHolder(view);
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        ItemPermissionRowBinding binding = ItemPermissionRowBinding.inflate(inflater, parent, false);
+        return new PermissionViewHolder(binding);
     }
 
     @Override
@@ -46,35 +44,16 @@ public class PermissionAdapter extends RecyclerView.Adapter<PermissionAdapter.Pe
     }
 
     static class PermissionViewHolder extends RecyclerView.ViewHolder {
-        TextView tvPermissionName;
-        TextView tvPcode;
-        TextView tvDescription;
+        private final ItemPermissionRowBinding binding;
 
-        public PermissionViewHolder(@NonNull View itemView) {
-            super(itemView);
-            tvPermissionName = itemView.findViewById(R.id.tvPermissionName);
-            tvPcode = itemView.findViewById(R.id.tvPcode);
-            tvDescription = itemView.findViewById(R.id.tvDescription);
+        public PermissionViewHolder(ItemPermissionRowBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
 
         public void bind(Permission permission) {
-            if (permission == null) return;
-
-            tvPermissionName.setText(permission.getName() != null ? permission.getName() : "Không tên");
-
-            if (permission.getPcode() != null && !permission.getPcode().trim().isEmpty()) {
-                tvPcode.setVisibility(View.VISIBLE);
-                tvPcode.setText(permission.getPcode());
-            } else {
-                tvPcode.setVisibility(View.GONE);
-            }
-
-            if (permission.getDescription() != null && !permission.getDescription().trim().isEmpty()) {
-                tvDescription.setVisibility(View.VISIBLE);
-                tvDescription.setText(permission.getDescription().trim());
-            } else {
-                tvDescription.setVisibility(View.GONE);
-            }
+            binding.setPermission(permission);
+            binding.executePendingBindings();
         }
     }
 }

@@ -1,255 +1,272 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#F5F5F5"
-    tools:context=".demo.retrofit.login.ProfileActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <include layout="@layout/item_toolbar"/>
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="user"
+            type="com.persy.learnandroid.model.UserProfile" />
+    </data>
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginVertical="16dp"
-        android:visibility="gone"/>
-
-    <ScrollView
+    <LinearLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fillViewport="true">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#F5F5F5"
+        tools:context=".demo.retrofit.login.ProfileActivity">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <include
+            android:id="@+id/includeToolbar"
+            layout="@layout/item_toolbar"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_gravity="center"
+            android:layout_marginVertical="16dp"
+            android:visibility="gone"/>
 
-            <androidx.cardview.widget.CardView
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="3dp"
-                app:cardUseCompatPadding="true"
-                app:cardBackgroundColor="@color/white">
+                android:orientation="vertical"
+                android:padding="16dp">
 
-                <LinearLayout
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="3dp"
+                    app:cardUseCompatPadding="true"
+                    app:cardBackgroundColor="@color/white">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:gravity="center_horizontal"
-                        android:layout_marginBottom="16dp">
-
-                        <FrameLayout
-                            android:layout_width="72dp"
-                            android:layout_height="72dp"
-                            android:background="@drawable/bg_avatar_circle">
-
-                            <TextView
-                                android:id="@+id/tvAvatarLetter"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:textColor="@color/white"
-                                android:textSize="26sp"
-                                android:textStyle="bold"
-                                tools:text="A" />
-                        </FrameLayout>
-
-                        <TextView
-                            android:id="@+id/tvHeaderFullName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            tools:text="Super admin" />
+                        android:padding="16dp">
 
                         <LinearLayout
-                            android:id="@+id/layoutSuperAdminBadge"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:background="@drawable/bg_badge_super_admin"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal"
-                            android:visibility="gone"
-                            tools:visibility="visible">
+                            android:orientation="vertical"
+                            android:gravity="center_horizontal"
+                            android:layout_marginBottom="16dp">
 
-                            <ImageView
-                                android:layout_width="16dp"
-                                android:layout_height="16dp"
-                                android:src="@drawable/ic_crown_24dp"
-                                android:contentDescription="Crown" />
+                            <FrameLayout
+                                android:layout_width="72dp"
+                                android:layout_height="72dp"
+                                android:background="@drawable/bg_avatar_circle">
+
+                                <TextView
+                                    android:id="@+id/tvAvatarLetter"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:textColor="@color/white"
+                                    android:textSize="26sp"
+                                    android:textStyle="bold"
+                                    android:text="@{user.avatarLetter}"
+                                    tools:text="A" />
+                            </FrameLayout>
 
                             <TextView
+                                android:id="@+id/tvHeaderFullName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="4dp"
-                                android:text="Super Admin"
-                                android:textColor="@color/badge_super_admin_text"
-                                android:textSize="12sp"
-                                android:textStyle="bold" />
+                                android:layout_marginTop="10dp"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:text="@{user.displayName}"
+                                tools:text="Super admin" />
+
+                            <LinearLayout
+                                android:id="@+id/layoutSuperAdminBadge"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:background="@drawable/bg_badge_super_admin"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:visibility="@{user.superAdmin ? View.VISIBLE : View.GONE}"
+                                tools:visibility="visible">
+
+                                <ImageView
+                                    android:layout_width="16dp"
+                                    android:layout_height="16dp"
+                                    android:src="@drawable/ic_crown_24dp"
+                                    android:contentDescription="Crown" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:text="Super Admin"
+                                    android:textColor="@color/badge_super_admin_text"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
                         </LinearLayout>
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="THÔNG TIN TÀI KHOẢN"
-                        android:textColor="#1976D2"
-                        android:textStyle="bold"
-                        android:textSize="16sp"
-                        android:layout_marginBottom="12dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ID Người dùng"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"/>
-                    <EditText
-                        android:id="@+id/edtUserId"
-                        style="@style/CommonEditText"
-                        android:layout_marginTop="4dp"
-                        android:enabled="false"
-                        android:backgroundTint="#E0E0E0"
-                        android:hint="ID"
-                        android:inputType="number"/>
-
-                    <!-- Username -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:text="Username"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"/>
-                    <EditText
-                        android:id="@+id/edtUsername"
-                        style="@style/CommonEditText"
-                        android:layout_marginTop="4dp"
-                        android:enabled="false"
-                        android:backgroundTint="#E0E0E0"
-                        android:hint="Username"
-                        android:inputType="text"/>
-
-                    <!-- Họ và Tên -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:text="Họ và Tên"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"/>
-                    <EditText
-                        android:id="@+id/edtFullName"
-                        style="@style/CommonEditText"
-                        android:layout_marginTop="4dp"
-                        android:hint="Nhập họ và tên"
-                        android:inputType="textPersonName"/>
-
-                    <!-- Email -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:text="Email"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"/>
-                    <EditText
-                        android:id="@+id/edtEmail"
-                        style="@style/CommonEditText"
-                        android:layout_marginTop="4dp"
-                        android:hint="Nhập email"
-                        android:inputType="textEmailAddress"/>
-
-                    <!-- Nhóm quyền -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:text="Nhóm quyền"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"/>
-                    <EditText
-                        android:id="@+id/edtGroup"
-                        style="@style/CommonEditText"
-                        android:layout_marginTop="4dp"
-                        android:enabled="false"
-                        android:backgroundTint="#E0E0E0"
-                        android:hint="Nhóm quyền"/>
-
-                    <!-- Hàng Xem chi tiết quyền (Thay thế dòng text mờ bằng hàng clickable) -->
-                    <LinearLayout
-                        android:id="@+id/rowViewPermissions"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:background="?attr/selectableItemBackground"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:paddingVertical="10dp"
-                        android:paddingHorizontal="4dp">
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_shield_24dp"
-                            android:contentDescription="Shield icon" />
 
                         <TextView
-                            android:id="@+id/tvPermissionActionText"
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_marginStart="8dp"
-                            android:text="Xem chi tiết 14 quyền"
+                            android:text="THÔNG TIN TÀI KHOẢN"
                             android:textColor="#1976D2"
-                            android:textSize="14sp"
                             android:textStyle="bold"
-                            tools:text="Xem chi tiết 14 quyền" />
+                            android:textSize="16sp"
+                            android:layout_marginBottom="12dp"/>
 
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_arrow_forward"
-                            android:contentDescription="Arrow forward"
-                            app:tint="#1976D2" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ID Người dùng"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"/>
+                        <EditText
+                            android:id="@+id/edtUserId"
+                            style="@style/CommonEditText"
+                            android:layout_marginTop="4dp"
+                            android:enabled="false"
+                            android:backgroundTint="#E0E0E0"
+                            android:hint="ID"
+                            android:inputType="number"
+                            android:text="@{user == null ?  `` : String.valueOf(user.id)}"/>
+
+                        <!-- Username -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:text="Username"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"/>
+                        <EditText
+                            android:id="@+id/edtUsername"
+                            style="@style/CommonEditText"
+                            android:layout_marginTop="4dp"
+                            android:enabled="false"
+                            android:backgroundTint="#E0E0E0"
+                            android:hint="Username"
+                            android:inputType="text"
+                            android:text="@{user == null ? `` : user.username}"/>
+
+                        <!-- Họ và Tên -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:text="Họ và Tên"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"/>
+                        <EditText
+                            android:id="@+id/edtFullName"
+                            style="@style/CommonEditText"
+                            android:layout_marginTop="4dp"
+                            android:hint="Nhập họ và tên"
+                            android:inputType="textPersonName"
+                            android:text="@{user == null ? `` : user.fullName}"/>
+
+                        <!-- Email -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:text="Email"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"/>
+                        <EditText
+                            android:id="@+id/edtEmail"
+                            style="@style/CommonEditText"
+                            android:layout_marginTop="4dp"
+                            android:hint="Nhập email"
+                            android:inputType="textEmailAddress"
+                            android:text="@{user == null ? `` : user.email}"/>
+
+                        <!-- Nhóm quyền -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:text="Nhóm quyền"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"/>
+                        <EditText
+                            android:id="@+id/edtGroup"
+                            style="@style/CommonEditText"
+                            android:layout_marginTop="4dp"
+                            android:enabled="false"
+                            android:backgroundTint="#E0E0E0"
+                            android:hint="Nhóm quyền"/>
+
+                        <LinearLayout
+                            android:id="@+id/rowViewPermissions"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:background="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:paddingVertical="10dp"
+                            android:paddingHorizontal="4dp">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_shield_24dp"
+                                android:contentDescription="Shield icon" />
+
+                            <TextView
+                                android:id="@+id/tvPermissionActionText"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="8dp"
+                                android:text="Xem chi tiết quyền hạn"
+                                android:textColor="#1976D2"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                tools:text="Xem chi tiết quyền hạn" />
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_arrow_forward"
+                                android:contentDescription="Arrow forward"
+                                app:tint="#1976D2" />
+                        </LinearLayout>
+
                     </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnLogout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:background="@drawable/rounded_button_background"
+                    android:backgroundTint="#D32F2F"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp"
+                    android:text="Đăng xuất"
+                    android:textColor="@color/white"
+                    android:textFontWeight="500"
+                    android:textSize="18sp"/>
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnLogout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:background="@drawable/rounded_button_background"
-                android:backgroundTint="#D32F2F"
-                android:minHeight="0dp"
-                android:minWidth="0dp"
-                android:text="Đăng xuất"
-                android:textColor="@color/white"
-                android:textFontWeight="500"
-                android:textSize="18sp"/>
-
-        </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>
