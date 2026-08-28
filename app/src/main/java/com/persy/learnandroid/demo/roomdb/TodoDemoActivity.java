@@ -6,24 +6,22 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.persy.learnandroid.R;
 import com.persy.learnandroid.adapter.TodoAdapter;
 import com.persy.learnandroid.database.TodoDAO;
 import com.persy.learnandroid.database.TodoDatabase;
 import com.persy.learnandroid.database.TodoRepository;
+import com.persy.learnandroid.databinding.ActivityTodoDemoBinding;
 import com.persy.learnandroid.model.Todo;
 
 import java.util.ArrayList;
@@ -32,23 +30,20 @@ import java.util.List;
 
 public class TodoDemoActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
-    private EditText edtTodoTitle;
-    private AppCompatButton btnAddTodo;
-    private RecyclerView rvTodoList;
-    private TextView tvEmpty;
-
+    private ActivityTodoDemoBinding binding;
     private TodoRepository todoRepository;
     private TodoAdapter todoAdapter;
-    private List<Todo> todoList = new ArrayList<>();
-
+    private final List<Todo> todoList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_todo_demo);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_todo_demo);
+        binding.setActivity(this);
+        binding.setIsEmpty(true);
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -57,31 +52,21 @@ public class TodoDemoActivity extends AppCompatActivity {
         TodoDAO todoDAO = TodoDatabase.getInstance(this).todoDAO();
         todoRepository = new TodoRepository(todoDAO);
 
-        viewMapping();
         setupToolBar();
         setupRecyclerView();
-        setupAddButton();
         observeTodoList();
     }
 
-    private void viewMapping() {
-        toolbar = findViewById(R.id.toolbar);
-        edtTodoTitle = findViewById(R.id.edtTodoTitle);
-        btnAddTodo = findViewById(R.id.btnAddTodo);
-        rvTodoList = findViewById(R.id.rvTodoList);
-        tvEmpty = findViewById(R.id.tvEmpty);
-    }
     private void setupToolBar() {
-        setSupportActionBar(toolbar);
+        setSupportActionBar(binding.includeToolbar.toolbar);
         if (getSupportActionBar() != null) {
             String topicTitle = getIntent().getStringExtra("EXTRA_TOPIC_TITLE");
-            getSupportActionBar().setTitle(
-                    topicTitle != null ? topicTitle : "Todo Demo"
-            );
+            getSupportActionBar().setTitle(topicTitle != null ? topicTitle : "Todo Demo");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        toolbar.setNavigationOnClickListener(view -> finish());
+        binding.includeToolbar.toolbar.setNavigationOnClickListener(view -> finish());
     }
+
     private void setupRecyclerView() {
         todoAdapter = new TodoAdapter(todoList, new TodoAdapter.OnTodoActionListener() {
             @Override
@@ -95,22 +80,20 @@ public class TodoDemoActivity extends AppCompatActivity {
             }
         });
 
-        rvTodoList.setLayoutManager(new LinearLayoutManager(this));
-        rvTodoList.setAdapter(todoAdapter);
+        binding.rvTodoList.setLayoutManager(new LinearLayoutManager(this));
+        binding.rvTodoList.setAdapter(todoAdapter);
     }
 
-    private void setupAddButton() {
-        btnAddTodo.setOnClickListener(view -> {
-            String title = edtTodoTitle.getText().toString().trim();
-            if (TextUtils.isEmpty(title)) {
-                Toast.makeText(this, "Vui lòng nhập nội dung", Toast.LENGTH_SHORT).show();
-                return;
-            }
+    public void onAddTodo() {
+        String title = binding.edtTodoTitle.getText().toString().trim();
+        if (TextUtils.isEmpty(title)) {
+            Toast.makeText(this, "Vui lòng nhập nội dung", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-            todoRepository.insert(new Todo(title, new Date()));
-            edtTodoTitle.setText("");
-            Toast.makeText(this, "Thêm thành công!", Toast.LENGTH_SHORT).show();
-        });
+        todoRepository.insert(new Todo(title, new Date()));
+        binding.edtTodoTitle.setText("");
+        Toast.makeText(this, "Thêm thành công!", Toast.LENGTH_SHORT).show();
     }
 
     private void observeTodoList() {
@@ -120,10 +103,7 @@ public class TodoDemoActivity extends AppCompatActivity {
                 todoList.addAll(updatedTodos);
             }
             todoAdapter.updateData(todoList);
-
-            boolean isEmpty = todoList.isEmpty();
-            tvEmpty.setVisibility(isEmpty ? View.VISIBLE : View.GONE);
-            rvTodoList.setVisibility(isEmpty ? View.GONE : View.VISIBLE);
+            binding.setIsEmpty(todoList.isEmpty());
         });
     }
 

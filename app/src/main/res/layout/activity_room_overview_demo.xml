@@ -1,41 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white"
-    tools:context=".demo.roomdb.OverviewDemoActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <include layout="@layout/item_toolbar"/>
-
-    <ScrollView
+    <LinearLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fillViewport="true">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white"
+        tools:context=".demo.roomdb.OverviewDemoActivity">
 
-        <LinearLayout
+        <include
+            android:id="@+id/includeToolbar"
+            layout="@layout/item_toolbar"/>
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
 
-            <include layout="@layout/item_explanation"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-            <include layout="@layout/item_room_architecture"/>
+                <TextView
+                    android:id="@+id/tvExplanation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#333333"
+                    android:textSize="@dimen/text_size_desc"
+                    app:renderHtml="@{@string/room_explanation}" />
 
-            <include layout="@layout/item_room_benefits"/>
+                <include layout="@layout/item_room_architecture"/>
 
-            <include layout="@layout/item_room_components"/>
+                <include layout="@layout/item_room_benefits"/>
 
-            <include layout="@layout/item_room_setup"/>
+                <include layout="@layout/item_room_components"/>
 
-        </LinearLayout>
+                <include layout="@layout/item_room_setup"/>
 
+            </LinearLayout>
 
-    </ScrollView>
+        </ScrollView>
 
-</LinearLayout>
+    </LinearLayout>
+</layout>
