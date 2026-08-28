@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -22,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.persy.learnandroid.R;
-import com.persy.learnandroid.adapter.GroupedPermissionAdapter;
+import com.persy.learnandroid.adapter.PermissionAdapter;
 import com.persy.learnandroid.client.ApiRetrofitClient;
 import com.persy.learnandroid.model.ApiResponse;
 import com.persy.learnandroid.model.UserGroup;
@@ -46,7 +47,7 @@ public class ProfileActivity extends AppCompatActivity {
     private EditText edtUserId, edtUsername, edtFullName, edtEmail, edtGroup;
     private LinearLayout rowViewPermissions;
     private TextView tvPermissionActionText;
-    private Button btnLogout;
+    private AppCompatButton btnLogout;
     private TokenManager tokenManager;
 
     @Override
@@ -195,7 +196,7 @@ public class ProfileActivity extends AppCompatActivity {
         String groupName = group.getName() != null ? group.getName() : "Nhóm quyền";
         tvSheetSubtitle.setText("Nhóm: " + groupName + " • " + count + " quyền");
 
-        GroupedPermissionAdapter adapter = new GroupedPermissionAdapter();
+        PermissionAdapter adapter = new PermissionAdapter();
         rvPermissions.setAdapter(adapter);
 
         if (group.getPermissions() != null && !group.getPermissions().isEmpty()) {

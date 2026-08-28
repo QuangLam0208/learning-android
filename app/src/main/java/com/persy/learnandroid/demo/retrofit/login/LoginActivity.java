@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -34,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private EditText edtUsername, edtPassword;
-    private Button btnLogin;
+    private AppCompatButton btnLogin;
     private ProgressBar progressBar;
 
     private TokenManager tokenManager;

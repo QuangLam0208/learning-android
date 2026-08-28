@@ -9,6 +9,10 @@ android {
         version = release(37)
     }
 
+    buildFeatures {
+        dataBinding = true
+    }
+
     defaultConfig {
         applicationId = "com.persy.learnandroid"
         minSdk = 24

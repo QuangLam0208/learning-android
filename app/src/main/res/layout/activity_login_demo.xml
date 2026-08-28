@@ -54,11 +54,17 @@
                 android:inputType="textPassword"
                 android:singleLine="true"/>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_standard"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/rounded_button_background"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:textColor="@color/white"
+                android:textFontWeight="500"
+                android:textSize="18sp"
                 android:text="Đăng nhập"/>
 
             <ProgressBar
