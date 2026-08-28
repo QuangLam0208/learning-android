@@ -1,100 +1,62 @@
 package com.persy.learnandroid.demo.controls;
 
 import android.os.Bundle;
-import android.text.Html;
-import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.databinding.DataBindingUtil;
 
 import com.persy.learnandroid.R;
+import com.persy.learnandroid.databinding.ActivityControlProgressbarBinding;
 
 public class ProgressBarDemoActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
-    private TextView tvExplanation, tvProgressBasic, tvProgressCustom;
-    private ProgressBar progressBarBasic, progressBarCustom;
-    private Button btnIncreaseProgress;
+    private ActivityControlProgressbarBinding binding;
+    private int currentProgress = 40;
+    private static final int MAX_PROGRESS = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_control_progressbar);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_control_progressbar);
+        binding.setActivity(this);
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        viewMapping();
         setupToolBar();
-        setTextExplanation();
-        setUpProgressBar();
+        setupProgressData();
     }
 
-    private void setUpProgressBar() {
-        progressBarBasic.setMax(100);
-        progressBarBasic.setProgress(40);
-        progressBarCustom.setMax(100);
-        progressBarCustom.setProgress(70);
-
-        updateBasicProgressText();
-        updateCustomProgressText();
-
-        btnIncreaseProgress.setOnClickListener(v -> {
-            int current = progressBarBasic.getProgress();
-            if (current < progressBarBasic.getMax()) {
-                progressBarBasic.setProgress(current + 10);
-                updateBasicProgressText();
-            }
-        });
+    private void setupProgressData() {
+        binding.setMaxBasic(MAX_PROGRESS);
+        binding.setProgressBasic(currentProgress);
+        binding.setMaxCustom(MAX_PROGRESS);
+        binding.setProgressCustom(70);
     }
 
-    private void updateBasicProgressText() {
-        tvProgressBasic.setText(
-                "Progress: " + progressBarBasic.getProgress() + " / " + progressBarBasic.getMax()
-        );
-    }
-
-    private void updateCustomProgressText() {
-        tvProgressCustom.setText(
-                "Progress: " + progressBarCustom.getProgress() + " / " + progressBarCustom.getMax()
-        );
-    }
-
-    private void viewMapping() {
-        toolbar = findViewById(R.id.toolbar);
-        tvExplanation = findViewById(R.id.tvExplanation);
-        tvProgressBasic = findViewById(R.id.tvProgressBasic);
-        tvProgressCustom = findViewById(R.id.tvProgressCustom);
-        progressBarBasic = findViewById(R.id.progressBarBasic);
-        progressBarCustom = findViewById(R.id.progressBarCustom);
-        btnIncreaseProgress = findViewById(R.id.btnIncreaseProgress);
-    }
-
-    private void setTextExplanation() {
-        tvExplanation.setText(
-                Html.fromHtml(
-                        getString(R.string.progressbar_explanation),
-                        Html.FROM_HTML_MODE_LEGACY
-                )
-        );
+    public void onIncreaseProgress() {
+        if (currentProgress < MAX_PROGRESS) {
+            currentProgress += 10;
+            binding.setProgressBasic(currentProgress);
+            binding.setProgressCustom(currentProgress);
+        }
     }
 
     private void setupToolBar() {
-        setSupportActionBar(toolbar);
+        setSupportActionBar(binding.includeToolbar.toolbar);
         if (getSupportActionBar() != null) {
             String topicTitle = getIntent().getStringExtra("EXTRA_TOPIC_TITLE");
-            getSupportActionBar().setTitle(topicTitle);
+            getSupportActionBar().setTitle(topicTitle != null ? topicTitle : "ProgressBar Demo");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        toolbar.setNavigationOnClickListener(view -> finish());
+        binding.includeToolbar.toolbar.setNavigationOnClickListener(view -> finish());
     }
 }
