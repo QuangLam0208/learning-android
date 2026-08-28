@@ -3,12 +3,10 @@ package com.persy.learnandroid.demo.retrofit;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -18,14 +16,13 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.persy.learnandroid.R;
 import com.persy.learnandroid.adapter.PermissionAdapter;
 import com.persy.learnandroid.api.ApiRetrofitClient;
+import com.persy.learnandroid.api.ApiService;
 import com.persy.learnandroid.databinding.ActivityProfileDemoBinding;
 import com.persy.learnandroid.databinding.BottomSheetPermissionsBinding;
-import com.persy.learnandroid.api.ApiService;
 import com.persy.learnandroid.model.ApiResponse;
 import com.persy.learnandroid.model.UserGroup;
 import com.persy.learnandroid.model.UserProfile;
 import com.persy.learnandroid.utils.TokenManager;
-
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,8 +39,10 @@ public class ProfileActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_profile_demo);
+        binding.setActivity(this);
+        binding.setIsLoading(false);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -58,28 +57,27 @@ public class ProfileActivity extends AppCompatActivity {
             return;
         }
 
-        binding.btnLogout.setOnClickListener(v -> logout());
-
         loadProfile();
     }
 
     private void setupToolBar() {
         setSupportActionBar(binding.includeToolbar.toolbar);
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("Thông tin cá nhân");
+            String topicTitle = getIntent().getStringExtra("EXTRA_TOPIC_TITLE");
+            getSupportActionBar().setTitle(topicTitle != null ? topicTitle : "Thông tin cá nhân");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
         binding.includeToolbar.toolbar.setNavigationOnClickListener(v -> finish());
     }
 
     private void loadProfile() {
-        binding.progressBar.setVisibility(View.VISIBLE);
+        binding.setIsLoading(true);
 
         ApiService apiService = ApiRetrofitClient.getRetrofit(this).create(ApiService.class);
         apiService.getProfile().enqueue(new Callback<ApiResponse<UserProfile>>() {
             @Override
             public void onResponse(Call<ApiResponse<UserProfile>> call, Response<ApiResponse<UserProfile>> response) {
-                binding.progressBar.setVisibility(View.GONE);
+                binding.setIsLoading(false);
 
                 if (response.code() == 401) {
                     handleSessionExpired();
@@ -88,14 +86,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                 if (response.isSuccessful() && response.body() != null && response.body().getData() != null) {
                     UserProfile userProfile = response.body().getData();
-
                     binding.setUser(userProfile);
-
-                    if (userProfile.getGroup() != null) {
-                        binding.rowViewPermissions.setOnClickListener(v ->
-                                showPermissionsBottomSheet(userProfile.getGroup())
-                        );
-                    }
                 } else {
                     Toast.makeText(ProfileActivity.this,
                             "Không lấy được thông tin: " + (response.body() != null ? response.body().getMessage() : response.message()),
@@ -105,17 +96,16 @@ public class ProfileActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ApiResponse<UserProfile>> call, Throwable t) {
-                binding.progressBar.setVisibility(View.GONE);
+                binding.setIsLoading(false);
                 Toast.makeText(ProfileActivity.this, "Lỗi kết nối: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void showPermissionsBottomSheet(UserGroup group) {
+    public void showPermissionsBottomSheet(UserGroup group) {
         if (group == null) return;
 
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
-
         BottomSheetPermissionsBinding sheetBinding = BottomSheetPermissionsBinding.inflate(LayoutInflater.from(this));
         bottomSheetDialog.setContentView(sheetBinding.getRoot());
         sheetBinding.setGroup(group);
@@ -125,7 +115,6 @@ public class ProfileActivity extends AppCompatActivity {
         if (group.getPermissions() != null) adapter.setPermissions(group.getPermissions());
 
         sheetBinding.btnCloseSheet.setOnClickListener(v -> bottomSheetDialog.dismiss());
-
         bottomSheetDialog.show();
     }
 
@@ -141,7 +130,7 @@ public class ProfileActivity extends AppCompatActivity {
         finish();
     }
 
-    private void logout() {
+    public void logout() {
         tokenManager.clear();
         Toast.makeText(this, "Đăng xuất thành công", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);

@@ -6,8 +6,14 @@
     <data>
         <import type="android.view.View"/>
         <variable
+            name="activity"
+            type="com.persy.learnandroid.demo.retrofit.ProfileActivity" />
+        <variable
             name="user"
             type="com.persy.learnandroid.model.UserProfile" />
+        <variable
+            name="isLoading"
+            type="boolean" />
     </data>
 
     <LinearLayout
@@ -28,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginVertical="16dp"
-            android:visibility="gone"/>
+            android:visibility="@{isLoading ? View.VISIBLE : View.GONE}"/>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -208,7 +214,8 @@
                             android:layout_marginTop="4dp"
                             android:enabled="false"
                             android:backgroundTint="#E0E0E0"
-                            android:hint="Nhóm quyền"/>
+                            android:hint="Nhóm quyền"
+                            android:text="@{user.group != null ? user.group.name : ``}"/>
 
                         <LinearLayout
                             android:id="@+id/rowViewPermissions"
@@ -221,7 +228,8 @@
                             android:clickable="true"
                             android:focusable="true"
                             android:paddingVertical="10dp"
-                            android:paddingHorizontal="4dp">
+                            android:paddingHorizontal="4dp"
+                            android:onClick="@{() -> activity.showPermissionsBottomSheet(user.group)}">
 
                             <ImageView
                                 android:layout_width="20dp"
@@ -264,7 +272,8 @@
                     android:text="Đăng xuất"
                     android:textColor="@color/white"
                     android:textFontWeight="500"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"
+                    android:onClick="@{() -> activity.logout()}"/>
 
             </LinearLayout>
         </ScrollView>
