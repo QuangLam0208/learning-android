@@ -36,7 +36,8 @@
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="3dp"
-                app:cardUseCompatPadding="true">
+                app:cardUseCompatPadding="true"
+                app:cardBackgroundColor="@color/white">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -44,15 +45,79 @@
                     android:orientation="vertical"
                     android:padding="16dp">
 
+                    <!-- Header: Avatar, Tên & Super Admin Badge -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal"
+                        android:layout_marginBottom="16dp">
+
+                        <FrameLayout
+                            android:layout_width="72dp"
+                            android:layout_height="72dp"
+                            android:background="@drawable/bg_avatar_circle">
+
+                            <TextView
+                                android:id="@+id/tvAvatarLetter"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:textColor="@color/white"
+                                android:textSize="26sp"
+                                android:textStyle="bold"
+                                tools:text="A" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:id="@+id/tvHeaderFullName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            tools:text="Super admin" />
+
+                        <!-- Badge Super Admin -->
+                        <LinearLayout
+                            android:id="@+id/layoutSuperAdminBadge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:background="@drawable/bg_badge_super_admin"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:visibility="gone"
+                            tools:visibility="visible">
+
+                            <ImageView
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:src="@drawable/ic_crown_24dp"
+                                android:contentDescription="Crown" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="Super Admin"
+                                android:textColor="@color/badge_super_admin_text"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="THÔNG TIN TÀI KHOẢN"
                         android:textColor="#1976D2"
                         android:textStyle="bold"
-                        android:textSize="18sp"
-                        android:layout_marginBottom="16dp"/>
+                        android:textSize="16sp"
+                        android:layout_marginBottom="12dp"/>
 
+                    <!-- ID Người dùng -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -68,6 +133,7 @@
                         android:hint="ID"
                         android:inputType="number"/>
 
+                    <!-- Username -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -84,6 +150,7 @@
                         android:hint="Username"
                         android:inputType="text"/>
 
+                    <!-- Họ và Tên -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -98,6 +165,7 @@
                         android:hint="Nhập họ và tên"
                         android:inputType="textPersonName"/>
 
+                    <!-- Email -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -112,6 +180,7 @@
                         android:hint="Nhập email"
                         android:inputType="textEmailAddress"/>
 
+                    <!-- Nhóm quyền -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -127,24 +196,45 @@
                         android:backgroundTint="#E0E0E0"
                         android:hint="Nhóm quyền"/>
 
-                    <TextView
-                        android:id="@+id/tvPermissionSummary"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:textColor="#757575"
-                        android:textSize="13sp"
-                        tools:text="Tổng số quyền: 14 quyền"/>
-
-                    <com.google.android.material.switchmaterial.SwitchMaterial
-                        android:id="@+id/switchSuperAdmin"
+                    <!-- Hàng Xem chi tiết quyền (Thay thế dòng text mờ bằng hàng clickable) -->
+                    <LinearLayout
+                        android:id="@+id/rowViewPermissions"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:enabled="false"
-                        android:text="Super Admin"
-                        android:textSize="15sp"
-                        android:textStyle="bold"/>
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingVertical="10dp"
+                        android:paddingHorizontal="4dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_shield_24dp"
+                            android:contentDescription="Shield icon" />
+
+                        <TextView
+                            android:id="@+id/tvPermissionActionText"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="8dp"
+                            android:text="Xem chi tiết 14 quyền"
+                            android:textColor="#1976D2"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            tools:text="Xem chi tiết 14 quyền" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_arrow_forward"
+                            android:contentDescription="Arrow forward"
+                            app:tint="#1976D2" />
+                    </LinearLayout>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -153,7 +243,8 @@
                 android:id="@+id/btnLogout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="6dp"
                 android:text="Đăng xuất"
                 android:textColor="@color/white"
                 android:backgroundTint="#D32F2F"/>
