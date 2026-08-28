@@ -2,7 +2,6 @@ package com.persy.learnandroid.client;
 
 import android.content.Context;
 
-import com.persy.learnandroid.service.ProfileApiService;
 import com.persy.learnandroid.utils.TokenManager;
 
 import java.util.concurrent.TimeUnit;

@@ -1,163 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#F5F5F5"
-    tools:context=".demo.retrofit.login.ProfileActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <include layout="@layout/item_toolbar"/>
+    <data>
+        <variable
+            name="profile"
+            type="com.persy.learnandroid.model.UserProfile" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginVertical="16dp"
-        android:visibility="gone"/>
+        <variable
+            name="permissionSummary"
+            type="String" />
+    </data>
 
-    <ScrollView
+    <LinearLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fillViewport="true">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#F5F5F5"
+        tools:context=".demo.retrofit.login.ProfileActivity">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <include
+            android:id="@+id/includeToolbar"
+            layout="@layout/item_toolbar"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_gravity="center"
+            android:layout_marginVertical="16dp"
+            android:visibility="gone"/>
 
-            <androidx.cardview.widget.CardView
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="3dp"
-                app:cardUseCompatPadding="true">
+                android:orientation="vertical"
+                android:padding="16dp">
 
-                <LinearLayout
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="3dp"
+                    app:cardUseCompatPadding="true">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="THÔNG TIN TÀI KHOẢN"
-                        android:textColor="#1976D2"
-                        android:textStyle="bold"
-                        android:textSize="18sp"
-                        android:layout_marginBottom="16dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ID Người dùng"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"/>
-                    <EditText
-                        android:id="@+id/edtUserId"
-                        style="@style/CommonEditText"
-                        android:layout_marginTop="4dp"
-                        android:enabled="false"
-                        android:backgroundTint="#E0E0E0"
-                        android:hint="ID"
-                        android:inputType="number"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:text="Username"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"/>
-                    <EditText
-                        android:id="@+id/edtUsername"
-                        style="@style/CommonEditText"
-                        android:layout_marginTop="4dp"
-                        android:enabled="false"
-                        android:backgroundTint="#E0E0E0"
-                        android:hint="Username"
-                        android:inputType="text"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:text="Họ và Tên"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"/>
-                    <EditText
-                        android:id="@+id/edtFullName"
-                        style="@style/CommonEditText"
-                        android:layout_marginTop="4dp"
-                        android:hint="Nhập họ và tên"
-                        android:inputType="textPersonName"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:text="Email"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"/>
-                    <EditText
-                        android:id="@+id/edtEmail"
-                        style="@style/CommonEditText"
-                        android:layout_marginTop="4dp"
-                        android:hint="Nhập email"
-                        android:inputType="textEmailAddress"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:text="Nhóm quyền"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"/>
-                    <EditText
-                        android:id="@+id/edtGroup"
-                        style="@style/CommonEditText"
-                        android:layout_marginTop="4dp"
-                        android:enabled="false"
-                        android:backgroundTint="#E0E0E0"
-                        android:hint="Nhóm quyền"/>
-
-                    <TextView
-                        android:id="@+id/tvPermissionSummary"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:textColor="#757575"
-                        android:textSize="13sp"
-                        tools:text="Tổng số quyền: 14 quyền"/>
-
-                    <com.google.android.material.switchmaterial.SwitchMaterial
-                        android:id="@+id/switchSuperAdmin"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:enabled="false"
-                        android:text="Super Admin"
-                        android:textSize="15sp"
-                        android:textStyle="bold"/>
+                        android:orientation="vertical"
+                        android:padding="16dp">
 
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="THÔNG TIN TÀI KHOẢN"
+                            android:textColor="#1976D2"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:layout_marginBottom="16dp"/>
 
-            <Button
-                android:id="@+id/btnLogout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Đăng xuất"
-                android:textColor="@color/white"
-                android:backgroundTint="#D32F2F"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ID Người dùng"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"/>
+                        <EditText
+                            android:id="@+id/edtUserId"
+                            style="@style/CommonEditText"
+                            android:layout_marginTop="4dp"
+                            android:enabled="false"
+                            android:backgroundTint="#E0E0E0"
+                            android:hint="ID"
+                            android:inputType="number"
+                            android:text="@{profile == null ? `` : String.valueOf(profile.id)}"/>
 
-        </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:text="Username"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"/>
+                        <EditText
+                            android:id="@+id/edtUsername"
+                            style="@style/CommonEditText"
+                            android:layout_marginTop="4dp"
+                            android:enabled="false"
+                            android:backgroundTint="#E0E0E0"
+                            android:hint="Username"
+                            android:inputType="text"
+                            android:text="@{profile == null ? `` : profile.username}"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:text="Họ và Tên"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"/>
+                        <EditText
+                            android:id="@+id/edtFullName"
+                            style="@style/CommonEditText"
+                            android:layout_marginTop="4dp"
+                            android:hint="Nhập họ và tên"
+                            android:inputType="textPersonName"
+                            android:text="@{profile == null ? `` : profile.fullName}"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:text="Email"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"/>
+                        <EditText
+                            android:id="@+id/edtEmail"
+                            style="@style/CommonEditText"
+                            android:layout_marginTop="4dp"
+                            android:hint="Nhập email"
+                            android:inputType="textEmailAddress"
+                            android:text="@{profile == null ? `` : profile.email}"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:text="Nhóm quyền"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"/>
+                        <EditText
+                            android:id="@+id/edtGroup"
+                            style="@style/CommonEditText"
+                            android:layout_marginTop="4dp"
+                            android:enabled="false"
+                            android:backgroundTint="#E0E0E0"
+                            android:hint="Nhóm quyền"
+                            android:text="@{profile == null ? `` : (profile.group == null ? `Chưa phân nhóm` : profile.group.name)}"/>
+
+                        <TextView
+                            android:id="@+id/tvPermissionSummary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:textColor="#757575"
+                            android:textSize="13sp"
+                            android:text="@{permissionSummary}"
+                            tools:text="Tổng số quyền: 14 quyền"/>
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchSuperAdmin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:enabled="false"
+                            android:text="Super Admin"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:checked="@{profile != null &amp;&amp; profile.superAdmin}"/>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <Button
+                    android:id="@+id/btnLogout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Đăng xuất"
+                    android:textColor="@color/white"
+                    android:backgroundTint="#D32F2F"/>
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</layout>
