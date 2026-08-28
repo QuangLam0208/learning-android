@@ -1,58 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#F5F5F5"
-    tools:context=".demo.layouts.GridLayoutDemoActivity">
-    
-    <include layout="@layout/item_toolbar"/>
-    
-    <ScrollView
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fillViewport="true">
-
-        <LinearLayout
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#F5F5F5"
+        tools:context=".demo.layouts.GridLayoutDemoActivity">
+        
+        <include
+            android:id="@+id/includeToolbar"
+            layout="@layout/item_toolbar"/>
+        
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
 
-            <include layout="@layout/item_explanation"/>
-            
-            <GridLayout
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                android:columnCount="3"
-                android:rowCount="4"
-                android:useDefaultMargins="true">
+                android:orientation="vertical"
+                android:padding="16dp">
 
-                <Button android:text="1" style="@style/GridButtonStyle"/>
-                <Button android:text="2" style="@style/GridButtonStyle"/>
-                <Button android:text="3" style="@style/GridButtonStyle"/>
-                <Button android:text="4" style="@style/GridButtonStyle"/>
-                <Button android:text="5" style="@style/GridButtonStyle"/>
-                <Button android:text="6" style="@style/GridButtonStyle"/>
-                <Button android:text="7" style="@style/GridButtonStyle"/>
-                <Button android:text="8" style="@style/GridButtonStyle"/>
-                <Button android:text="9" style="@style/GridButtonStyle"/>
-                <Button
-                    android:text="0"
-                    android:layout_columnSpan="2"
-                    android:layout_gravity="fill_horizontal"
-                    style="@style/GridButtonStyle"/>
-                <Button android:text="DEL" style="@style/GridButtonStyle" android:backgroundTint="#F44336"/>
-            </GridLayout>
+                <TextView
+                    android:id="@+id/tvExplanation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#333333"
+                    android:textSize="@dimen/text_size_desc"
+                    app:renderHtml="@{@string/grid_layout_explanation}" />
+                
+                <GridLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:columnCount="3"
+                    android:rowCount="4"
+                    android:useDefaultMargins="true">
 
-        </LinearLayout>
+                    <Button android:text="1" style="@style/GridButtonStyle"/>
+                    <Button android:text="2" style="@style/GridButtonStyle"/>
+                    <Button android:text="3" style="@style/GridButtonStyle"/>
+                    <Button android:text="4" style="@style/GridButtonStyle"/>
+                    <Button android:text="5" style="@style/GridButtonStyle"/>
+                    <Button android:text="6" style="@style/GridButtonStyle"/>
+                    <Button android:text="7" style="@style/GridButtonStyle"/>
+                    <Button android:text="8" style="@style/GridButtonStyle"/>
+                    <Button android:text="9" style="@style/GridButtonStyle"/>
+                    <Button
+                        android:text="0"
+                        android:layout_columnSpan="2"
+                        android:layout_gravity="fill_horizontal"
+                        style="@style/GridButtonStyle"/>
+                    <Button android:text="DEL" style="@style/GridButtonStyle" android:backgroundTint="#F44336"/>
+                </GridLayout>
 
-    </ScrollView>
-    
-</LinearLayout>
+            </LinearLayout>
+
+        </ScrollView>
+        
+    </LinearLayout>
+</layout>

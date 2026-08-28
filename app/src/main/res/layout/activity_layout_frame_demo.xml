@@ -1,81 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#F5F5F5"
-    tools:context=".demo.layouts.FrameLayoutDemoActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <include layout="@layout/item_toolbar"/>
-
-    <ScrollView
+    <LinearLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fillViewport="true">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#F5F5F5"
+        tools:context=".demo.layouts.FrameLayoutDemoActivity">
 
-        <LinearLayout
+        <include
+            android:id="@+id/includeToolbar"
+            layout="@layout/item_toolbar"/>
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
 
-            <include layout="@layout/item_explanation"/>
-
-            <FrameLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:background="#E0E0E0"
-                android:layout_marginTop="16dp">
-
-                <View
-                    android:layout_width="250dp"
-                    android:layout_height="250dp"
-                    android:layout_gravity="center"
-                    android:background="#2196F3"/>
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="16dp">
 
                 <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="center"
+                    android:id="@+id/tvExplanation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#333333"
                     android:textSize="@dimen/text_size_desc"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:background="#4CAF50"/>
-                
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="bottom|end"
-                    android:text="bottom|end"
-                    android:background="#FF9800"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:textSize="@dimen/text_size_desc"/>
+                    app:renderHtml="@{@string/frame_layout_explanation}" />
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_gravity="top|start"
-                    android:gravity="center"
-                    android:text="top|start"
-                    android:textSize="@dimen/text_size_desc"
-                    android:textStyle="bold"
-                    android:padding="4dp"
-                    android:textColor="@color/white"
-                    android:background="#446A9C"/>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:background="#E0E0E0"
+                    android:layout_marginTop="16dp">
 
-            </FrameLayout>
+                    <View
+                        android:layout_width="250dp"
+                        android:layout_height="250dp"
+                        android:layout_gravity="center"
+                        android:background="#2196F3"/>
 
-        </LinearLayout>
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="center"
+                        android:textSize="@dimen/text_size_desc"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:background="#4CAF50"/>
+                    
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="bottom|end"
+                        android:text="bottom|end"
+                        android:background="#FF9800"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:textSize="@dimen/text_size_desc"/>
 
-    </ScrollView>
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="top|start"
+                        android:gravity="center"
+                        android:text="top|start"
+                        android:textSize="@dimen/text_size_desc"
+                        android:textStyle="bold"
+                        android:padding="4dp"
+                        android:textColor="@color/white"
+                        android:background="#446A9C"/>
 
-</LinearLayout>
+                </FrameLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+</layout>
