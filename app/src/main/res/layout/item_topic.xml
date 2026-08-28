@@ -1,54 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/card_margin"
-    android:clickable="true"
-    android:focusable="true"
-    app:cardCornerRadius="@dimen/card_corner_radius"
-    app:cardElevation="@dimen/card_elevation">
-    
-    <androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="topic"
+            type="com.persy.learnandroid.model.Topic" />
+        <variable
+            name="listener"
+            type="com.persy.learnandroid.adapter.TopicAdapter.OnTopicClickListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/padding_standard">
-
-        <TextView
-            android:id="@+id/tvTopicTitle"
-            android:layout_width="0dp"
+        android:layout_margin="@dimen/card_margin"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/card_elevation"
+        android:onClick="@{() -> listener.onTopicClick(topic)}">
+        
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/padding_standard"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="@dimen/text_size_title"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@id/ivArrow"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Intent &amp; Bundle"/>
+            android:padding="@dimen/padding_standard">
 
-        <TextView
-            android:id="@+id/tvTopicDesc"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/tvTopicTitle"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/ivArrow"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="Truyền nhận dữ liệu giữa các Activity thông qua Intent và Bundle"/>
+            <TextView
+                android:id="@+id/tvTopicTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/padding_standard"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="@dimen/text_size_title"
+                android:textStyle="bold"
+                android:text="@{topic.title}"
+                app:layout_constraintEnd_toStartOf="@id/ivArrow"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Intent &amp; Bundle"/>
 
+            <TextView
+                android:id="@+id/tvTopicDesc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{topic.description}"
+                app:layout_constraintTop_toBottomOf="@+id/tvTopicTitle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/ivArrow"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Truyền nhận dữ liệu giữa các Activity thông qua Intent và Bundle"/>
 
-        <ImageView
-            android:id="@+id/ivArrow"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_arrow_forward"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/desc_arrow" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/ivArrow"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_arrow_forward"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/desc_arrow" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-</com.google.android.material.card.MaterialCardView>
+    </com.google.android.material.card.MaterialCardView>
+</layout>
