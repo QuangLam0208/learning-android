@@ -1,6 +1,8 @@
 package com.persy.learnandroid.demo.controls;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +23,7 @@ public class EditTextDemoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_control_edit_text);
+        binding.setActivity(this);
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.main, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -29,14 +32,17 @@ public class EditTextDemoActivity extends AppCompatActivity {
         });
 
         setupToolBar();
+    }
 
-        binding.edtEmail.setOnFocusChangeListener((v, hasFocus) -> {
-            if (!hasFocus && binding.edtEmail.getText().toString().trim().isEmpty()) {
+    public void onEmailFocusChange(View view, boolean hasFocus) {
+        if (view instanceof EditText) {
+            EditText editText = (EditText) view;
+            if (!hasFocus && editText.getText().toString().trim().isEmpty()) {
                 binding.setEmailError("Email không được để trống");
             } else {
                 binding.setEmailError(null);
             }
-        });
+        }
     }
 
     private void setupToolBar() {

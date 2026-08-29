@@ -7,6 +7,9 @@
         <variable
             name="emailError"
             type="String" />
+        <variable
+            name="activity"
+            type="com.persy.learnandroid.demo.controls.EditTextDemoActivity"/>
     </data>
 
     <LinearLayout
@@ -103,7 +106,8 @@
                         android:id="@+id/edtEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress" />
+                        android:inputType="textEmailAddress"
+                        android:onFocusChange="@{(v, hasFocus) -> activity.onEmailFocusChange(edtEmail, hasFocus)}"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
