@@ -24,6 +24,7 @@ public class SpinnerDemoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_control_spinner);
+        binding.setActivity(this);
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.main, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime());
@@ -40,16 +41,13 @@ public class SpinnerDemoActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, languages);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.spinnerLanguage.setAdapter(adapter);
+    }
 
-        binding.spinnerLanguage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                binding.setSelectedLanguage(adapterView.getItemAtPosition(i).toString());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {}
-        });
+    public void onLanguageSelected(AdapterView<?> parent, int position) {
+        Object item = parent.getItemAtPosition(position);
+        if (item != null) {
+            binding.setSelectedLanguage(item.toString());
+        }
     }
 
     private void setupToolBar() {

@@ -22,6 +22,7 @@ public class SeekbarDemoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_control_seekbar);
+        binding.setActivity(this);
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.main, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime());
@@ -30,33 +31,28 @@ public class SeekbarDemoActivity extends AppCompatActivity {
         });
 
         setupToolBar();
-        setupSeekBar();
+        initData();
     }
 
-    private void setupSeekBar() {
+    private void initData() {
         binding.setMax(100);
         binding.setProgress(50);
         binding.setStatus("Chưa thao tác");
+    }
 
-        binding.seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                binding.setProgress(progress);
-                if (fromUser) {
-                    binding.setStatus("Đang điều chỉnh...");
-                }
-            }
+    public void onProgressChanged(int progress, boolean fromUser) {
+        binding.setProgress(progress);
+        if (fromUser) {
+            binding.setStatus("Đang điều chỉnh...");
+        }
+    }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                binding.setStatus("Bắt đầu kéo");
-            }
+    public void onStartTrackingTouch() {
+        binding.setStatus("Bắt đầu kéo");
+    }
 
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                binding.setStatus("Đã dừng kéo");
-            }
-        });
+    public void onStopTrackingTouch() {
+        binding.setStatus("Đã dừng kéo");
     }
 
     private void setupToolBar() {

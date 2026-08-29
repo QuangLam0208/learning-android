@@ -6,7 +6,11 @@
     <data>
         <variable
             name="selectedLanguage"
-            type="String" />
+            type="String"/>
+
+        <variable
+            name="activity"
+            type="com.persy.learnandroid.demo.controls.SpinnerDemoActivity"/>
     </data>
 
     <LinearLayout
@@ -51,7 +55,8 @@
                     android:id="@+id/spinnerLanguage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/padding_small"/>
+                    android:layout_marginTop="@dimen/padding_small"
+                    android:onItemSelected="@{(parent, view, position, id) -> activity.onLanguageSelected(parent, position)}"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
