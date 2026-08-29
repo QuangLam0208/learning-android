@@ -1,8 +1,7 @@
-package com.persy.learnandroid.demo.retrofit.login;
+package com.persy.learnandroid.demo.retrofit;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -13,9 +12,9 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.databinding.DataBindingUtil;
 
 import com.persy.learnandroid.R;
-import com.persy.learnandroid.client.ApiRetrofitClient;
+import com.persy.learnandroid.api.ApiRetrofitClient;
+import com.persy.learnandroid.api.ApiService;
 import com.persy.learnandroid.databinding.ActivityLoginDemoBinding;
-import com.persy.learnandroid.service.ApiService;
 import com.persy.learnandroid.model.LoginRequest;
 import com.persy.learnandroid.model.LoginResponse;
 import com.persy.learnandroid.utils.TokenManager;
@@ -39,9 +38,11 @@ public class LoginActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login_demo);
+        binding.setActivity(this);
+        binding.setIsLoading(false);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main, (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
@@ -49,7 +50,8 @@ public class LoginActivity extends AppCompatActivity {
         tokenManager = new TokenManager(this);
 
         setupToolBar();
-        setupLogin();
+        binding.edtUsername.setText("admin");
+        binding.edtPassword.setText("admin123654");
 
         if (tokenManager.isLoggedIn() && !tokenManager.isTokenExpired()) {
             openProfile();
@@ -66,20 +68,14 @@ public class LoginActivity extends AppCompatActivity {
         binding.includeToolbar.toolbar.setNavigationOnClickListener(v -> finish());
     }
 
-    private void setupLogin() {
-        binding.edtUsername.setText("admin");
-        binding.edtPassword.setText("admin123654");
-        binding.btnLogin.setOnClickListener(v -> doLogin());
-    }
-
-    private void doLogin() {
+    public void doLogin() {
         String username = binding.edtUsername.getText().toString().trim();
         String password = binding.edtPassword.getText().toString().trim();
         if (username.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Vui lòng nhập đầy đủ tài khoản", Toast.LENGTH_SHORT).show();
             return;
         }
-        setLoading(true);
+        binding.setIsLoading(true);
 
         String basicCredentials = Credentials.basic(CLIENT_ID, CLIENT_SECRET);
         LoginRequest request = new LoginRequest("password", username, password);
@@ -88,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
         apiService.login(basicCredentials, request).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                setLoading(false);
+                binding.setIsLoading(false);
                 if (response.isSuccessful() && response.body() != null) {
                     LoginResponse body = response.body();
                     tokenManager.saveTokens(body.getAccessToken(), body.getRefreshToken(), body.getExpiresIn());
@@ -102,15 +98,10 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                setLoading(false);
+                binding.setIsLoading(false);
                 Toast.makeText(LoginActivity.this, "Lỗi kết nối: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    private void setLoading(boolean loading) {
-        binding.progressBar.setVisibility(loading ? View.VISIBLE : View.GONE);
-        binding.btnLogin.setEnabled(!loading);
     }
 
     private void openProfile() {

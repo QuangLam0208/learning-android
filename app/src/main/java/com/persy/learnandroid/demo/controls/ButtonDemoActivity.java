@@ -1,20 +1,19 @@
 package com.persy.learnandroid.demo.controls;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.core.widget.NestedScrollView;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.persy.learnandroid.R;
 import com.persy.learnandroid.adapter.ButtonAdapter;
+import com.persy.learnandroid.databinding.ActivityControlButtonBinding;
 import com.persy.learnandroid.model.ButtonItem;
 
 import java.util.ArrayList;
@@ -22,37 +21,41 @@ import java.util.List;
 
 public class ButtonDemoActivity extends AppCompatActivity {
 
+    private ActivityControlButtonBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_control_button);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_control_button);
+        binding.setActivity(this);
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main, (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setupToolBar();
+        setupRecyclerView();
+    }
+
+    private void setupToolBar() {
+        setSupportActionBar(binding.includeToolbar.toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle("Button Variations");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        toolbar.setNavigationOnClickListener(v -> finish());
+        binding.includeToolbar.toolbar.setNavigationOnClickListener(v -> finish());
+    }
 
-        List<ButtonItem> list = createListButton();
+    private void setupRecyclerView() {
+        binding.rvButtons.setLayoutManager(new LinearLayoutManager(this));
+        binding.rvButtons.setAdapter(new ButtonAdapter(createListButton()));
+    }
 
-        RecyclerView rvButtons = findViewById(R.id.rvButtons);
-        FloatingActionButton fabScrollBottom = findViewById(R.id.fabScrollBottom);
-        NestedScrollView nestedScrollView = findViewById(R.id.nestedScrollView);
-
-        rvButtons.setLayoutManager(new LinearLayoutManager(this));
-        rvButtons.setAdapter(new ButtonAdapter(list));
-
-        fabScrollBottom.setOnClickListener(v -> {
-            nestedScrollView.post(() -> nestedScrollView.fullScroll(android.view.View.FOCUS_DOWN));
-        });
+    public void scrollToBottom() {
+        binding.nestedScrollView.post(() -> binding.nestedScrollView.fullScroll(View.FOCUS_DOWN));
     }
 
     private List<ButtonItem> createListButton() {

@@ -6,15 +6,15 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.persy.learnandroid.adapter.TopicAdapter;
 import com.persy.learnandroid.data.TopicRepository;
+import com.persy.learnandroid.databinding.ActivityComponentListBinding;
 import com.persy.learnandroid.demo.controls.ButtonDemoActivity;
 import com.persy.learnandroid.demo.controls.EditTextDemoActivity;
 import com.persy.learnandroid.demo.controls.ProgressBarDemoActivity;
@@ -31,16 +31,16 @@ import com.persy.learnandroid.demo.layouts.GridLayoutDemoActivity;
 import com.persy.learnandroid.demo.layouts.LinearLayoutDemoActivity;
 import com.persy.learnandroid.demo.layouts.RelativeLayoutDemoActivity;
 import com.persy.learnandroid.demo.layouts.TableLayoutDemoActivity;
+import com.persy.learnandroid.demo.retrofit.LoginActivity;
 import com.persy.learnandroid.demo.retrofit.RetrofitApiInterfaceDemoActivity;
 import com.persy.learnandroid.demo.retrofit.RetrofitAuthDemoActivity;
 import com.persy.learnandroid.demo.retrofit.RetrofitClientDemoActivity;
 import com.persy.learnandroid.demo.retrofit.RetrofitOverviewDemoActivity;
 import com.persy.learnandroid.demo.retrofit.RetrofitPojoDemoActivity;
-import com.persy.learnandroid.demo.retrofit.login.LoginActivity;
 import com.persy.learnandroid.demo.roomdb.OverviewDemoActivity;
 import com.persy.learnandroid.demo.roomdb.RoomDaoDemoActivity;
 import com.persy.learnandroid.demo.roomdb.RoomEntityDemoActivity;
-import com.persy.learnandroid.demo.ui.TodoDemoActivity;
+import com.persy.learnandroid.demo.roomdb.TodoDemoActivity;
 import com.persy.learnandroid.model.ETopicCategory;
 import com.persy.learnandroid.model.Topic;
 
@@ -48,13 +48,16 @@ import java.util.List;
 
 public class ComponentListActivity extends AppCompatActivity {
 
+    private ActivityComponentListBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_component_list);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_component_list);
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main, (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
@@ -67,18 +70,21 @@ public class ComponentListActivity extends AppCompatActivity {
 
         ETopicCategory cate = ETopicCategory.valueOf(topicCateKey);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setupToolBar(cate.getValue());
+        setupRecyclerView(cate);
+    }
+
+    private void setupToolBar(String title) {
+        setSupportActionBar(binding.includeToolbar.toolbar);
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle(cate.getValue());
+            getSupportActionBar().setTitle(title);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+        binding.includeToolbar.toolbar.setNavigationOnClickListener(v -> finish());
+    }
 
-        toolbar.setNavigationOnClickListener(v -> finish());
-
-        RecyclerView rvComponentTopics = findViewById(R.id.rvComponentTopics);
-        rvComponentTopics.setLayoutManager(new LinearLayoutManager(this));
-
+    private void setupRecyclerView(ETopicCategory cate) {
+        binding.rvComponentTopics.setLayoutManager(new LinearLayoutManager(this));
         List<Topic> subTopics = TopicRepository.getTopicsForCategory(cate);
 
         TopicAdapter adapter = new TopicAdapter(subTopics, topic -> {
@@ -94,7 +100,7 @@ public class ComponentListActivity extends AppCompatActivity {
             }
         });
 
-        rvComponentTopics.setAdapter(adapter);
+        binding.rvComponentTopics.setAdapter(adapter);
     }
 
     private Class<?> getActivityClass(String key) {

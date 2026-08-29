@@ -1,4 +1,4 @@
-package com.persy.learnandroid.service;
+package com.persy.learnandroid.api;
 
 import com.persy.learnandroid.model.ApiResponse;
 import com.persy.learnandroid.model.LoginRequest;

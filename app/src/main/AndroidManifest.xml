@@ -101,10 +101,6 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".practice.ContactInfoActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
             android:name=".demo.roomdb.OverviewDemoActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
@@ -117,7 +113,7 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".demo.ui.TodoDemoActivity"
+            android:name=".demo.roomdb.TodoDemoActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
@@ -141,11 +137,11 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".demo.retrofit.login.LoginActivity"
+            android:name=".demo.retrofit.LoginActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".demo.retrofit.login.ProfileActivity"
+            android:name=".demo.retrofit.ProfileActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
     </application>

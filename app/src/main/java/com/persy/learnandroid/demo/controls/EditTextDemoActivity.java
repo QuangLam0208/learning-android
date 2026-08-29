@@ -1,60 +1,57 @@
 package com.persy.learnandroid.demo.controls;
 
 import android.os.Bundle;
-import android.text.Html;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.databinding.DataBindingUtil;
 
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.persy.learnandroid.R;
+import com.persy.learnandroid.databinding.ActivityControlEditTextBinding;
 
 public class EditTextDemoActivity extends AppCompatActivity {
+
+    private ActivityControlEditTextBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_control_edit_text);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_control_edit_text);
+        binding.setActivity(this);
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main, (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        TextView tvExplanation = findViewById(R.id.tvExplanation);
-        tvExplanation.setText(
-                Html.fromHtml(
-                        getString(R.string.edit_text_explanation),
-                        Html.FROM_HTML_MODE_LEGACY
-                )
-        );
+        setupToolBar();
+    }
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+    public void onEmailFocusChange(View view, boolean hasFocus) {
+        if (view instanceof EditText) {
+            EditText editText = (EditText) view;
+            if (!hasFocus && editText.getText().toString().trim().isEmpty()) {
+                binding.setEmailError("Email không được để trống");
+            } else {
+                binding.setEmailError(null);
+            }
+        }
+    }
+
+    private void setupToolBar() {
+        setSupportActionBar(binding.includeToolbar.toolbar);
         if (getSupportActionBar() != null) {
             String topicTitle = getIntent().getStringExtra("EXTRA_TOPIC_TITLE");
-            getSupportActionBar().setTitle(topicTitle);
+            getSupportActionBar().setTitle(topicTitle != null ? topicTitle : "EditText Demo");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-
-        toolbar.setNavigationOnClickListener(v -> finish());
-
-        TextInputLayout tilEmail = findViewById(R.id.tilEmail);
-        TextInputEditText edtEmail = findViewById(R.id.edtEmail);
-
-        edtEmail.setOnFocusChangeListener((v, hasFocus) -> {
-            if (!hasFocus && edtEmail.getText().toString().trim().isEmpty()) {
-                tilEmail.setError("Email không được để trống");
-            } else {
-                tilEmail.setError(null);
-            }
-        });
+        binding.includeToolbar.toolbar.setNavigationOnClickListener(v -> finish());
     }
 }
