@@ -15,6 +15,9 @@ import androidx.databinding.DataBindingUtil;
 import com.persy.learnandroid.R;
 import com.persy.learnandroid.databinding.ActivityControlSpinnerBinding;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class SpinnerDemoActivity extends AppCompatActivity {
 
     private ActivityControlSpinnerBinding binding;
@@ -33,14 +36,12 @@ public class SpinnerDemoActivity extends AppCompatActivity {
         });
 
         setupToolBar();
-        setUpSpinner();
+        initData();
     }
 
-    private void setUpSpinner() {
-        String[] languages = {"Java", "Kotlin", "Python", "JavaScript", "C++"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, languages);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        binding.spinnerLanguage.setAdapter(adapter);
+    private void initData() {
+        List<String> languages = Arrays.asList("Java", "Kotlin", "Python", "JavaScript", "C++");
+        binding.setLanguageList(languages);
     }
 
     public void onLanguageSelected(AdapterView<?> parent, int position) {

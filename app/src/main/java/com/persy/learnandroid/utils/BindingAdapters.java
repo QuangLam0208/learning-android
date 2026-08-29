@@ -2,6 +2,8 @@ package com.persy.learnandroid.utils;
 
 import android.text.Html;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.databinding.BindingAdapter;
@@ -10,6 +12,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class BindingAdapters {
@@ -46,5 +49,17 @@ public class BindingAdapters {
         } else {
             textView.setText("");
         }
+    }
+
+    @BindingAdapter(value = {"spinnerEntries", "spinnerLayout", "spinnerDropdownLayout"}, requireAll = false)
+    public static void setSpinnerEntries(Spinner spinner, List<String> entries, Integer itemLayout, Integer dropdownLayout) {
+        if (spinner == null || entries == null) return;
+
+        int layoutId = (itemLayout != null) ? itemLayout : android.R.layout.simple_spinner_item;
+        int dropLayoutId = (dropdownLayout != null) ? dropdownLayout : android.R.layout.simple_spinner_dropdown_item;
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(spinner.getContext(), layoutId, entries);
+        adapter.setDropDownViewResource(dropLayoutId);
+        spinner.setAdapter(adapter);
     }
 }

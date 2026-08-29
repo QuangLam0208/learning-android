@@ -4,10 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="java.util.List"/>
+
+        <variable
+            name="languageList"
+            type="List&lt;String&gt;"/>
         <variable
             name="selectedLanguage"
             type="String"/>
-
         <variable
             name="activity"
             type="com.persy.learnandroid.demo.controls.SpinnerDemoActivity"/>
@@ -56,6 +60,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_small"
+                    app:spinnerEntries="@{languageList}"
                     android:onItemSelected="@{(parent, view, position, id) -> activity.onLanguageSelected(parent, position)}"/>
                 <TextView
                     android:layout_width="match_parent"
