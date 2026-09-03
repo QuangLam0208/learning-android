@@ -15,7 +15,7 @@ public class TopicRepository {
         topics.add(new Topic(ETopicCategory.INTENT_BUNDLE.name(), "Intent & Bundle", "Truyền nhận dữ liệu giữa các Activity", null, true));
         topics.add(new Topic(ETopicCategory.ROOM_DATABASE.name(), "SQLite & Room Database", "CRUD với Room Database", null, true));
         topics.add(new Topic(ETopicCategory.RETROFIT.name(), "Retrofit", "REST Client type-safe cho Android", null, true));
-        //topics.add(new Topic(ETopicCategory.RECYCLERVIEW.name(), "RecyclerView", "Xử lý danh sách nâng cao với Adapter", null, true));
+        topics.add(new Topic(ETopicCategory.DATA_BINDING.name(), "Data Binding", "Kết nối dữ liệu trực tiếp với View trong layout XML", null, true));
 
         return topics;
     }
@@ -64,14 +64,11 @@ public class TopicRepository {
                 topics.add(new Topic("RF7", "Login Demo", "Basic Auth login, lưu JWT, gọi API kèm Bearer Token", "KEY_RETROFIT_LOGIN", false));
                 break;
 
-//            case RECYCLERVIEW:
-//                topics.add(new Topic("R1", "LinearLayoutManager", "Danh sách dọc/ngang cơ bản", "KEY_LINEAR_MANAGER", false));
-//                topics.add(new Topic("R2", "GridLayoutManager", "Danh sách dạng lưới", "KEY_GRID_MANAGER", false));
-//                topics.add(new Topic("R3", "CardView", "Trang trí item với bóng đổ và bo góc", "KEY_CARD_VIEW", false));
-//                topics.add(new Topic("R4", "ViewHolder", "Kỹ thuật tối ưu bộ nhớ", "KEY_VIEW_HOLDER", false));
-//                topics.add(new Topic("R5", "Adapter", "Cầu nối giữa data và RecyclerView", "KEY_ADAPTER", false));
-//                topics.add(new Topic("R6", "Item Click", "Bắt sự kiện click vào item trong list", "KEY_ITEM_CLICK", false));
-//                break;
+            case DATA_BINDING:
+                topics.add(new Topic("DB1", "Data Binding", "Liên kết dữ liệu giữa View và đối tượng trong XML", "KEY_BINDING_OVERVIEW", false));
+                topics.add(new Topic("DB2", "Two-way Data Binding", "Đồng bộ dữ liệu hai chiều giữa View và đối tượng", "KEY_BINDING_TWO", false));
+                topics.add(new Topic("DB3", "Demo", "Áp dụng Data Binding và Two-way Data Binding vào ứng dụng", "KEY_BINDING_DEMO", false));
+                break;
         }
 
         return topics;

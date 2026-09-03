@@ -8,6 +8,9 @@
         <variable
             name="group"
             type="com.persy.learnandroid.model.UserGroup"/>
+        <variable
+            name="dialog"
+            type="com.google.android.material.bottomsheet.BottomSheetDialog"/>
     </data>
 
     <LinearLayout
@@ -65,6 +68,7 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@android:drawable/ic_menu_close_clear_cancel"
                 android:contentDescription="Close"
+                android:onClick="@{() -> dialog.dismiss()}"
                 app:tint="#757575"/>
         </RelativeLayout>
 
@@ -80,6 +84,7 @@
             android:clipToPadding="false"
             android:paddingTop="8dp"
             android:paddingBottom="24dp"
+            app:data="@{group.permissions}"
             android:visibility="@{group.permissions != null &amp;&amp; !group.permissions.isEmpty() ? View.VISIBLE : View.GONE}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_permission_row"/>

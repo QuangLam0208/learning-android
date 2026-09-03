@@ -21,6 +21,9 @@ import com.persy.learnandroid.demo.controls.ProgressBarDemoActivity;
 import com.persy.learnandroid.demo.controls.SeekbarDemoActivity;
 import com.persy.learnandroid.demo.controls.SpinnerDemoActivity;
 import com.persy.learnandroid.demo.controls.TextViewDemoActivity;
+import com.persy.learnandroid.demo.databinding.BindingDemoActivity;
+import com.persy.learnandroid.demo.databinding.BindingOverviewDemoActivity;
+import com.persy.learnandroid.demo.databinding.BindingTwoWayDemoActivity;
 import com.persy.learnandroid.demo.intent.BundleDemoActivity;
 import com.persy.learnandroid.demo.intent.ObjectTransferDemoActivity;
 import com.persy.learnandroid.demo.intent.PutExtraDemoActivity;
@@ -44,17 +47,20 @@ import com.persy.learnandroid.demo.roomdb.TodoDemoActivity;
 import com.persy.learnandroid.model.ETopicCategory;
 import com.persy.learnandroid.model.Topic;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ComponentListActivity extends AppCompatActivity {
 
     private ActivityComponentListBinding binding;
+    private TopicAdapter topicAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_component_list);
+        binding.setLifecycleOwner(this);
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.main, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime());
@@ -69,9 +75,11 @@ public class ComponentListActivity extends AppCompatActivity {
         }
 
         ETopicCategory cate = ETopicCategory.valueOf(topicCateKey);
+        List<Topic> subTopics = TopicRepository.getTopicsForCategory(cate);
+        binding.setTopicList(subTopics);
 
         setupToolBar(cate.getValue());
-        setupRecyclerView(cate);
+        setupRecyclerView();
     }
 
     private void setupToolBar(String title) {
@@ -83,24 +91,25 @@ public class ComponentListActivity extends AppCompatActivity {
         binding.includeToolbar.toolbar.setNavigationOnClickListener(v -> finish());
     }
 
-    private void setupRecyclerView(ETopicCategory cate) {
-        binding.rvComponentTopics.setLayoutManager(new LinearLayoutManager(this));
-        List<Topic> subTopics = TopicRepository.getTopicsForCategory(cate);
+    private void setupRecyclerView() {
+        topicAdapter = new TopicAdapter(new ArrayList<>(), new TopicAdapter.OnTopicClickListener() {
+            @Override
+            public void onTopicClick(Topic topic) {
+                Class<?> targetActivityClass = getActivityClass(topic.getTargetActivityKey());
 
-        TopicAdapter adapter = new TopicAdapter(subTopics, topic -> {
-            Class<?> targetActivityClass = getActivityClass(topic.getTargetActivityKey());
-
-            if (targetActivityClass != null) {
-                Intent intent = new Intent(ComponentListActivity.this, targetActivityClass);
-                intent.putExtra("EXTRA_TOPIC_TITLE", topic.getTitle());
-                startActivity(intent);
-            } else {
-                Toast.makeText(ComponentListActivity.this,
-                        "Tính năng " + topic.getTitle() + " đang được phát triển!", Toast.LENGTH_SHORT).show();
+                if (targetActivityClass != null) {
+                    Intent intent = new Intent(ComponentListActivity.this, targetActivityClass);
+                    intent.putExtra("EXTRA_TOPIC_TITLE", topic.getTitle());
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(ComponentListActivity.this,
+                            "Tính năng " + topic.getTitle() + " đang được phát triển!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
-        binding.rvComponentTopics.setAdapter(adapter);
+        binding.rvComponentTopics.setLayoutManager(new LinearLayoutManager(this));
+        binding.rvComponentTopics.setAdapter(topicAdapter);
     }
 
     private Class<?> getActivityClass(String key) {
@@ -163,6 +172,13 @@ public class ComponentListActivity extends AppCompatActivity {
                 return RetrofitAuthDemoActivity.class;
             case "KEY_RETROFIT_LOGIN":
                 return LoginActivity.class;
+
+            case "KEY_BINDING_OVERVIEW":
+                return BindingOverviewDemoActivity.class;
+            case "KEY_BINDING_TWO":
+                return BindingTwoWayDemoActivity.class;
+            case "KEY_BINDING_DEMO":
+                return BindingDemoActivity.class;
 
             default:
                 return null;

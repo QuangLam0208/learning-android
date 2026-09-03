@@ -11,9 +11,15 @@ import com.persy.learnandroid.model.Todo;
 
 import java.util.List;
 
-public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
+public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> implements BindableAdapter<List<Todo>> {
     private List<Todo> todoList;
     private final OnTodoActionListener listener;
+
+    @Override
+    public void setData(List<Todo> data) {
+        this.todoList = data;
+        notifyDataSetChanged();
+    }
 
     public TodoAdapter(List<Todo> todoList, OnTodoActionListener listener) {
         this.todoList = todoList;
@@ -29,9 +35,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemTodoBinding binding = ItemTodoBinding.inflate(
-                LayoutInflater.from(parent.getContext()),
-                parent,
-                false
+                LayoutInflater.from(parent.getContext()), parent, false
         );
         return new ViewHolder(binding);
     }
@@ -47,11 +51,6 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return todoList != null ? todoList.size() : 0;
-    }
-
-    public void updateData(List<Todo> newTodos) {
-        this.todoList = newTodos;
-        notifyDataSetChanged();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

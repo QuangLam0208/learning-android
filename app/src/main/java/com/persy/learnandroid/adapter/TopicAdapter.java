@@ -11,13 +11,14 @@ import com.persy.learnandroid.model.Topic;
 
 import java.util.List;
 
-public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> {
-
+public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> implements BindableAdapter<List<Topic>>{
     private List<Topic> topicList;
     private final OnTopicClickListener listener;
 
-    public interface OnTopicClickListener {
-        void onTopicClick(Topic topic);
+    @Override
+    public void setData(List<Topic> data) {
+        this.topicList = data;
+        notifyDataSetChanged();
     }
 
     public TopicAdapter(List<Topic> topicList, OnTopicClickListener listener) {
@@ -25,13 +26,15 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
         this.listener = listener;
     }
 
+    public interface OnTopicClickListener {
+        void onTopicClick(Topic topic);
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemTopicBinding binding = ItemTopicBinding.inflate(
-                LayoutInflater.from(parent.getContext()),
-                parent,
-                false
+                LayoutInflater.from(parent.getContext()), parent, false
         );
         return new ViewHolder(binding);
     }
@@ -47,11 +50,6 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
     @Override
     public int getItemCount() {
         return topicList != null ? topicList.size() : 0;
-    }
-
-    public void updateData(List<Topic> newTopics) {
-        this.topicList = newTopics;
-        notifyDataSetChanged();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
