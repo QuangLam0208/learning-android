@@ -7,8 +7,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.databinding.BindingAdapter;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.persy.learnandroid.adapter.BindableAdapter;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -61,5 +63,14 @@ public class BindingAdapters {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(spinner.getContext(), layoutId, entries);
         adapter.setDropDownViewResource(dropLayoutId);
         spinner.setAdapter(adapter);
+    }
+
+    @SuppressWarnings("unchecked")
+    @BindingAdapter("data")
+    public static <T> void setRecyclerViewData(RecyclerView recyclerView, T data) {
+        if (recyclerView == null || recyclerView.getAdapter() == null) return;
+        if (recyclerView.getAdapter() instanceof BindableAdapter) {
+            ((BindableAdapter<T>) recyclerView.getAdapter()).setData(data);
+        }
     }
 }

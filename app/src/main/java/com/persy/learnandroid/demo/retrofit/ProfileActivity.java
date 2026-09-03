@@ -40,6 +40,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_profile_demo);
         binding.setActivity(this);
+        binding.setLifecycleOwner(this);
         binding.setIsLoading(false);
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.main, (v, insets) -> {
@@ -107,14 +108,13 @@ public class ProfileActivity extends AppCompatActivity {
 
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
         BottomSheetPermissionsBinding sheetBinding = BottomSheetPermissionsBinding.inflate(LayoutInflater.from(this));
-        bottomSheetDialog.setContentView(sheetBinding.getRoot());
+
+        sheetBinding.rvPermissions.setAdapter(new PermissionAdapter());
+
         sheetBinding.setGroup(group);
+        sheetBinding.setDialog(bottomSheetDialog);
 
-        PermissionAdapter adapter = new PermissionAdapter();
-        sheetBinding.rvPermissions.setAdapter(adapter);
-        if (group.getPermissions() != null) adapter.setPermissions(group.getPermissions());
-
-        sheetBinding.btnCloseSheet.setOnClickListener(v -> bottomSheetDialog.dismiss());
+        bottomSheetDialog.setContentView(sheetBinding.getRoot());
         bottomSheetDialog.show();
     }
 

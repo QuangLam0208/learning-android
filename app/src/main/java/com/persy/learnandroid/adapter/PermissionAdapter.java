@@ -12,14 +12,15 @@ import com.persy.learnandroid.model.Permission;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PermissionAdapter extends RecyclerView.Adapter<PermissionAdapter.PermissionViewHolder> {
+public class PermissionAdapter extends RecyclerView.Adapter<PermissionAdapter.PermissionViewHolder> implements BindableAdapter<List<Permission>>{
 
     private final List<Permission> permissionList = new ArrayList<>();
 
-    public void setPermissions(List<Permission> permissions) {
+    @Override
+    public void setData(List<Permission> data) {
         permissionList.clear();
-        if (permissions != null) {
-            permissionList.addAll(permissions);
+        if (data != null) {
+            permissionList.addAll(data);
         }
         notifyDataSetChanged();
     }
@@ -27,15 +28,17 @@ public class PermissionAdapter extends RecyclerView.Adapter<PermissionAdapter.Pe
     @NonNull
     @Override
     public PermissionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        ItemPermissionRowBinding binding = ItemPermissionRowBinding.inflate(inflater, parent, false);
+        ItemPermissionRowBinding binding = ItemPermissionRowBinding.inflate(
+                LayoutInflater.from(parent.getContext()), parent, false
+        );
         return new PermissionViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PermissionViewHolder holder, int position) {
         Permission permission = permissionList.get(position);
-        holder.bind(permission);
+        holder.binding.setPermission(permission);
+        holder.binding.executePendingBindings();
     }
 
     @Override
@@ -49,11 +52,6 @@ public class PermissionAdapter extends RecyclerView.Adapter<PermissionAdapter.Pe
         public PermissionViewHolder(ItemPermissionRowBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
-        }
-
-        public void bind(Permission permission) {
-            binding.setPermission(permission);
-            binding.executePendingBindings();
         }
     }
 }

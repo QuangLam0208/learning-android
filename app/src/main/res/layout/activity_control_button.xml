@@ -4,9 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="java.util.List"/>
+        <import type="com.persy.learnandroid.model.ButtonItem"/>
         <variable
             name="activity"
-            type="com.persy.learnandroid.demo.controls.ButtonDemoActivity" />
+            type="com.persy.learnandroid.demo.controls.ButtonDemoActivity"/>
+        <variable
+            name="btnItemList"
+            type="List&lt;ButtonItem&gt;"/>
     </data>
 
     <FrameLayout
@@ -42,6 +47,7 @@
                         android:nestedScrollingEnabled="false"
                         android:clipToPadding="false"
                         android:padding="@dimen/padding_small"
+                        app:data="@{btnItemList}"
                         tools:listitem="@layout/item_button"/>
 
                     <View

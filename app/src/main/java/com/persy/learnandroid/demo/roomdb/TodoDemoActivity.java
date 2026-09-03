@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -33,15 +34,14 @@ public class TodoDemoActivity extends AppCompatActivity {
     private ActivityTodoDemoBinding binding;
     private TodoRepository todoRepository;
     private TodoAdapter todoAdapter;
-    private final List<Todo> todoList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_todo_demo);
+        binding.setLifecycleOwner(this);
         binding.setActivity(this);
-        binding.setIsEmpty(true);
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.main, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime());
@@ -68,7 +68,7 @@ public class TodoDemoActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView() {
-        todoAdapter = new TodoAdapter(todoList, new TodoAdapter.OnTodoActionListener() {
+        todoAdapter = new TodoAdapter(new ArrayList<>(), new TodoAdapter.OnTodoActionListener() {
             @Override
             public void onEditClick(Todo todo) {
                 showEditDialog(todo);
@@ -98,12 +98,7 @@ public class TodoDemoActivity extends AppCompatActivity {
 
     private void observeTodoList() {
         todoRepository.getAllTodoLive().observe(this, updatedTodos -> {
-            todoList.clear();
-            if (updatedTodos != null) {
-                todoList.addAll(updatedTodos);
-            }
-            todoAdapter.updateData(todoList);
-            binding.setIsEmpty(todoList.isEmpty());
+            binding.setTodoList(updatedTodos);
         });
     }
 

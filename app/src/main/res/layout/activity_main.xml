@@ -3,6 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <import type="android.view.View"/>
+        <import type="java.util.List"/>
+        <import type="com.persy.learnandroid.model.Topic"/>
+        <variable
+            name="topicList"
+            type="List&lt;Topic&gt;"/>
+    </data>
+
     <LinearLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
@@ -22,6 +31,8 @@
             android:clipToPadding="false"
             android:padding="@dimen/padding_small"
             android:scrollbars="vertical"
+            app:data="@{topicList}"
+            android:visibility="@{topicList == null || topicList.empty ? View.GONE : View.VISIBLE}"
             tools:listitem="@layout/item_topic"/>
 
     </LinearLayout>

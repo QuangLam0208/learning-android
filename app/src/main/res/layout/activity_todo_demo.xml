@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.view.View" />
+        <import type="android.view.View"/>
+        <import type="java.util.List"/>
+        <import type="com.persy.learnandroid.model.Todo"/>
         <variable
             name="activity"
-            type="com.persy.learnandroid.demo.roomdb.TodoDemoActivity" />
+            type="com.persy.learnandroid.demo.roomdb.TodoDemoActivity"/>
         <variable
-            name="isEmpty"
-            type="boolean" />
+            name="todoList"
+            type="List&lt;Todo&gt;"/>
     </data>
 
     <LinearLayout
@@ -69,7 +71,8 @@
                 android:clipToPadding="false"
                 android:padding="@dimen/padding_small"
                 android:scrollbars="vertical"
-                android:visibility="@{isEmpty ? View.GONE : View.VISIBLE}"
+                app:data="@{todoList}"
+                android:visibility="@{todoList == null || todoList.empty ? View.GONE : View.VISIBLE}"
                 tools:listitem="@layout/item_todo"/>
 
             <TextView
@@ -80,7 +83,7 @@
                 android:text="Chưa có việc cần làm nào"
                 android:textColor="#999999"
                 android:textSize="@dimen/text_size_desc"
-                android:visibility="@{isEmpty ? View.VISIBLE : View.GONE}"/>
+                android:visibility="@{todoList == null || todoList.empty ? View.VISIBLE : View.GONE}"/>
 
         </FrameLayout>
 

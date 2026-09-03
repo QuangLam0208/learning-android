@@ -11,21 +11,21 @@ import com.persy.learnandroid.model.ButtonItem;
 
 import java.util.List;
 
-public class ButtonAdapter extends RecyclerView.Adapter<ButtonAdapter.ViewHolder> {
+public class ButtonAdapter extends RecyclerView.Adapter<ButtonAdapter.ViewHolder> implements BindableAdapter<List<ButtonItem>>{
 
-    private final List<ButtonItem> lstBtnItem;
+    private List<ButtonItem> lstBtnItem;
 
-    public ButtonAdapter(List<ButtonItem> lstBtnItem) {
-        this.lstBtnItem = lstBtnItem;
+    @Override
+    public void setData(List<ButtonItem> data) {
+        this.lstBtnItem = data;
+        notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemButtonBinding binding = ItemButtonBinding.inflate(
-                LayoutInflater.from(parent.getContext()),
-                parent,
-                false
+                LayoutInflater.from(parent.getContext()), parent, false
         );
         return new ViewHolder(binding);
     }

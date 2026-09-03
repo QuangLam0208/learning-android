@@ -29,15 +29,17 @@ public class ButtonDemoActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_control_button);
         binding.setActivity(this);
+        binding.setLifecycleOwner(this);
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.main, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
+    
         setupToolBar();
         setupRecyclerView();
+        binding.setBtnItemList(createListButton());
     }
 
     private void setupToolBar() {
@@ -51,7 +53,7 @@ public class ButtonDemoActivity extends AppCompatActivity {
 
     private void setupRecyclerView() {
         binding.rvButtons.setLayoutManager(new LinearLayoutManager(this));
-        binding.rvButtons.setAdapter(new ButtonAdapter(createListButton()));
+        binding.rvButtons.setAdapter(new ButtonAdapter());
     }
 
     public void scrollToBottom() {
