@@ -7,7 +7,8 @@ public enum ETopicCategory {
     INTENT_BUNDLE("Intent & Bundle"),
     RECYCLERVIEW("RecyclerView"),
     ROOM_DATABASE("SQLite & RoomDatabase"),
-    RETROFIT("Retrofit");
+    RETROFIT("Retrofit"),
+    DATA_BINDING("Data Binding & Two-way Data Binding");
 
     private final String value;
 
