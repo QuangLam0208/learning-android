@@ -12,6 +12,10 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * @deprecated Legacy manual singleton client. Use Dagger DI {@link com.persy.learnandroid.di.NetworkModule} instead.
+ */
+@Deprecated
 public class ApiRetrofitClient {
 
     private static final String BASE_URL = "https://swirl-almighty-detector.ngrok-free.dev/";
