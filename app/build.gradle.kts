@@ -66,6 +66,8 @@ dependencies {
     implementation(libs.recyclerview)
     implementation(libs.recyclerview.selection)
     testImplementation(libs.junit)
+    testImplementation("org.mockito:mockito-core:5.11.0")
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.ext.junit)
 }
