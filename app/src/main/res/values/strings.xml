@@ -644,4 +644,42 @@
         ]]>
     </string>
 
+    <string name="binding_overview_explanation">
+        <![CDATA[
+            <b>Data Binding</b> là một thư viện hỗ trợ <b>kết nối dữ liệu trực tiếp</b> với các View trong layout XML. Thay vì phải tìm kiếm và gán dữ liệu thủ công trong code (Activity/Fragment) thông qua <i>findViewById</i>, Data Binding cho phép định nghĩa các ràng buộc dữ liệu ngay tại file layout.<br><br>
+
+            Để sử dụng, cần kích hoạt Data Binding trong <i>build.gradle</i> (thuộc tính <i>dataBinding = true</i>) và bao bọc layout bằng thẻ <b>&lt;layout&gt;</b>.
+        ]]>
+    </string>
+    <string name="binding_overview_benefits">✓ Loại bỏ findViewById, giúp code sạch hơn và dễ bảo trì hơn&#10;&#10;✓ Tăng hiệu suất do giảm thời gian tìm kiếm View&#10;&#10;✓ Đảm bảo an toàn, kiểm tra kiểu dữ liệu ngay lúc biên dịch, tránh NullPointerException&#10;&#10;✓ Hỗ trợ vòng đời (Lifecycle), kết hợp tốt với ViewModel để tự động cập nhật UI khi trạng thái thay đổi</string>
+    <string name="binding_two_way_explanation">
+        <![CDATA[
+            <b>Data Binding 2 chiều (Two-way Data Binding)</b> là cơ chế đồng bộ dữ liệu tự động theo <b>cả hai hướng</b> giữa giao diện (UI) và nguồn dữ liệu (ViewModel/Model).<br><br>
+
+            <b>1. Model → UI:</b> Khi dữ liệu trong code thay đổi, giao diện tự động cập nhật hiển thị.<br><br>
+
+            <b>2. UI → Model:</b> Khi người dùng thao tác trên giao diện (gõ vào EditText, gạt Switch, tick CheckBox…), dữ liệu trong ViewModel tự động cập nhật theo mà không cần viết listener thủ công như <i>addTextChangedListener</i> hay <i>setOnCheckedChangeListener</i>.
+        ]]>
+    </string>
+    <string name="binding_two_way_steps">
+        <![CDATA[
+            <b>1.</b> Bật Data Binding trong Gradle.<br><br>
+            <b>2.</b> Tạo ViewModel chứa LiveData / Observable Field.<br><br>
+            <b>3.</b> Bọc Layout bằng thẻ &lt;layout&gt; và dùng cú pháp <i>@={}</i>.<br><br>
+            <b>4.</b> Gắn Binding và LifecycleOwner trong Activity/Fragment. <i>Lưu ý:</i> quên gắn lifecycleOwner sẽ khiến UI không tự cập nhật theo LiveData.
+        ]]>
+    </string>
+    <string name="binding_demo_explanation">
+        <![CDATA[
+            Demo thực tế <b>Custom Two-way Data Binding</b> với <b>RatingBar</b> và built-in two-way binding với <b>EditText</b>/<b>CheckBox</b>.<br><br>
+            Khi bạn kéo sao trên <i>RatingBar</i> hoặc gõ text, dữ liệu trong <i>ViewModel</i> được cập nhật tức thì qua <i>InverseBindingListener</i>. Khi bạn bấm các nút thay đổi dữ liệu từ ViewModel, UI sẽ tự động đồng bộ theo thông qua <i>@BindingAdapter</i> mà không gây lặp vô hạn.
+        ]]>
+    </string>
+    <string name="binding_demo_loop_prevention">
+        <![CDATA[
+            <b>Cơ chế chống vòng lặp vô tận (Infinite Loop Prevention):</b><br><br>
+            • <b>Chiều Model → UI:</b> Trong <i>@BindingAdapter</i>, kiểm tra <code>if (ratingBar.getRating() != rating)</code> trước khi gọi <code>setRating()</code> để không kích hoạt ngược lại Listener.<br><br>
+            • <b>Chiều UI → Model:</b> Data Binding framework kiểm tra <code>(valueFromView != viewModel.getValue())</code> trước khi gọi <code>setValue()</code> để chặn lặp ngược về Model.
+        ]]>
+    </string>
 </resources>

@@ -1,10 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".demo.databinding.BindingDemoActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+        <variable
+            name="user"
+            type="com.persy.learnandroid.demo.databinding.User"/>
+    </data>
+
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F5F5F5"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/includeToolbar"
+            layout="@layout/item_toolbar"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Username"
+                    android:textColor="@android:color/black"
+                    android:textFontWeight="500"
+                    android:textSize="@dimen/text_size_desc"/>
+
+                <EditText
+                    android:id="@+id/edtUsername"
+                    style="@style/CommonEditText"
+                    android:layout_marginTop="3dp"
+                    android:hint="Nhập username"
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:text="@={user.username}"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Họ và Tên"
+                    android:textColor="@android:color/black"
+                    android:textFontWeight="500"
+                    android:textSize="@dimen/text_size_desc"/>
+
+                <EditText
+                    android:id="@+id/edtFullName"
+                    style="@style/CommonEditText"
+                    android:layout_marginTop="3dp"
+                    android:hint="Họ và Tên"
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:text="@={user.fullName}"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Email"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="#C4C4C4"
+                    android:textFontWeight="500"
+                    android:textSize="@dimen/text_size_desc"/>
+
+                <EditText
+                    android:id="@+id/edtEmail"
+                    style="@style/CommonEditText"
+                    android:layout_marginTop="3dp"
+                    android:hint="abc@gmail.com"
+                    android:inputType="textEmailAddress"
+                    android:singleLine="true"
+                    android:text="@={user.email}"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Số điện thoại"
+                    android:textColor="@android:color/black"
+                    android:textFontWeight="500"
+                    android:textSize="@dimen/text_size_desc"/>
+
+                <EditText
+                    android:id="@+id/edtPhone"
+                    style="@style/CommonEditText"
+                    android:layout_marginTop="3dp"
+                    android:hint="Nhập số điện thoại"
+                    android:inputType="phone"
+                    android:singleLine="true"
+                    android:text="@={user.phone}"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Địa chỉ"
+                    android:textColor="@android:color/black"
+                    android:textFontWeight="500"
+                    android:textSize="@dimen/text_size_desc"/>
+
+                <EditText
+                    android:id="@+id/edtAddress"
+                    style="@style/CommonEditText"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="3dp"
+                    android:gravity="top|start"
+                    android:hint="Nhập đia chỉ của bạn"
+                    android:inputType="textMultiLine"
+                    android:text="@={user.address}"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnSend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:background="@drawable/rounded_button_background"
+                    android:backgroundTint="@null"
+                    android:gravity="center"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:text="Gửi"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textFontWeight="500"
+                    android:textSize="18sp"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+</layout>
