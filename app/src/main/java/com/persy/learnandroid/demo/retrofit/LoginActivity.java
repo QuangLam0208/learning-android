@@ -11,13 +11,15 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.databinding.DataBindingUtil;
 
+import com.persy.learnandroid.MyApplication;
 import com.persy.learnandroid.R;
-import com.persy.learnandroid.api.ApiRetrofitClient;
 import com.persy.learnandroid.api.ApiService;
 import com.persy.learnandroid.databinding.ActivityLoginDemoBinding;
 import com.persy.learnandroid.model.LoginRequest;
 import com.persy.learnandroid.model.LoginResponse;
 import com.persy.learnandroid.utils.TokenManager;
+
+import javax.inject.Inject;
 
 import okhttp3.Credentials;
 import retrofit2.Call;
@@ -30,10 +32,17 @@ public class LoginActivity extends AppCompatActivity {
     private static final String CLIENT_SECRET = "abc123";
 
     private ActivityLoginDemoBinding binding;
-    private TokenManager tokenManager;
+
+    @Inject
+    TokenManager tokenManager;
+
+    @Inject
+    ApiService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ((MyApplication) getApplication()).getAppComponent().inject(this);
+
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
 
@@ -47,8 +56,6 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
-        tokenManager = new TokenManager(this);
-
         setupToolBar();
         binding.edtUsername.setText("admin");
         binding.edtPassword.setText("admin123654");
@@ -56,6 +63,9 @@ public class LoginActivity extends AppCompatActivity {
         if (tokenManager.isLoggedIn() && !tokenManager.isTokenExpired()) {
             openProfile();
         }
+
+        System.out.println("[LoginActivity] TokenManager: " + tokenManager);
+        System.out.println("[LoginActivity] ApiService: " + apiService);
     }
 
     private void setupToolBar() {
@@ -80,7 +90,6 @@ public class LoginActivity extends AppCompatActivity {
         String basicCredentials = Credentials.basic(CLIENT_ID, CLIENT_SECRET);
         LoginRequest request = new LoginRequest("password", username, password);
 
-        ApiService apiService = ApiRetrofitClient.getRetrofit(this).create(ApiService.class);
         apiService.login(basicCredentials, request).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {

@@ -17,10 +17,9 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.persy.learnandroid.MyApplication;
 import com.persy.learnandroid.R;
 import com.persy.learnandroid.adapter.TodoAdapter;
-import com.persy.learnandroid.database.TodoDAO;
-import com.persy.learnandroid.database.TodoDatabase;
 import com.persy.learnandroid.database.TodoRepository;
 import com.persy.learnandroid.databinding.ActivityTodoDemoBinding;
 import com.persy.learnandroid.model.Todo;
@@ -29,14 +28,21 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class TodoDemoActivity extends AppCompatActivity {
 
     private ActivityTodoDemoBinding binding;
-    private TodoRepository todoRepository;
+
+    @Inject
+    TodoRepository todoRepository;
+
     private TodoAdapter todoAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ((MyApplication) getApplication()).getAppComponent().todoComponentFactory().create().inject(this);
+
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_todo_demo);
@@ -49,12 +55,11 @@ public class TodoDemoActivity extends AppCompatActivity {
             return insets;
         });
 
-        TodoDAO todoDAO = TodoDatabase.getInstance(this).todoDAO();
-        todoRepository = new TodoRepository(todoDAO);
-
         setupToolBar();
         setupRecyclerView();
         observeTodoList();
+
+        System.out.println("[TodoDemoActivity] TodoRepository: " + todoRepository);
     }
 
     private void setupToolBar() {

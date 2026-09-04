@@ -13,9 +13,9 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.databinding.DataBindingUtil;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.persy.learnandroid.MyApplication;
 import com.persy.learnandroid.R;
 import com.persy.learnandroid.adapter.PermissionAdapter;
-import com.persy.learnandroid.api.ApiRetrofitClient;
 import com.persy.learnandroid.api.ApiService;
 import com.persy.learnandroid.databinding.ActivityProfileDemoBinding;
 import com.persy.learnandroid.databinding.BottomSheetPermissionsBinding;
@@ -24,6 +24,8 @@ import com.persy.learnandroid.model.UserGroup;
 import com.persy.learnandroid.model.UserProfile;
 import com.persy.learnandroid.utils.TokenManager;
 
+import javax.inject.Inject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,10 +33,17 @@ import retrofit2.Response;
 public class ProfileActivity extends AppCompatActivity {
 
     private ActivityProfileDemoBinding binding;
-    private TokenManager tokenManager;
+
+    @Inject
+    TokenManager tokenManager;
+
+    @Inject
+    ApiService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ((MyApplication) getApplication()).getAppComponent().inject(this);
+
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
 
@@ -49,8 +58,6 @@ public class ProfileActivity extends AppCompatActivity {
             return insets;
         });
 
-        tokenManager = new TokenManager(this);
-
         setupToolBar();
 
         if (!tokenManager.isLoggedIn() || tokenManager.isTokenExpired()) {
@@ -59,6 +66,9 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         loadProfile();
+
+        System.out.println("[ProfileActivity] TokenManager: " + tokenManager);
+        System.out.println("[ProfileActivity] ApiService: " + apiService);
     }
 
     private void setupToolBar() {
@@ -74,7 +84,6 @@ public class ProfileActivity extends AppCompatActivity {
     private void loadProfile() {
         binding.setIsLoading(true);
 
-        ApiService apiService = ApiRetrofitClient.getRetrofit(this).create(ApiService.class);
         apiService.getProfile().enqueue(new Callback<ApiResponse<UserProfile>>() {
             @Override
             public void onResponse(Call<ApiResponse<UserProfile>> call, Response<ApiResponse<UserProfile>> response) {
