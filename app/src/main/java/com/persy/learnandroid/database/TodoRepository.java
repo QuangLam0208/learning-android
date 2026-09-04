@@ -2,20 +2,21 @@ package com.persy.learnandroid.database;
 
 import androidx.lifecycle.LiveData;
 
+import com.persy.learnandroid.di.ActivityScope;
 import com.persy.learnandroid.model.Todo;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import javax.inject.Inject;
 
+@ActivityScope
 public class TodoRepository {
     private final TodoDAO todoDAO;
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
 
+    @Inject
     public TodoRepository(TodoDAO todoDAO) {
         this.todoDAO = todoDAO;
     }
