@@ -52,6 +52,10 @@ dependencies {
     // OkHttp Logging Interceptor để debug log request/response
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 
+    // Dagger 2
+    implementation(libs.dagger)
+    annotationProcessor(libs.dagger.compiler) // Dùng annotationProcessor cho Java
+
     // Pull-to-Refresh
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
