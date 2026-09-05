@@ -63,7 +63,16 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    public static ApiService provideApiService(Retrofit retrofit) {
+    @AuthNetwork
+    public static ApiService provideAuthApiService(Retrofit retrofit) {
         return retrofit.create(ApiService.class);
     }
+
+    @Provides
+    @Singleton
+    @AiNetwork
+    public static ApiService provideAiApiService(Retrofit retrofit) {
+        return retrofit.create(ApiService.class);
+    }
+
 }
