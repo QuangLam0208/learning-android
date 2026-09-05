@@ -8,14 +8,13 @@ public enum ETopicCategory {
     RECYCLERVIEW("RecyclerView"),
     ROOM_DATABASE("SQLite & RoomDatabase"),
     RETROFIT("Retrofit"),
-    DATA_BINDING("Data Binding & Two-way Data Binding");
+    DATA_BINDING("Data Binding & Two-way Data Binding"),
+    DAGGER("Dagger - Dependency Injection");
 
     private final String value;
-
     ETopicCategory(String value) {
         this.value = value;
     }
-
     public String getValue() {
         return value;
     }

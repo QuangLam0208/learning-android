@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white"
+        tools:context=".demo.dagger.DaggerInjectionTypesDemoActivity">
+
+        <include android:id="@+id/includeToolbar" layout="@layout/item_toolbar"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_standard">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Có 3 cách để Dagger cung cấp dependency cho một đối tượng."
+                    android:textColor="#666666"
+                    android:textSize="@dimen/text_size_desc"/>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="1dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="14dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1. Constructor Injection"
+                            android:textColor="@color/black"
+                            android:textSize="17sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="Dùng khi bạn tự kiểm soát được constructor (class do chính bạn viết).\n• Dependency bắt buộc được thể hiện rõ ràng trong constructor.\n• Object không thể tồn tại ở trạng thái thiếu dependency (fail-fast)."
+                            android:textColor="#666666"
+                            android:textSize="14sp"
+                            android:lineSpacingExtra="3dp"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:background="#F5F5F5"
+                            android:fontFamily="monospace"
+                            android:padding="10dp"
+                            android:textColor="#333333"
+                            android:textSize="13sp"
+                            android:text="public class TodoRepository {\n    private final TodoDAO todoDAO;\n\n    @Inject\n    public TodoRepository(TodoDAO todoDAO) {\n        this.todoDAO = todoDAO;\n    }\n}"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="Lưu ý: constructor @Inject không được private, class không được abstract."
+                            android:textColor="#D32F2F"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="1dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="14dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2. Field Injection"
+                            android:textColor="@color/black"
+                            android:textSize="17sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="Dùng khi bạn không kiểm soát được constructor — điển hình là Activity, Fragment, Service (do hệ điều hành khởi tạo)."
+                            android:textColor="#666666"
+                            android:textSize="14sp"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:background="#F5F5F5"
+                            android:fontFamily="monospace"
+                            android:padding="10dp"
+                            android:textColor="#333333"
+                            android:textSize="13sp"
+                            android:text="public class ProfileActivity extends AppCompatActivity {\n\n    @Inject\n    TokenManager tokenManager; // KHÔNG private\n\n    protected void onCreate(Bundle b) {\n        ((MyApplication) getApplication())\n            .getAppComponent().inject(this);\n        super.onCreate(b);\n        ...\n    }\n}"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="Lưu ý: field phải là package-private hoặc public, KHÔNG được private, vì code generate của Dagger cần truy cập trực tiếp field đó."
+                            android:textColor="#D32F2F"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="1dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="14dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3. Method Injection"
+                            android:textColor="@color/black"
+                            android:textSize="17sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="@Inject đặt trên setter/method. Dùng khi dependency không thể đưa vào constructor, cần thiết lập SAU khi object đã được tạo, hoặc lifecycle/framework yêu cầu một bước setup riêng."
+                            android:textColor="#666666"
+                            android:textSize="14sp"
+                            android:lineSpacingExtra="3dp"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:background="#F5F5F5"
+                            android:fontFamily="monospace"
+                            android:padding="10dp"
+                            android:textColor="#333333"
+                            android:textSize="13sp"
+                            android:text="public class AnalyticsManager {\n    private Tracker tracker;\n\n    @Inject\n    public void setTracker(Tracker tracker) {\n        this.tracker = tracker;\n        tracker.init();\n    }\n}"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>

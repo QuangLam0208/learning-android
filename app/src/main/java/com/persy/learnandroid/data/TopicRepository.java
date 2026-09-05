@@ -16,6 +16,7 @@ public class TopicRepository {
         topics.add(new Topic(ETopicCategory.ROOM_DATABASE.name(), "SQLite & Room Database", "CRUD với Room Database", null, true));
         topics.add(new Topic(ETopicCategory.RETROFIT.name(), "Retrofit", "REST Client type-safe cho Android", null, true));
         topics.add(new Topic(ETopicCategory.DATA_BINDING.name(), "Data Binding", "Kết nối dữ liệu trực tiếp với View trong layout XML", null, true));
+        topics.add(new Topic(ETopicCategory.DAGGER.name(), "Dagger", "Dependency Injection với Dagger 2", null, true));
 
         return topics;
     }
@@ -68,6 +69,14 @@ public class TopicRepository {
                 topics.add(new Topic("DB1", "Data Binding", "Liên kết dữ liệu giữa View và đối tượng trong XML", "KEY_BINDING_OVERVIEW", false));
                 topics.add(new Topic("DB2", "Two-way Data Binding", "Đồng bộ dữ liệu hai chiều giữa View và đối tượng", "KEY_BINDING_TWO", false));
                 topics.add(new Topic("DB3", "Demo", "Áp dụng Data Binding và Two-way Data Binding vào ứng dụng", "KEY_BINDING_DEMO", false));
+                break;
+
+            case DAGGER:
+                topics.add(new Topic("DG1", "Overview", "Dagger là gì, vấn đề nó giải quyết, khi nào nên dùng", "KEY_DAGGER_OVERVIEW", false));
+                topics.add(new Topic("DG2", "Injection Types", "Constructor, Field, Method Injection", "KEY_DAGGER_INJECTION", false));
+                topics.add(new Topic("DG3", "Scope", "@Singleton và tự định nghĩa Scope", "KEY_DAGGER_SCOPE", false));
+                topics.add(new Topic("DG4", "Component", "Subcomponent vs Component Dependencies", "KEY_DAGGER_COMPONENT", false));
+                topics.add(new Topic("DG5", "Triển khai", "Quy trình triển khai Dagger từng bước", "KEY_DAGGER_IMPLEMENTATION", false));
                 break;
         }
 
