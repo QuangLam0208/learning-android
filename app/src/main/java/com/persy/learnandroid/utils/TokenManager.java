@@ -1,10 +1,9 @@
 package com.persy.learnandroid.utils;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
+@Singleton
 public class TokenManager {
     private static final String KEY_ACCESS_TOKEN = "access_token";
     private static final String KEY_REFRESH_TOKEN = "refresh_token";
@@ -19,9 +18,9 @@ public class TokenManager {
 
     public void saveTokens(String accessToken, String refreshToken, long expiresIn) {
         long expiresAt = System.currentTimeMillis() + expiresIn * 1000L;
-        prefsManager.put(KEY_ACCESS_TOKEN, accessToken);
-        prefsManager.put(KEY_REFRESH_TOKEN, refreshToken);
-        prefsManager.put(KEY_EXPIRES_AT, expiresAt);
+        prefsManager.putString(KEY_ACCESS_TOKEN, accessToken);
+        prefsManager.putString(KEY_REFRESH_TOKEN, refreshToken);
+        prefsManager.putLong(KEY_EXPIRES_AT, expiresAt);
     }
 
     public String getAccessToken() {
