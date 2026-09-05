@@ -3,6 +3,7 @@ package com.persy.learnandroid.di;
 import android.app.Application;
 import android.content.Context;
 
+import com.persy.learnandroid.utils.SharedPrefsManager;
 import com.persy.learnandroid.utils.TokenManager;
 
 import javax.inject.Singleton;
@@ -27,7 +28,7 @@ public class AppModule {
 
     @Provides
     @Singleton
-    TokenManager provideTokenManager(Context context) {
-        return new TokenManager(context);
+    TokenManager provideTokenManager(SharedPrefsManager prefsManager) {
+        return new TokenManager(prefsManager);
     }
 }
