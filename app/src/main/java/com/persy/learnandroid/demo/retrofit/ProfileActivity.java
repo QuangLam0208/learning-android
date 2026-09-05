@@ -19,9 +19,11 @@ import com.persy.learnandroid.adapter.PermissionAdapter;
 import com.persy.learnandroid.api.ApiService;
 import com.persy.learnandroid.databinding.ActivityProfileDemoBinding;
 import com.persy.learnandroid.databinding.BottomSheetPermissionsBinding;
+import com.persy.learnandroid.di.AuthNetwork;
 import com.persy.learnandroid.model.ApiResponse;
 import com.persy.learnandroid.model.UserGroup;
 import com.persy.learnandroid.model.UserProfile;
+import com.persy.learnandroid.utils.SharedPrefsManager;
 import com.persy.learnandroid.utils.TokenManager;
 
 import javax.inject.Inject;
@@ -38,7 +40,11 @@ public class ProfileActivity extends AppCompatActivity {
     TokenManager tokenManager;
 
     @Inject
+    @AuthNetwork
     ApiService apiService;
+
+    @Inject
+    SharedPrefsManager prefsManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +66,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         setupToolBar();
 
+        System.out.println("[ProfileActivity] ACCESS TOKEN: " + tokenManager.getAccessToken());
+
         if (!tokenManager.isLoggedIn() || tokenManager.isTokenExpired()) {
             handleSessionExpired();
             return;
@@ -69,6 +77,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         System.out.println("[ProfileActivity] TokenManager: " + tokenManager);
         System.out.println("[ProfileActivity] ApiService: " + apiService);
+        System.out.println("[ProfileActivity] Prefs USERNAME: " + prefsManager.getString("username"));
     }
 
     private void setupToolBar() {
