@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white"
+        tools:context=".demo.dagger.DaggerScopeDemoActivity">
+
+        <include android:id="@+id/includeToolbar" layout="@layout/item_toolbar"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_standard">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@Singleton — Application lifetime"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="1dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="14dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#F5F5F5"
+                            android:fontFamily="monospace"
+                            android:padding="10dp"
+                            android:textColor="#333333"
+                            android:textSize="13sp"
+                            android:text="@Singleton\n@Component(...)\npublic interface AppComponent { }\n\n@Module\nclass NetworkModule {\n    @Singleton\n    @Provides\n    static Retrofit provideRetrofit() {\n        ...\n    }\n}"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Toàn app dùng CHUNG một Retrofit instance, sống trong lifetime của AppComponent — nếu AppComponent được tạo một lần trong Application, nó sống cùng vòng đời Application."
+                            android:textColor="#666666"
+                            android:textSize="14sp"
+                            android:lineSpacingExtra="3dp"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:cardBackgroundColor="#FFF8E1"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="1dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="14dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="⚠ Lưu ý quan trọng: Scope KHÔNG tự quyết định lifetime. Component mới là thứ sở hữu lifetime — Scope chỉ là annotation để buộc Dagger \'gắn\' binding vào đúng Component đó. Vì vậy Scope phải luôn đi cùng Component tương ứng."
+                            android:textColor="#795548"
+                            android:textSize="14sp"
+                            android:lineSpacingExtra="3dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Bonus: scope mismatch (dùng nhầm scope giữa Component/Module) là lỗi COMPILE-TIME, không phải runtime — giúp bắt lỗi rất sớm."
+                            android:textColor="#795548"
+                            android:textSize="14sp"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="Tự định nghĩa Scope"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="1dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="14dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#F5F5F5"
+                            android:fontFamily="monospace"
+                            android:padding="10dp"
+                            android:textColor="#333333"
+                            android:textSize="13sp"
+                            android:text="@Scope\n@Retention(RetentionPolicy.RUNTIME)\npublic @interface ActivityScope { }\n\n@ActivityScope\n@Subcomponent(modules = ActivityModule.class)\ninterface ActivityComponent {\n    void inject(MainActivity activity);\n\n    @Subcomponent.Factory\n    interface Factory {\n        ActivityComponent create();\n    }\n}\n\n@Module\nclass ActivityModule {\n    @Provides\n    @ActivityScope\n    ProfileViewModel provideProfileViewModel(...) {\n        ...\n    }\n}\n\n@Singleton\n@Component(modules = AppModule.class)\ninterface AppComponent {\n    ActivityComponent.Factory activityComponentFactory();\n}"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="ProfileViewModel được reuse trong suốt vòng đời của ActivityComponent (thường tương ứng vòng đời Activity chứa nó). Đây chính là pattern TodoComponent + ActivityScope đã dùng trong project này."
+                            android:textColor="#666666"
+                            android:textSize="14sp"
+                            android:lineSpacingExtra="3dp"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Best practice: không nên tạo Scope riêng cho từng Fragment nếu không thật sự cần — đa số Fragment có thể dùng chung ActivityScope của Activity chứa nó."
+                            android:textColor="#D32F2F"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>

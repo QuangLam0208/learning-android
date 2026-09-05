@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white"
+        tools:context=".demo.dagger.DaggerComponentDemoActivity">
+
+        <include android:id="@+id/includeToolbar" layout="@layout/item_toolbar"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_standard">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="1dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="14dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Subcomponent — dùng khi nào?"
+                            android:textColor="@color/black"
+                            android:textSize="17sp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="• Component có quan hệ parent-child rõ ràng\n• Muốn xây dựng component hierarchy (Application → Activity → Fragment)\n• Lifetime của dependency có quan hệ lồng nhau (nested)"
+                            android:textColor="#666666"
+                            android:textSize="14sp"
+                            android:lineSpacingExtra="3dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Child (Subcomponent) tự động thấy TOÀN BỘ dependency graph của parent."
+                            android:textColor="#1976D2"
+                            android:textSize="14sp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="1dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="14dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Component Dependencies — dùng khi nào?"
+                            android:textColor="@color/black"
+                            android:textSize="17sp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="• Feature/module tách biệt, thư viện (library)\n• Multi-module project\n• Muốn giảm coupling giữa các component\n• Muốn từng component được build/tạo độc lập"
+                            android:textColor="#666666"
+                            android:textSize="14sp"
+                            android:lineSpacingExtra="3dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Component phụ thuộc KHÔNG tự thấy toàn bộ graph của component kia — chỉ dùng được những dependency mà component đó chủ động expose ra qua method trả về type tương ứng."
+                            android:textColor="#1976D2"
+                            android:textSize="14sp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Đổi lại: verbose hơn (phải khai báo tường minh từng binding cần expose) nhưng an toàn hơn, tránh rò rỉ chi tiết nội bộ module ra ngoài."
+                            android:textColor="#D32F2F"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center"
+                    android:text="Mono-module app (đa số project vừa/nhỏ) → ưu tiên Subcomponent.\nMulti-module lớn, tách feature độc lập → cân nhắc Component Dependencies."
+                    android:textColor="#888888"
+                    android:textSize="13sp"
+                    android:lineSpacingExtra="3dp"/>
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>

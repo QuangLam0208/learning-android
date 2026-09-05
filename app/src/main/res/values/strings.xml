@@ -682,4 +682,11 @@
             • <b>Chiều UI → Model:</b> Data Binding framework kiểm tra <code>(valueFromView != viewModel.getValue())</code> trước khi gọi <code>setValue()</code> để chặn lặp ngược về Model.
         ]]>
     </string>
+    <string name="dagger_overview_explanation">
+        <![CDATA[
+            <b>Dagger là gì?</b><br><br>
+            Dagger là thư viện Dependency Injection hoạt động hoàn toàn ở <b>compile-time</b>. Nó sinh ra code Java thuần (các class <i>Dagger*</i>) để tạo và truyền dependency, <b>không dùng Reflection</b> — giúp app chạy nhanh, không tốn chi phí ở runtime.<br><br>
+            <b>Ý nghĩa cốt lõi:</b> hiện thực hóa Inversion of Control và Dependency Inversion (chữ D trong SOLID). Lớp UI (Activity/Fragment) hay Business (Repository) <b>không tự khởi tạo</b> đối tượng phụ thuộc bằng <i>new Object()</i>, mà đối tượng đó được "bơm" (inject) từ bên ngoài vào.
+        ]]>
+    </string>
 </resources>

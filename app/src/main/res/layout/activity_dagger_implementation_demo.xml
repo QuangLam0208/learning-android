@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white"
+        tools:context=".demo.dagger.DaggerImplementationDemoActivity">
+
+        <include android:id="@+id/includeToolbar" layout="@layout/item_toolbar"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_standard">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Quy trình triển khai Dagger"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="1dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="14dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="1. Xác định dependency graph: cái gì cần cái gì.\n\n2. Xác định lifetime: sống bao lâu — Application, Activity, Fragment, hay Unscoped (tạo mới mỗi lần, không cần reuse).\n\n3. Xác định owner: ai sở hữu dependency này → từ đó suy ra Scope tương ứng.\n\n4. Chọn injection strategy: Constructor (class tự viết) hay Field (Activity/Fragment/Service do OS tạo).\n\n5. Hướng dẫn Dagger cách tạo nếu nó không tự suy luận được: dùng @Module + @Provides (khởi tạo thủ công), hoặc @Binds (interface → implementation, hiệu quả hơn @Provides)."
+                            android:textColor="#444444"
+                            android:textSize="14sp"
+                            android:lineSpacingExtra="4dp"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="6. Tạo Component theo phân cấp"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="1dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="14dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#F5F5F5"
+                            android:fontFamily="monospace"
+                            android:padding="10dp"
+                            android:textColor="#333333"
+                            android:textSize="13sp"
+                            android:text="// AppComponent: quản lý dependency toàn app\n@Singleton\n@Component(modules = {AppModule.class, NetworkModule.class})\npublic interface AppComponent {\n    void inject(MainActivity activity);\n\n    // Cổng để tạo Subcomponent con\n    TodoComponent.Factory todoComponentFactory();\n}\n\n// ActivityComponent: dependency chỉ cần trong 1 Activity\n@ActivityScope\n@Subcomponent\npublic interface TodoComponent {\n    void inject(TodoDemoActivity activity);\n\n    @Subcomponent.Factory\n    interface Factory {\n        TodoComponent create();\n    }\n}"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="7. Khởi tạo đúng lifecycle"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="1dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="14dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#F5F5F5"
+                            android:fontFamily="monospace"
+                            android:padding="10dp"
+                            android:textColor="#333333"
+                            android:textSize="13sp"
+                            android:text="// Trong MyApplication\nappComponent = DaggerAppComponent.builder()\n        .appModule(new AppModule(this))\n        .build();\n\n// Trong TodoDemoActivity\n((MyApplication) getApplication())\n    .getAppComponent()\n    .todoComponentFactory()\n    .create()\n    .inject(this);"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Đây chính xác là pattern MyApplication + AppComponent + TodoComponent đang dùng trong project này — có thể dùng làm khuôn mẫu tham chiếu."
+                            android:textColor="#1976D2"
+                            android:textSize="14sp"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>

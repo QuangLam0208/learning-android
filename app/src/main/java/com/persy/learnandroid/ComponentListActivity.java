@@ -21,6 +21,11 @@ import com.persy.learnandroid.demo.controls.ProgressBarDemoActivity;
 import com.persy.learnandroid.demo.controls.SeekbarDemoActivity;
 import com.persy.learnandroid.demo.controls.SpinnerDemoActivity;
 import com.persy.learnandroid.demo.controls.TextViewDemoActivity;
+import com.persy.learnandroid.demo.dagger.DaggerComponentDemoActivity;
+import com.persy.learnandroid.demo.dagger.DaggerImplementationDemoActivity;
+import com.persy.learnandroid.demo.dagger.DaggerInjectionTypesDemoActivity;
+import com.persy.learnandroid.demo.dagger.DaggerOverviewDemoActivity;
+import com.persy.learnandroid.demo.dagger.DaggerScopeDemoActivity;
 import com.persy.learnandroid.demo.databinding.BindingDemoActivity;
 import com.persy.learnandroid.demo.databinding.BindingOverviewDemoActivity;
 import com.persy.learnandroid.demo.databinding.BindingTwoWayDemoActivity;
@@ -179,6 +184,17 @@ public class ComponentListActivity extends AppCompatActivity {
                 return BindingTwoWayDemoActivity.class;
             case "KEY_BINDING_DEMO":
                 return BindingDemoActivity.class;
+
+            case "KEY_DAGGER_OVERVIEW":
+                return DaggerOverviewDemoActivity.class;
+            case "KEY_DAGGER_INJECTION":
+                return DaggerInjectionTypesDemoActivity.class;
+            case "KEY_DAGGER_SCOPE":
+                return DaggerScopeDemoActivity.class;
+            case "KEY_DAGGER_COMPONENT":
+                return DaggerComponentDemoActivity.class;
+            case "KEY_DAGGER_IMPLEMENTATION":
+                return DaggerImplementationDemoActivity.class;
 
             default:
                 return null;
