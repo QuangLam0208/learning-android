@@ -15,8 +15,10 @@ import com.persy.learnandroid.MyApplication;
 import com.persy.learnandroid.R;
 import com.persy.learnandroid.api.ApiService;
 import com.persy.learnandroid.databinding.ActivityLoginDemoBinding;
+import com.persy.learnandroid.di.AuthNetwork;
 import com.persy.learnandroid.model.LoginRequest;
 import com.persy.learnandroid.model.LoginResponse;
+import com.persy.learnandroid.utils.SharedPrefsManager;
 import com.persy.learnandroid.utils.TokenManager;
 
 import javax.inject.Inject;
@@ -30,6 +32,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private static final String CLIENT_ID = "abc_client";
     private static final String CLIENT_SECRET = "abc123";
+    private static final String USERNAME = "admin";
+    private static final String PASSWORD = "admin123654";
 
     private ActivityLoginDemoBinding binding;
 
@@ -37,7 +41,11 @@ public class LoginActivity extends AppCompatActivity {
     TokenManager tokenManager;
 
     @Inject
+    @AuthNetwork
     ApiService apiService;
+
+    @Inject
+    SharedPrefsManager prefsManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +65,12 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         setupToolBar();
-        binding.edtUsername.setText("admin");
-        binding.edtPassword.setText("admin123654");
+        binding.edtUsername.setText(USERNAME);
+        binding.edtPassword.setText(PASSWORD);
+
+        prefsManager.put("username", USERNAME);
+
+        System.out.println("[LoginActivity] ACCESS TOKEN: " + tokenManager.getAccessToken());
 
         if (tokenManager.isLoggedIn() && !tokenManager.isTokenExpired()) {
             openProfile();
