@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
         binding.edtUsername.setText(USERNAME);
         binding.edtPassword.setText(PASSWORD);
 
-        prefsManager.put("username", USERNAME);
+        prefsManager.putString("username", USERNAME);
 
         System.out.println("[LoginActivity] ACCESS TOKEN: " + tokenManager.getAccessToken());
 
