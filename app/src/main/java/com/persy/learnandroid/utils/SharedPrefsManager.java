@@ -9,43 +9,32 @@ import javax.inject.Singleton;
 @Singleton
 public class SharedPrefsManager {
     private static final String PREF_NAME = "app_prefs";
-    private static volatile SharedPrefsManager instance;
     private final SharedPreferences prefs;
+
     @Inject
     public SharedPrefsManager(Context context) {
         this.prefs = context.getApplicationContext()
                 .getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
     }
 
-    public static SharedPrefsManager getInstance(Context context) {
-        if (instance == null) {
-            synchronized (SharedPrefsManager.class) {
-                if (instance == null) {
-                    instance = new SharedPrefsManager(context);
-                }
-            }
-        }
-        return instance;
+    public void putString(String key, String value) {
+        prefs.edit().putString(key, value).apply();
     }
 
-    public void put(String key, Object value) {
-        SharedPreferences.Editor editor = prefs.edit();
-        if (value == null) {
-            editor.remove(key);
-        } else if (value instanceof String) {
-            editor.putString(key, (String) value);
-        } else if (value instanceof Integer) {
-            editor.putInt(key, (Integer) value);
-        } else if (value instanceof Long) {
-            editor.putLong(key, (Long) value);
-        } else if (value instanceof Boolean) {
-            editor.putBoolean(key, (Boolean) value);
-        } else if (value instanceof Float) {
-            editor.putFloat(key, (Float) value);
-        } else {
-            throw new IllegalArgumentException("Type " + value.getClass().getSimpleName() + " is not supported in SharedPreferences directly.");
-        }
-        editor.apply();
+    public void putInt(String key, int value) {
+        prefs.edit().putInt(key, value).apply();
+    }
+
+    public void putLong(String key, long value) {
+        prefs.edit().putLong(key, value).apply();
+    }
+
+    public void putBoolean(String key, boolean value) {
+        prefs.edit().putBoolean(key, value).apply();
+    }
+
+    public void putFloat(String key, float value) {
+        prefs.edit().putFloat(key, value).apply();
     }
 
     public String getString(String key, String defaultValue) {
