@@ -3,38 +3,37 @@ package com.persy.learnandroid.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import javax.inject.Inject;
+
 public class TokenManager {
-    private static final String PREF_NAME = "auth_prefs";
     private static final String KEY_ACCESS_TOKEN = "access_token";
     private static final String KEY_REFRESH_TOKEN = "refresh_token";
     private static final String KEY_EXPIRES_AT = "expires_at";
 
-    private final SharedPreferences prefs;
+    private final SharedPrefsManager prefsManager;
 
-    public TokenManager(Context context) {
-        prefs = context.getApplicationContext()
-                .getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+    @Inject
+    public TokenManager(SharedPrefsManager prefsManager) {
+        this.prefsManager = prefsManager;
     }
 
     public void saveTokens(String accessToken, String refreshToken, long expiresIn) {
         long expiresAt = System.currentTimeMillis() + expiresIn * 1000L;
-        prefs.edit()
-                .putString(KEY_ACCESS_TOKEN, accessToken)
-                .putString(KEY_REFRESH_TOKEN, refreshToken)
-                .putLong(KEY_EXPIRES_AT, expiresAt)
-                .apply();
+        prefsManager.put(KEY_ACCESS_TOKEN, accessToken);
+        prefsManager.put(KEY_REFRESH_TOKEN, refreshToken);
+        prefsManager.put(KEY_EXPIRES_AT, expiresAt);
     }
 
     public String getAccessToken() {
-        return prefs.getString(KEY_ACCESS_TOKEN, null);
+        return prefsManager.getString(KEY_ACCESS_TOKEN);
     }
 
     public String getRefreshToken() {
-        return prefs.getString(KEY_REFRESH_TOKEN, null);
+        return prefsManager.getString(KEY_REFRESH_TOKEN);
     }
 
     public long getExpiresAt() {
-        return prefs.getLong(KEY_EXPIRES_AT, 0);
+        return prefsManager.getLong(KEY_EXPIRES_AT, 0L);
     }
 
     public boolean isLoggedIn() {
@@ -50,6 +49,8 @@ public class TokenManager {
     }
 
     public void clear() {
-        prefs.edit().clear().apply();
+        prefsManager.remove(KEY_ACCESS_TOKEN);
+        prefsManager.remove(KEY_REFRESH_TOKEN);
+        prefsManager.remove(KEY_EXPIRES_AT);
     }
 }
