@@ -18,7 +18,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class NetworkModule {
 
-    private static final String BASE_URL = "https://ai-project-api.devflux.io.vn/";
+    private static final String AUTH_BASE_URL = "https://ai-project-api.devflux.io.vn/";
+    private static final String AI_BASE_URL = "https://ai-api.example.com/";
 
     @Provides
     @Singleton
@@ -30,7 +31,16 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    public static OkHttpClient provideOkHttpClient(TokenManager tokenManager, HttpLoggingInterceptor logging) {
+    public static GsonConverterFactory provideGsonConverterFactory() {
+        return GsonConverterFactory.create();
+    }
+
+    @Provides
+    @Singleton
+    public static OkHttpClient provideOkHttpClient(
+            TokenManager tokenManager,
+            HttpLoggingInterceptor logging
+    ) {
         return new OkHttpClient.Builder()
                 .addInterceptor(chain -> {
                     Request originalRequest = chain.request();
@@ -53,10 +63,14 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    public static Retrofit provideRetrofit(OkHttpClient okHttpClient) {
+    @AuthNetwork
+    public static Retrofit provideRetrofit(
+            OkHttpClient okHttpClient,
+            GsonConverterFactory converterFactory
+    ) {
         return new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl(AUTH_BASE_URL)
+                .addConverterFactory(converterFactory)
                 .client(okHttpClient)
                 .build();
     }
@@ -64,14 +78,28 @@ public class NetworkModule {
     @Provides
     @Singleton
     @AuthNetwork
-    public static ApiService provideAuthApiService(Retrofit retrofit) {
+    public static ApiService provideAuthApiService(@AuthNetwork Retrofit retrofit) {
         return retrofit.create(ApiService.class);
     }
 
     @Provides
     @Singleton
     @AiNetwork
-    public static ApiService provideAiApiService(Retrofit retrofit) {
+    public static Retrofit provideAiRetrofit(
+            OkHttpClient okHttpClient,
+            GsonConverterFactory converterFactory
+    ) {
+        return new Retrofit.Builder()
+                .baseUrl(AI_BASE_URL)
+                .addConverterFactory(converterFactory)
+                .client(okHttpClient)
+                .build();
+    }
+
+    @Provides
+    @Singleton
+    @AiNetwork
+    public static ApiService provideAiApiService(@AiNetwork Retrofit retrofit) {
         return retrofit.create(ApiService.class);
     }
 
