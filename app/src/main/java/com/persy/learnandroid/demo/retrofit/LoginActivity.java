@@ -11,6 +11,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.databinding.DataBindingUtil;
 
+import com.persy.learnandroid.BuildConfig;
 import com.persy.learnandroid.MyApplication;
 import com.persy.learnandroid.R;
 import com.persy.learnandroid.api.ApiService;
@@ -30,8 +31,8 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private static final String CLIENT_ID = "abc_client";
-    private static final String CLIENT_SECRET = "abc123";
+    private static final String CLIENT_ID = BuildConfig.CLIENT_ID;
+    private static final String CLIENT_SECRET = BuildConfig.CLIENT_SECRET;
     private static final String USERNAME = "admin";
     private static final String PASSWORD = "admin123654";
 

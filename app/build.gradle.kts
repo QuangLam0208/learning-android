@@ -1,6 +1,15 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     id("com.google.devtools.ksp")
+}
+
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localProperties.load(FileInputStream(localPropertiesFile))
 }
 
 android {
@@ -11,6 +20,7 @@ android {
 
     buildFeatures {
         dataBinding = true
+        buildConfig = true
     }
 
     defaultConfig {
@@ -21,6 +31,12 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        val clientId = localProperties.getProperty("client_id") ?: ""
+        val clientSecret = localProperties.getProperty("client_secret") ?: ""
+
+        buildConfigField("String", "CLIENT_ID", "\"$clientId\"")
+        buildConfigField("String", "CLIENT_SECRET", "\"$clientSecret\"")
     }
 
     buildTypes {

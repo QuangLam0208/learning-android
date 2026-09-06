@@ -1,5 +1,6 @@
 package com.persy.learnandroid.di;
 
+import com.persy.learnandroid.BuildConfig;
 import com.persy.learnandroid.api.ApiService;
 import com.persy.learnandroid.utils.TokenManager;
 
@@ -25,7 +26,9 @@ public class NetworkModule {
     @Singleton
     public static HttpLoggingInterceptor provideLoggingInterceptor() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        logging.setLevel(BuildConfig.DEBUG
+                ? HttpLoggingInterceptor.Level.BODY
+                : HttpLoggingInterceptor.Level.NONE);
         return logging;
     }
 
