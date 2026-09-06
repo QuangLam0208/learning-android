@@ -48,9 +48,8 @@ public class ProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ((MyApplication) getApplication()).getAppComponent().inject(this);
-
         super.onCreate(savedInstanceState);
+        ((MyApplication) getApplication()).getAppComponent().inject(this);
         EdgeToEdge.enable(this);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_profile_demo);

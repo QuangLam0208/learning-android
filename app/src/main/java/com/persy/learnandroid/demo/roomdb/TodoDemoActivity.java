@@ -41,10 +41,10 @@ public class TodoDemoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ((MyApplication) getApplication()).getAppComponent().todoComponentFactory().create().inject(this);
-
         super.onCreate(savedInstanceState);
+        ((MyApplication) getApplication()).getAppComponent().todoComponentFactory().create().inject(this);
         EdgeToEdge.enable(this);
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_todo_demo);
         binding.setLifecycleOwner(this);
         binding.setActivity(this);
